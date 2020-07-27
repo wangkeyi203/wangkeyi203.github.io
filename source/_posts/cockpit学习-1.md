@@ -2,7 +2,7 @@
 title: cockpit学习_1
 date: 2020-07-20 18:26:39
 tags:
-- share
+- cockpit
 ---
 
 cockpit的配置文件在`/etc/cockpit/cockpit.conf` ，默认不存在，需要用户自己创建。
