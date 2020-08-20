@@ -13,7 +13,7 @@ tags:
 | local_umask             | xxx        | 本地用户的 `umask` 设置，如果注释该设置则默认为 `077`，但一般都设置成 `022` |
 | anon_upload_enable      | `YES`/`NO` | 是否允许匿名用户上传文件，如果要设置为允许，则需要先开启 `write_enable`，否则无效，此外对应目录还要具有写权限 |
 | anon_mkdir_write_enable | `YES`/`NO` | 是否允许匿名用户创建新目录                                   |
-| dirmessage_enable       | `YES`/`NO` | 当进入某个目录时，发送信息提示给远程用户                     |
+| dirmessage_enable       | `YES`/`NO` | 当进入某个目录时，发送信息提示给远程用户：                   |
 | xferlog_enable          | `YES`/`NO` | 是否开启 上传/下载 的日志记录                                |
 | connect_from_port_20    | `YES`/`NO` | 是否使用 `20` 端口来连接 `FTP`                               |
 | chown_uploads           | `YES`/`NO` | 匿名上传的文件是否由某一指定用户 `chown_username` 所有       |
