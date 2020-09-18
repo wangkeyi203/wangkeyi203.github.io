@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>盛最多水的容器 | 云老王</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="题目给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 说明：你不能倾斜容器，且 n 的值至少为 2。 示例: 12输入: [1,8,6,2,5,4,8,3,7]输出: 49  思路两个指针同时向内收缩，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="盛最多水的容器">
+<meta property="og:url" content="http://yoursite.com/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/index.html">
+<meta property="og:site_name" content="云老王">
+<meta property="og:description" content="题目给定 n 个非负整数 a1，a2，…，an，每个数代表坐标中的一个点 (i, ai) 。在坐标内画 n 条垂直线，垂直线 i 的两个端点分别为 (i, ai) 和 (i, 0)。找出其中的两条线，使得它们与 x 轴共同构成的容器可以容纳最多的水。 说明：你不能倾斜容器，且 n 的值至少为 2。 示例: 12输入: [1,8,6,2,5,4,8,3,7]输出: 49  思路两个指针同时向内收缩，">
+<meta property="og:locale">
+<meta property="article:published_time" content="2019-04-21T14:30:57.000Z">
+<meta property="article:modified_time" content="2020-08-09T09:22:17.092Z">
+<meta property="article:author" content="王">
+<meta property="article:tag" content="Algorithm">
+<meta property="article:tag" content="第五周">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="云老王" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 5.0.2"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">云老王</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-5-盛最多水的容器" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" class="article-date">
+  <time datetime="2019-04-21T14:30:57.000Z" itemprop="datePublished">2019-04-21</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      盛最多水的容器
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定 <em>n</em> 个非负整数 <em>a</em>1，<em>a</em>2，…，<em>a</em>n，每个数代表坐标中的一个点 (<em>i</em>, <em>ai</em>) 。在坐标内画 <em>n</em> 条垂直线，垂直线 <em>i</em> 的两个端点分别为 (<em>i</em>, <em>ai</em>) 和 (<em>i</em>, 0)。找出其中的两条线，使得它们与 <em>x</em> 轴共同构成的容器可以容纳最多的水。</p>
+<p><strong>说明：</strong>你不能倾斜容器，且 <em>n</em> 的值至少为 2。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></table></figure>
+
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>两个指针同时向内收缩，短的一边向内收缩，相遇时停止，记录最大面积即可。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; <span class="built_in">height</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="built_in">height</span>.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> totalWater = <span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left);</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">height</span>[left] &lt; <span class="built_in">height</span>[right])</span><br><span class="line">                ++left;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                --right;</span><br><span class="line">            totalWater = <span class="built_in">max</span>(totalWater,<span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalWater;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" data-id="ckf8bs9ox000ot414h705bh1o" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2019/04/28/5-review/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          window的权限
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2019/04/14/4-share/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">内核定时器</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 20px;">Algorithm</a> <a href="/tags/cockpit/" style="font-size: 20px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 10px;">openstack</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/review/" style="font-size: 20px;">review</a> <a href="/tags/share/" style="font-size: 16.67px;">share</a> <a href="/tags/tip/" style="font-size: 20px;">tip</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 16.67px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 16.67px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 16.67px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 13.33px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 16.67px;">第四周</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/09/17/openstack%E5%8C%85/">openstack包</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/04/cockpit%E9%9C%80%E6%B1%82/">cockpit需求</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/26/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">nginx配置文件</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/20/config%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC/">config去掉空格</a>
+          </li>
+        
+          <li>
+            <a href="/2020/08/05/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">cockpit数据格式</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2020 王<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
