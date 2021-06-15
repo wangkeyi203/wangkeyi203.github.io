@@ -3,7 +3,7 @@ title: cockpit_json
 date: 2020-08-03 17:07:40
 tags:
 - cockpit
--json
+- json
 ---
 
 通常配置文件分三种类型，布尔值，数值，字符串。

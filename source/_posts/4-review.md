@@ -6,7 +6,7 @@ tags:
 - 第四周
 ---
 
-<https://medium.com/palantir/auditing-with-osquery-part-two-configuration-and-implementation-87a8bba0ef48>
+medium.com/palantir/auditing-with-osquery-part-two-configuration-and-implementation-87a8bba0ef48
 
 介绍使用osquery启用审计。
 

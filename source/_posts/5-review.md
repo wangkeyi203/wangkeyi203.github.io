@@ -6,7 +6,7 @@ tags:
 - 第五周
 ---
 
-<https://medium.com/palantir/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e>
+medium.com/palantir/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e
 
 主要介绍windows权限的审计，检测和防御相关特性
 
