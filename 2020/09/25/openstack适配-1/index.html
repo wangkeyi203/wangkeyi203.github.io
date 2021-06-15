@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>openstack适配（一） | 云老王</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="Nfs911版本适配OpenStack Ussuri。 为了配置方便，先关闭防火墙和selinux。 12systemctl stop firewalld &amp;&amp; systemctl disable firewalldsetenforce 0  修改&#x2F;etc&#x2F;selinux&#x2F;config中  SELINUX&#x3D;disabled 关闭swap分区 12swapoff -ased -i &amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="openstack适配（一）">
+<meta property="og:url" content="http://yoursite.com/2020/09/25/openstack%E9%80%82%E9%85%8D-1/index.html">
+<meta property="og:site_name" content="云老王">
+<meta property="og:description" content="Nfs911版本适配OpenStack Ussuri。 为了配置方便，先关闭防火墙和selinux。 12systemctl stop firewalld &amp;&amp; systemctl disable firewalldsetenforce 0  修改&#x2F;etc&#x2F;selinux&#x2F;config中  SELINUX&#x3D;disabled 关闭swap分区 12swapoff -ased -i &amp;">
+<meta property="og:locale">
+<meta property="article:published_time" content="2020-09-25T07:20:18.000Z">
+<meta property="article:modified_time" content="2020-12-24T04:56:19.736Z">
+<meta property="article:author" content="王">
+<meta property="article:tag" content="openstack">
+<meta property="article:tag" content="nfs">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="云老王" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">云老王</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-openstack适配-1" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/25/openstack%E9%80%82%E9%85%8D-1/" class="article-date">
+  <time datetime="2020-09-25T07:20:18.000Z" itemprop="datePublished">2020-09-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      openstack适配（一）
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>Nfs911版本适配OpenStack Ussuri。</p>
+<p>为了配置方便，先关闭防火墙和selinux。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld &amp;&amp; systemctl disable firewalld</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+
+<p>修改/etc/selinux/config中 </p>
+<p>SELINUX=disabled</p>
+<p>关闭swap分区</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br><span class="line">sed -i &#x27;/ swap / s/^\(.*\)$/#\1/g&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+
+<p>设置内核</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">modprobe bridge</span><br><span class="line">modprobe br_netfilter</span><br><span class="line">cat &gt; /etc/sysconfig/modules/neutron.modules &lt;&lt;EOF</span><br><span class="line">#!/bin/bash</span><br><span class="line">modprobe -- bridge</span><br><span class="line">modprobe -- br_netfilter</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/neutron.modules &amp;&amp; bash /etc/sysconfig/modules/neutron.modules</span><br><span class="line">echo &quot;vm.max_map_count=262144&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.ipv4.ip_forward=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.bridge.bridge-nf-call-iptables=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.bridge.bridge-nf-call-ip6tables=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+
+<p>设置时间同步</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y chrony &amp;&amp; yum -y autoremove</span><br><span class="line">systemctl start chronyd.service &amp;&amp; systemctl enable chronyd.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>控制节点设置hostname</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname controller</span><br></pre></td></tr></table></figure>
+
+<p>计算节点设置hostname</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname compute1</span><br></pre></td></tr></table></figure>
+
+<p>将机器ip分别添加到/etc/hosts中（ip根据自己机器修改）</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;192.168.50.1 controller&quot; &gt;&gt; /etc/hosts</span><br><span class="line">echo &quot;192.168.50.2 compute1&quot; &gt;&gt; /etc/hosts</span><br></pre></td></tr></table></figure>
+
+<p>因为911版本的包缺少openstack的仓库，我们需要在centos8.2上获取这些包。</p>
+<p>centos-release-ceph-nautilus-1.2-2.el8.noarch.rpm<br>centos-release-openstack-ussuri-1-3.el8.noarch.rpm<br>centos-release-storage-common-2-2.el8.noarch.rpm<br>centos-release-messaging-1-2.el8.noarch.rpm<br>centos-release-rabbitmq-38-1-2.el8.noarch.rpm</p>
+<p>将这些包安装到系统中，遇到依赖问题，就先安装依赖的包就可以。<br>然后创建个shell脚本test.sh</p>
+<p>#!/bin/bash<br>dir=/etc/yum.repos.d</p>
+<p>for file in $dir/*<br>do<br>    sed -i ‘s/$releasever/8/g’ $file<br>    echo $file<br>done<br>执行  sh test.sh<br> yum makecache<br>yum install -y python3-openstackclient</p>
+<p>先配置控制节点<br>安装配置Mariadb<br>yum install -y mariadb mariadb-server python2-PyMySQL （python2-PyMySQL要从centos8.2上拿）<br>tee /etc/my.cnf.d/openstack.cnf &lt;&lt;-‘EOF’<br>[mysqld]<br>bind-address = 192.168.50.1<br>default-storage-engine = innodb<br>innodb_file_per_table = on<br>max_connections = 4096<br>collation-server = utf8_general_ci<br>character-set-server = utf8<br>EOF<br>systemctl enable mariadb.service &amp;&amp; systemctl start mariadb.service<br>echo -e “\nY\n123456\n123456\nY\nn\nY\nY\n” | mysql_secure_installation</p>
+<p>安装配置RabbitMQ<br>systemctl enable rabbitmq-server.service &amp;&amp; systemctl start rabbitmq-server.service<br>rabbitmqctl add_user openstack 123456<br>rabbitmqctl set_permissions openstack “.<em>“ “.</em>“ “.*”</p>
+<p>安装配置Memcached<br>yum install -y memcached python3-memcached<br>sed -i “s/-l 127.0.0.1,::1/-l 127.0.0.1,::1,controller/g” /etc/sysconfig/memcached<br>systemctl enable memcached.service &amp;&amp; systemctl start memcached.service</p>
+<p>安装配置Etcd<br>yum install -y etcd<br>rm -f /etc/etcd/etcd.conf</p>
+<p>tee /etc/etcd/etcd.conf &lt;&lt;-‘EOF’<br>#[Member]<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”192.168.50.1:2380”<br>ETCD_LISTEN_CLIENT_URLS=”192.168.50.1:2379”<br>ETCD_NAME=”controller”<br>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”192.168.50.1:2380”<br>ETCD_ADVERTISE_CLIENT_URLS=”192.168.50.1:2379”<br>ETCD_INITIAL_CLUSTER=”controller=192.168.50.1:2380”<br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster-01”<br>ETCD_INITIAL_CLUSTER_STATE=”new”<br>EOF<br>systemctl enable etcd &amp;&amp; systemctl start etcd</p>
+<p>安装配置Identity service<br>mysql -uroot -p123456 -e “CREATE DATABASE keystone”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON keystone.* TO ‘keystone‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON keystone.* TO ‘keystone‘@’%’ IDENTIFIED BY ‘123456’”</p>
+<p>先从centos8 下载python3-dns这个包并安装<br>yum install -y openstack-keystone httpd python3-mod_wsgi</p>
+<p>sed -i “556c connection = mysql+pymysql://keystone:123456@controller/keystone” /etc/keystone/keystone.conf<br>sed -i “2418c provider = fernet” /etc/keystone/keystone.conf<br>su -s /bin/sh -c “keystone-manage db_sync” keystone<br>keystone-manage fernet_setup –keystone-user keystone –keystone-group keystone<br>keystone-manage credential_setup –keystone-user keystone –keystone-group keystone<br>keystone-manage bootstrap –bootstrap-password 123456 –bootstrap-admin-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-internal-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-public-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-region-id RegionOne<br>echo “ServerName controller” &gt;&gt; /etc/httpd/conf/httpd.conf<br>ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/<br>启动服务<br>systemctl enable httpd.service &amp;&amp; systemctl start httpd.service</p>
+<p>echo “export OS_USERNAME=admin” &gt;&gt; /etc/profile<br>echo “export OS_PASSWORD=123456” &gt;&gt; /etc/profile<br>echo “export OS_PROJECT_NAME=admin” &gt;&gt; /etc/profile<br>echo “export OS_USER_DOMAIN_NAME=Default” &gt;&gt; /etc/profile<br>echo “export OS_PROJECT_DOMAIN_NAME=Default” &gt;&gt; /etc/profile<br>echo “export OS_AUTH_URL=<a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> &gt;&gt; /etc/profile<br>echo “export OS_IDENTITY_API_VERSION=3” &gt;&gt; /etc/profile<br>source /etc/profile<br>openstack project create –domain default –description “Service Project” service</p>
+<p>安装配置Image service<br>mysql -uroot -p123456 -e “CREATE DATABASE glance”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON glance.* TO ‘glance‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON glance.* TO ‘glance‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 glance<br>openstack role add –project service –user glance admin<br>openstack service create –name glance –description “OpenStack Image” image<br>openstack endpoint create –region RegionOne image public <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a><br>openstack endpoint create –region RegionOne image internal <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a><br>openstack endpoint create –region RegionOne image admin <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a></p>
+<p>yum install -y openstack-glance<br>sed -i “2062c connection = mysql+pymysql://glance:123456@controller/glance” /etc/glance/glance-api.conf<br>sed -i “5034c www_authenticate_uri  = <a href="http://controller:5000&quot;">http://controller:5000&quot;</a> /etc/glance/glance-api.conf<br>sed -i “5035c auth_url = <a href="http://controller:5000&quot;">http://controller:5000&quot;</a> /etc/glance/glance-api.conf<br>sed -i “5036c memcached_servers = controller:11211” /etc/glance/glance-api.conf<br>sed -i “5037c auth_type = password” /etc/glance/glance-api.conf<br>sed -i “5038c project_domain_name = Default” /etc/glance/glance-api.conf<br>sed -i “5039c user_domain_name = Default” /etc/glance/glance-api.conf<br>sed -i “5040c project_name = service” /etc/glance/glance-api.conf<br>sed -i “5041c username = glance” /etc/glance/glance-api.conf<br>sed -i “5042c password = 123456” /etc/glance/glance-api.conf<br>sed -i “5678c flavor = keystone” /etc/glance/glance-api.conf<br>sed -i “3413c stores = file,http” /etc/glance/glance-api.conf<br>sed -i “3414c default_store = file” /etc/glance/glance-api.conf<br>sed -i “3415c filesystem_store_datadir = /var/lib/glance/images/“ /etc/glance/glance-api.conf</p>
+<p>su -s /bin/sh -c “glance-manage db_sync” glance<br>systemctl enable openstack-glance-api.service &amp;&amp; systemctl start openstack-glance-api.service</p>
+<p>安装配置Placement service<br>mysql -uroot -p123456 -e “CREATE DATABASE placement”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON placement.* TO ‘placement‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON placement.* TO ‘placement‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 placement<br>openstack role add –project service –user placement admin<br>openstack service create –name placement –description “Placement API” placement<br>openstack endpoint create –region RegionOne placement public <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a><br>openstack endpoint create –region RegionOne placement internal <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a><br>openstack endpoint create –region RegionOne placement admin <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a></p>
+<p>yum install -y openstack-placement-api</p>
+<p>sed -i “507c connection = mysql+pymysql://placement:123456@controller/placement” /etc/placement/placement.conf<br>sed -i “192c auth_strategy = keystone” /etc/placement/placement.conf<br>sed -i “241c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> /etc/placement/placement.conf<br>sed -i “242c memcached_servers = controller:11211” /etc/placement/placement.conf<br>sed -i “243c auth_type = password” /etc/placement/placement.conf<br>sed -i “244c project_domain_name = Default” /etc/placement/placement.conf<br>sed -i “245c user_domain_name = Default” /etc/placement/placement.conf<br>sed -i “246c project_name = service” /etc/placement/placement.conf<br>sed -i “247c username = placement” /etc/placement/placement.conf<br>sed -i “248c password = 123456” /etc/placement/placement.conf<br>su -s /bin/sh -c “placement-manage db sync” placement<br>systemctl restart httpd</p>
+<p>安装配置Compute service<br>mysql -uroot -p123456 -e “CREATE DATABASE nova_api”<br>mysql -uroot -p123456 -e “CREATE DATABASE nova”<br>mysql -uroot -p123456 -e “CREATE DATABASE nova_cell0”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_api.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_api.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_cell0.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_cell0.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 nova<br>openstack role add –project service –user nova admin<br>openstack service create –name nova –description “OpenStack Compute” compute<br>openstack endpoint create –region RegionOne compute public <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>openstack endpoint create –region RegionOne compute internal <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>openstack endpoint create –region RegionOne compute admin <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>yum install -y openstack-nova-api openstack-nova-conductor openstack-nova-novncproxy openstack-nova-scheduler</p>
+<p>sed -i “2c enabled_apis = osapi_compute,metadata” /etc/nova/nova.conf<br>sed -i “3c transport_url = rabbit://openstack:123456@controller:5672/“ /etc/nova/nova.conf<br>sed -i “4c my_ip = 10.0.0.11” /etc/nova/nova.conf<br>sed -i “1079c connection = mysql+pymysql://nova:123456@controller/nova_api” /etc/nova/nova.conf<br>sed -i “1622c connection = mysql+pymysql://nova:123456@controller/nova” /etc/nova/nova.conf<br>sed -i “872c auth_strategy = keystone” /etc/nova/nova.conf<br>sed -i “2561c www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/&quot;">http://controller:5000/&quot;</a> /etc/nova/nova.conf<br>sed -i “2562c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/&quot;">http://controller:5000/&quot;</a> /etc/nova/nova.conf<br>sed -i “2563c memcached_servers = controller:11211” /etc/nova/nova.conf<br>sed -i “2564c auth_type = password” /etc/nova/nova.conf<br>sed -i “2565c project_domain_name = Default” /etc/nova/nova.conf<br>sed -i “2566c user_domain_name = Default” /etc/nova/nova.conf<br>sed -i “2567c project_name = service” /etc/nova/nova.conf<br>sed -i “2568c username = nova” /etc/nova/nova.conf<br>sed -i “2569c password = 123456” /etc/nova/nova.conf<br>sed -i “5171c enabled = true” /etc/nova/nova.conf<br>sed -i ‘5172c server_listen = $my_ip’ /etc/nova/nova.conf<br>sed -i ‘5173c server_proxyclient_address = $my_ip’ /etc/nova/nova.conf<br>sed -i “1937c api_servers = <a href="http://controller:9292&quot;">http://controller:9292&quot;</a> /etc/nova/nova.conf<br>sed -i “3571c lock_path = /var/lib/nova/tmp” /etc/nova/nova.conf<br>sed -i “4093c region_name = RegionOne” /etc/nova/nova.conf<br>sed -i “4094c project_domain_name = Default” /etc/nova/nova.conf<br>sed -i “4095c project_name = service” /etc/nova/nova.conf<br>sed -i “4096c auth_type = password” /etc/nova/nova.conf<br>sed -i “4097c user_domain_name = Default” /etc/nova/nova.conf<br>sed -i “4098c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> /etc/nova/nova.conf<br>sed -i “4099c username = placement” /etc/nova/nova.conf<br>sed -i “4100c password = 123456” /etc/nova/nova.conf<br>sed -i “4509c discover_hosts_in_cells_interval = 300” /etc/nova/nova.conf</p>
+<p>su -s /bin/sh -c “nova-manage api_db sync” nova<br>su -s /bin/sh -c “nova-manage cell_v2 map_cell0” nova<br>su -s /bin/sh -c “nova-manage cell_v2 create_cell –name=cell1 –verbose” nova<br>su -s /bin/sh -c “nova-manage db sync” nova<br>systemctl enable openstack-nova-api.service openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service &amp;&amp; systemctl start openstack-nova-api.service openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/25/openstack%E9%80%82%E9%85%8D-1/" data-id="ckj277c6o0007y53eeiqu3nnl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li></ul>
+
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2020/09/28/openstack%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          openstack模块介绍
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2020/09/17/openstack%E5%8C%85/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">openstack包</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 17.5px;">Algorithm</a> <a href="/tags/cockpit/" style="font-size: 20px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 12.5px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/review/" style="font-size: 17.5px;">review</a> <a href="/tags/share/" style="font-size: 15px;">share</a> <a href="/tags/tip/" style="font-size: 17.5px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 15px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 15px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 15px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 12.5px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 15px;">第四周</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2020/12/24/%E6%9F%A5%E7%9C%8Bdd%E8%BF%9B%E5%BA%A6/">查看dd进度</a>
+          </li>
+        
+          <li>
+            <a href="/2020/12/10/ext4/">ext4</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/28/openstack%E9%80%82%E9%85%8D-2/">openstack适配_2</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/28/openstack%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/">openstack模块介绍</a>
+          </li>
+        
+          <li>
+            <a href="/2020/09/25/openstack%E9%80%82%E9%85%8D-1/">openstack适配（一）</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2021 王<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>
