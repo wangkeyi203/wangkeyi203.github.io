@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-vsftpd配置" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-thunderbird-CVE-2017-7814安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-07-29T04:48:38.000Z" itemprop="datePublished">2020-07-29</time>
+    <a href="/2022/04/01/thunderbird-CVE-2017-7814%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-01T09:40:53.000Z" itemprop="datePublished">2022-04-01</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/">vsftpd配置</a>
+      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7814%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7814安全公告</a>
     </h1>
   
 
@@ -86,233 +86,431 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>anonymous_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户（anonymous）登录 <code>FTP</code>，如果该设置被注释，则默认允许</td>
-</tr>
-<tr>
-<td>local_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许本地系统用户登录</td>
-</tr>
-<tr>
-<td>write_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启任何形式的 <code>FTP</code> 写入命令，上传文件</td>
-</tr>
-<tr>
-<td>local_umask</td>
-<td>xxx</td>
-<td>本地用户的 <code>umask</code> 设置，如果注释该设置则默认为 <code>077</code>，但一般都设置成 <code>022</code></td>
-</tr>
-<tr>
-<td>anon_upload_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户上传文件，如果要设置为允许，则需要先开启 <code>write_enable</code>，否则无效，此外对应目录还要具有写权限</td>
-</tr>
-<tr>
-<td>anon_mkdir_write_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户创建新目录</td>
-</tr>
-<tr>
-<td>dirmessage_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>当进入某个目录时，发送信息提示给远程用户：</td>
-</tr>
-<tr>
-<td>xferlog_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 上传/下载 的日志记录</td>
-</tr>
-<tr>
-<td>connect_from_port_20</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用 <code>20</code> 端口来连接 <code>FTP</code></td>
-</tr>
-<tr>
-<td>chown_uploads</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>匿名上传的文件是否由某一指定用户 <code>chown_username</code> 所有</td>
-</tr>
-<tr>
-<td>chown_username</td>
-<td>有效用户名</td>
-<td>匿名上传的文件由该设定用户所有</td>
-</tr>
-<tr>
-<td>xferlog_file</td>
-<td>有效路径</td>
-<td>设置日志文件的保存位置，默认为 <code>/var/log/xferlog</code></td>
-</tr>
-<tr>
-<td>xferlog_std_format</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用标准的 <code>ftpd xferlog</code>日志格式，该格式日志默认保存在 <code>/var/log/xferlog</code></td>
-</tr>
-<tr>
-<td>idle_session_timeout</td>
-<td>数值</td>
-<td>设置空闲连接的超时时间，单位 秒</td>
-</tr>
-<tr>
-<td>data_connection_timeout</td>
-<td>数值</td>
-<td>设置等待数据传输的最大时间，单位 秒（<code>data_connection_timeout</code> 与 <code>idle_session_timeout</code> 在同一时间只有一个有效）</td>
-</tr>
-<tr>
-<td>nopriv_user</td>
-<td>有效用户名</td>
-<td>指定一个非特权用户，用于运行 <code>vsftpd</code></td>
-</tr>
-<tr>
-<td>async_abor_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否支持异步 <code>ABOR</code> 请求</td>
-</tr>
-<tr>
-<td>ascii_upload_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 <code>ASCII</code> 模式进行文件上传，一般不开启</td>
-</tr>
-<tr>
-<td>ascii_download_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 <code>ASCII</code> 模式进行文件下载，一般不开启</td>
-</tr>
-<tr>
-<td>ftpd_banner</td>
-<td>…</td>
-<td>自定义登录标语</td>
-</tr>
-<tr>
-<td>deny_email_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>如果匿名登录，则会要求输入 email 地址，如果不希望一些 email 地址具有登录权限，则可以开启此项，并在 <code>banned_email_file</code> 指定的文件中写入对应的 email 地址</td>
-</tr>
-<tr>
-<td>banned_email_file</td>
-<td>有效文件</td>
-<td>当开启 <code>deny_email_enable</code> 时，需要通过此项指定一个保存登录无效 email 的文件</td>
-</tr>
-<tr>
-<td>chroot_local_user</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否将所有用户限制在主目录，当为 <code>NO</code> 时， <code>FTP</code> 用户可以切换到其他目录</td>
-</tr>
-<tr>
-<td>chroot_list_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否启用限制用户的名单列表</td>
-</tr>
-<tr>
-<td>chroot_list_file</td>
-<td>有效文件</td>
-<td>用户列表，其作用与 <code>chroot_local_user</code> 和 <code>chroot_local_user</code> 的组合有关，详见下表</td>
-</tr>
-<tr>
-<td>allow_writeable_chroot</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许用户对 ftp 根目录具有写权限，如果设置成不允许而目录实际上却具备写权限，则会报错</td>
-</tr>
-<tr>
-<td>ls_recurse_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许 <code>ls -R</code> 指令来递归查询，递归查询比较耗资源</td>
-</tr>
-<tr>
-<td>listen</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>如果为 <code>YES</code>，<code>vsftpd</code> 将以独立模式运行并监听 <code>IPv4</code> 的套接字，处理相关连接请求（该指令不能与 <code>listen_ipv6</code> 一起使用）</td>
-</tr>
-<tr>
-<td>listen_ipv6</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许监听 <code>IPv6</code> 套接字</td>
-</tr>
-<tr>
-<td>pam_service_name</td>
-<td>…</td>
-<td>设置 <code>PAM</code> 外挂模块提供的认证服务所使用的配置文件名 ，即 <code>/etc/pam.d/vsftpd</code> 文件，此文件中 <code>file=/etc/vsftpd/ftpusers</code> 字段，说明了 <code>PAM</code> 模块能抵挡的帐号内容来自文件 <code>/etc/vsftpd/ftpusers</code> 中</td>
-</tr>
-<tr>
-<td>userlist_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否启用 <code>user_list</code> 文件来控制用户登录</td>
-</tr>
-<tr>
-<td>userlist_deny</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否拒绝 <code>user_list</code> 中的用户登录，此属性设置需在 <code>userlist_enable = YES</code> 时才有效</td>
-</tr>
-<tr>
-<td>tcp_wrappers</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用 <code>tcp_wrappers</code> 作为主机访问控制方式</td>
-</tr>
-<tr>
-<td>max_clients</td>
-<td>数值</td>
-<td>同一时间允许的最大连接数</td>
-</tr>
-<tr>
-<td>max_per_ip</td>
-<td>数值</td>
-<td>同一个IP客户端连接的最大值</td>
-</tr>
-<tr>
-<td>local_root</td>
-<td>有效目录</td>
-<td>系统用户登录后的根目录</td>
-</tr>
-<tr>
-<td>anon_root</td>
-<td>有效目录</td>
-<td>匿名用户登录后的根目录</td>
-</tr>
-<tr>
-<td>user_config_dir</td>
-<td>有效目录</td>
-<td>用户单独配置文件存放目录，该目录下用户的文件名就是对应用户名</td>
-</tr>
-</tbody></table>
-<p><code>chroot_local_user</code> 和 <code>chroot_local_user</code> 组合功能如下：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>chroot_local_user=YES</th>
-<th>chroot_local_user=NO</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>chroot_list_enable=YES</td>
-<td>1.所有用户都被限制在其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，不受限制</td>
-<td>1.所有用户都不被限制其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，受到限制</td>
-</tr>
-<tr>
-<td>chroot_list_enable=NO</td>
-<td>1.所有用户都被限制在其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
-<td>1.所有用户都不被限制其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
-</tr>
-</tbody></table>
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird存在漏洞，可被恶意网站利用下载恶意可执行程序。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7814"><a href="#漏洞编号：-CVE-2017-7814" class="headerlink" title="漏洞编号： CVE-2017-7814"></a>漏洞编号： CVE-2017-7814</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7814">https://nvd.nist.gov/vuln/detail/CVE-2017-7814</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" data-id="ckf8bs9pj002lt4142cdp33g6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7814%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3i0006yy3e3e0s2alo" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thunderbird-CVE-2017-7810安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/01/thunderbird-CVE-2017-7810%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-01T09:22:24.000Z" itemprop="datePublished">2022-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7810%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7810安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird存在内存安全错误，可能被攻击者用来执行恶意代码。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7810"><a href="#漏洞编号：-CVE-2017-7810" class="headerlink" title="漏洞编号： CVE-2017-7810"></a>漏洞编号： CVE-2017-7810</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7810">https://nvd.nist.gov/vuln/detail/CVE-2017-7810</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7810%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3h0005yy3e75vf40tv" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thunderbird-CVE-2017-7805安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/01/thunderbird-CVE-2017-7805%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-01T07:47:13.000Z" itemprop="datePublished">2022-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7805%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7805安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird使用的nss库中存在use-after-free 缺陷。恶意客户端可以利用此漏洞导致针对 NSS 编译的应用程序崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7805"><a href="#漏洞编号：-CVE-2017-7805" class="headerlink" title="漏洞编号： CVE-2017-7805"></a>漏洞编号： CVE-2017-7805</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7805">https://nvd.nist.gov/vuln/detail/CVE-2017-7805</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7805%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3f0004yy3ebih9ayum" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thunderbird-CVE-2017-7793安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/01/thunderbird-CVE-2017-7793%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-01T07:36:40.000Z" itemprop="datePublished">2022-04-01</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7793%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7793安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird存在缺陷，当工作程序或相关窗口在仍在使用时被释放时，Fetch API 中可能会出现释放后使用漏洞，从而导致潜在的可利用崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7793"><a href="#漏洞编号：-CVE-2017-7793" class="headerlink" title="漏洞编号： CVE-2017-7793"></a>漏洞编号： CVE-2017-7793</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7793">https://nvd.nist.gov/vuln/detail/CVE-2017-7793</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7793%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3f0003yy3e1o7oa6nu" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thunderbird-CVE-2017-16541安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/31/thunderbird-CVE-2017-16541%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-31T07:29:20.000Z" itemprop="datePublished">2022-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/31/thunderbird-CVE-2017-16541%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-16541安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird存在一共漏洞，攻击者可以通过使用 autofs 的自动挂载功能在本地文件系统上创建挂载点，发送特别的邮件来直接执行文件系统上的程序。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-16541"><a href="#漏洞编号：-CVE-2017-16541" class="headerlink" title="漏洞编号： CVE-2017-16541"></a>漏洞编号： CVE-2017-16541</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：6-5"><a href="#CVSS3-1评分：6-5" class="headerlink" title="CVSS3.1评分：6.5"></a>CVSS3.1评分：6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-16541">https://nvd.nist.gov/vuln/detail/CVE-2017-16541</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/31/thunderbird-CVE-2017-16541%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt390000yy3e7w5icdc2" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-thunderbird-cve-2016-5824安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/31/thunderbird-cve-2016-5824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-31T04:14:25.000Z" itemprop="datePublished">2022-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/31/thunderbird-cve-2016-5824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-cve-2016-5824安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，依赖的libical 1.0 允许远程攻击者通过精心制作的 ics 文件导致拒绝服务攻击。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-5824"><a href="#漏洞编号：-CVE-2021-5824" class="headerlink" title="漏洞编号： CVE-2021-5824"></a>漏洞编号： CVE-2021-5824</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中"><a href="#漏洞评级：中" class="headerlink" title="漏洞评级：中"></a>漏洞评级：中</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2016-5824">https://nvd.nist.gov/vuln/detail/CVE-2016-5824</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/31/thunderbird-cve-2016-5824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3d0001yy3e443j92uy" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2021-4034分析报告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-24T05:18:16.000Z" itemprop="datePublished">2022-03-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">CVE-2021-4034分析报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="发现"><a href="#发现" class="headerlink" title="发现"></a>发现</h3><p>公司的安全团队发现国外的Qualys安全团队公布了policykit的提权漏洞CVE-2021-4034，该漏洞可以让任何用户提权为root用户。该漏洞cvss评分为7.8，为高危漏洞。</p>
+<h3 id="确认"><a href="#确认" class="headerlink" title="确认"></a>确认</h3><p>系统默认policykit版本为 0.105-18+1cdos2，存在该漏洞。</p>
+<h3 id="简介"><a href="#简介" class="headerlink" title="简介"></a>简介</h3><p>Polkit是一个应用程序级别的工具集，通过定义和审核权限规则，实现不同优先级进程间的通讯：控制决策集中在统一的框架之中，决定低优先级进程是否有权访问高优先级进程。</p>
+<p>Polkit在系统层级进行权限控制，提供了一个低优先级进程和高优先级进程进行通讯的系统。和 sudo 等程序不同，Polkit 并没有赋予进程完全的 root 权限，而是通过一个集中的策略系统进行更精细的授权。</p>
+<p>Polkit定义出一系列操作，例如运行 GParted, 并将用户按照群组或用户名进行划分，例如 wheel 群组用户。然后定义每个操作是否可以由某些用户执行，执行操作前是否需要一些额外的确认，例如通过输入密码确认用户是不是属于某个群组。</p>
+<p>由于Polkit的 Pkexec工具中存在一处本地权限提升漏洞，致使攻击者可以通过控制环境变量，从而诱导Pkexec执行任意代码。利用成功后，可导致非特权用户获得管理员权限。</p>
+<h3 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h3><p>在Pkexec工具的 main() 函数中，首先会使用如下代码处理所接收的命令行参数：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">opt_show_help = FALSE;</span><br><span class="line">opt_show_version = FALSE;</span><br><span class="line">opt_disable_internal_agent = FALSE;</span><br><span class="line">for (n = 1; n &lt; (guint) argc; n++)</span><br><span class="line">  &#123;</span><br><span class="line">    if (strcmp (argv[n], &quot;--help&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        opt_show_help = TRUE;</span><br><span class="line">      &#125;</span><br><span class="line">    else if (strcmp (argv[n], &quot;--version&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        opt_show_version = TRUE;</span><br><span class="line">      &#125;</span><br><span class="line">    else if (strcmp (argv[n], &quot;--user&quot;) == 0 || strcmp (argv[n], &quot;-u&quot;) == 0)</span><br><span class="line">      &#123;</span><br><span class="line">        n++;</span><br><span class="line">        if (n &gt;= (guint) argc)</span><br><span class="line">          &#123;</span><br><span class="line">            usage (argc, argv);</span><br><span class="line">            goto out;</span><br><span class="line">          &#125;</span><br><span class="line"></span><br><span class="line">        if (opt_user != NULL)</span><br><span class="line">          &#123;</span><br><span class="line">            g_printerr (&quot;--user specified twice\n&quot;);</span><br><span class="line">            goto out;</span><br><span class="line">          &#125;</span><br><span class="line">        opt_user = g_strdup (argv[n]);</span><br><span class="line">      &#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码将判断传入的参数是否为绝对路径，如果给出非绝对路径，Pkexec工具也将尝试在 path 中定位程序，具体的做法是在PATH 环境变量的目录中搜索要执行的程序。具体的代码如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">if (path[0] != &#x27;/&#x27;)</span><br><span class="line">    &#123;</span><br><span class="line">      /* g_find_program_in_path() is not suspectible to attacks via the environment */</span><br><span class="line">      s = g_find_program_in_path (path);</span><br><span class="line">      if (s == NULL)</span><br><span class="line">        &#123;</span><br><span class="line">          g_printerr (&quot;Cannot run program %s: %s\n&quot;, path, strerror (ENOENT));</span><br><span class="line">          goto out;</span><br><span class="line">        &#125;</span><br><span class="line">      g_free (path);</span><br><span class="line">      argv[n] = path = s;</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>如果命令行参数argc的数量为 0，这意味着如果传递给execve()的参数列表 argv为空，那么 argv[0]将为 NULL，是参数列表的终止符，这将导致：</p>
+<p>Pkexec代码中，整数 n 设置为 1；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">for (n = 1; n &lt; (guint) argc; n++)</span><br></pre></td></tr></table></figure>
+
+<p>从 argv[1] 越界读取指针路径；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">path = g_strdup (argv[n]);</span><br></pre></td></tr></table></figure>
+
+<p>指针 s 被越界写入argv[1] ；</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">argv[n] = path = s;</span><br></pre></td></tr></table></figure>
+
+<p>由于argv和envp 指针在内存中是连续的，如果 argc 为 0，那么越界argv[1] 实际上是 envp[0]，即为指向我们的第一个环境变量“value”的指针。最终导致：</p>
+<p>将要执行的程序的路径从argv[1]（即envp[0]）中越界读取，并指向“value”；</p>
+<p>由于“value”不是以斜线开头，因此将这个 “value”传递给 g_find_program_in_path()</p>
+<p>随后，g_find_program_in_path() 在PATH 环境变量目录中搜索一个名为“value”的可执行文件。如果找到这样的可执行文件，则将其完整路径返回给 pkexec的 main() 函数。</p>
+<p>最后，这个完整路径被越界写入 argv[1]（即 envp[0]），从而覆盖了我们的第一个环境变量。</p>
+<h3 id="复现方法"><a href="#复现方法" class="headerlink" title="复现方法"></a>复现方法</h3><p>已提供poc，复现方式如图</p>
+<p><img src="./CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/cve-2021-4034%E5%A4%8D%E7%8E%B0.png" alt="cve-2021-4034复现"></p>
+<h3 id="修复方案"><a href="#修复方案" class="headerlink" title="修复方案"></a>修复方案</h3><p>此漏洞影响范围很大，policykit维护团队很快就公布了修复补丁，修复方案为将上游补丁打到我们的包上。</p>
+<h3 id="修复补丁"><a href="#修复补丁" class="headerlink" title="修复补丁"></a>修复补丁</h3><p>修复补丁如下图</p>
+<p><img src="./CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/cve-2021-4034%E4%BF%AE%E5%A4%8D.jpeg" alt="cve-2021-4034修复"></p>
+<h3 id="测试"><a href="#测试" class="headerlink" title="测试"></a>测试</h3><p>经过测试，修复完成之后已经无法复现该漏洞。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" data-id="cl14vrp0p000l6x149p1fe4eb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/policykit/" rel="tag">policykit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" rel="tag">漏洞分析</a></li></ul>
 
     </footer>
   </div>
@@ -321,10 +519,10 @@
 
 
   
-    <article id="post-cockpit-4" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0318安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/24/cockpit-4/" class="article-date">
-  <time datetime="2020-07-24T09:43:15.000Z" itemprop="datePublished">2020-07-24</time>
+    <a href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:16:21.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -335,7 +533,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/24/cockpit-4/">cockpit-4</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0318安全公告</a>
     </h1>
   
 
@@ -343,24 +541,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cockpit可以让用户对完整的读写和查看常规文件，但是对大型文件的读写支持的不是特别好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">file &#x3D; cockpit.file(path,</span><br><span class="line">                    &#123; syntax: syntax_object,</span><br><span class="line">                      binary: boolean,</span><br><span class="line">                      max_read_size: int,</span><br><span class="line">                      superuser: string,</span><br><span class="line">                      host: string</span><br><span class="line">                    &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.read()</span><br><span class="line">promise</span><br><span class="line">    .then((content, tag) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.replace(content, [ expected_tag ])</span><br><span class="line">promise</span><br><span class="line">    .then(new_tag &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.modify(callback, [ initial_content, initial_tag ]</span><br><span class="line">promise</span><br><span class="line">    .then((new_content, new_tag) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">file.watch((content, tag, [error]) &#x3D;&gt; &#123; &#125;)</span><br><span class="line"></span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的ops.c中存在一个缓冲区溢出漏洞，该漏洞是由于读取超出utf_head_off函数中的一行末尾而导致的。该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃或代码执行。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0318"><a href="#漏洞编号：-CVE-2022-0318" class="headerlink" title="漏洞编号： CVE-2022-0318"></a>漏洞编号： CVE-2022-0318</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>简单的读取功能,text1为textarea控件id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cockpit.file(&quot;&#x2F;root&#x2F;test&quot;).read()</span><br><span class="line">    .then((content, tag) &#x3D;&gt; &#123;</span><br><span class="line">            text1.value &#x3D; content;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123;</span><br><span class="line">            result.innerHTML &#x3D;&quot;0&quot;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
 
-<p>简单的写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cockpit.file(&quot;&#x2F;root&#x2F;test&quot;).replace(content)</span><br><span class="line">    .then(tag &#x3D;&gt; &#123;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123;</span><br><span class="line">       result.innerHTML &#x3D;&quot;0&quot;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>然后调用close()将文件关闭。</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0318">https://nvd.nist.gov/vuln/detail/CVE-2022-0318</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/cockpit-4/" data-id="ckf8bs9oy000qt4141u090a0q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0z001b6x14co12diiw" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
 
     </footer>
   </div>
@@ -369,10 +585,10 @@
 
 
   
-    <article id="post-cockpit学习-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0261安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/" class="article-date">
-  <time datetime="2020-07-21T16:02:47.000Z" itemprop="datePublished">2020-07-22</time>
+    <a href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:08:17.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -383,7 +599,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/">cockpit学习-3</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0261安全公告</a>
     </h1>
   
 
@@ -391,29 +607,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cockpit有个base1插件包，里面提供供其他插件包使用的api。</p>
-<p>分下面几个大模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cockpit.js — Basic cockpit API to interact with the system</span><br><span class="line">cockpit.js: DBus Client — DBus API communication</span><br><span class="line">cockpit.js: File Access — Reading, writing, and watching files.</span><br><span class="line">cockpit.js: HTTP Client — HTTP and REST API communication</span><br><span class="line">cockpit.js: Spawning Processes — Spawning processes or scripts</span><br><span class="line">cockpit.js: Metrics — Reading and streaming metric data</span><br><span class="line">cockpit.js: Series Data — Representing series data</span><br><span class="line">cockpit.js: Raw Channels — Raw communication channels</span><br><span class="line">cockpit.js: Page Location and Jumping — Page location and navigation between components</span><br><span class="line">cockpit.js: Localization — Localization and translations</span><br><span class="line">cockpit.js: Errors — Problem codes and messages</span><br><span class="line">cockpit.js: User Session — User information and login session state</span><br><span class="line">cockpit.js: Utilities — Various utility functions</span><br><span class="line">cockpit.js: Object Cache — Caching and sharing data</span><br><span class="line">cockpit.js: Manifests — Manifest info</span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的ops.c中存在一个越界写入漏洞，该漏洞允许攻击者诱骗用户打开精心编制的文件，从而触发越界写入。此漏洞可能导致软件崩溃、修改内存以及可能的代码执行。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0261"><a href="#漏洞编号：-CVE-2022-0261" class="headerlink" title="漏洞编号： CVE-2022-0261"></a>漏洞编号： CVE-2022-0261</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
 
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p><strong>cockpit.js</strong>  </p>
-<p>通过在html中这样调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;..&#x2F;base1&#x2F;cockpit.js&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>cockpit.js:DBus Client</strong> </p>
-<p>这些api可以直接访问dbus服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">client &#x3D; cockpit.dbus(name, [options])</span><br><span class="line">promise &#x3D; client.wait([callback])</span><br><span class="line">client.close([problem])</span><br><span class="line">client.addEventListener(&quot;close&quot;, options &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">client.addEventListener(&quot;owner&quot;, (event, owner) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">client.options</span><br><span class="line">client.unique_name</span><br><span class="line">client.proxy()</span><br><span class="line">client.proxy()</span><br><span class="line">proxy.client</span><br><span class="line">&#x2F;&#x2F;proxy &#x3D; client.proxy([interface, path], [options])</span><br><span class="line">proxy.path</span><br><span class="line">proxy.iface</span><br><span class="line">proxy.valid</span><br><span class="line">proxy.data</span><br><span class="line">proxy.call()</span><br><span class="line">proxy.wait()</span><br><span class="line">proxy.onchanged</span><br><span class="line">proxy.onsignal</span><br><span class="line">client.proxies()</span><br><span class="line">proxies.wait()</span><br><span class="line">proxies.client</span><br><span class="line">proxies.iface</span><br><span class="line">proxies.path_namespace</span><br><span class="line">proxies.onadded</span><br><span class="line">proxies.onchanged</span><br><span class="line">proxies.onremoved</span><br><span class="line">client.call()</span><br><span class="line">invocation.then()</span><br><span class="line">invocation.catch()</span><br><span class="line">client.subscribe()</span><br><span class="line">subscription.remove()</span><br><span class="line">client.watch()</span><br><span class="line">watch.then()</span><br><span class="line">watch.catch()</span><br><span class="line">watch.remove()</span><br><span class="line">client.onnotify</span><br><span class="line">client.notify()</span><br><span class="line">client.onmeta</span><br><span class="line">client.meta()</span><br><span class="line">client.publish()</span><br><span class="line">published.remove()</span><br><span class="line">cockpit.variant()</span><br><span class="line">cockpit.byte_array()</span><br></pre></td></tr></table></figure>
-
-<p>具体说明可以参考<a target="_blank" rel="noopener" href="https://cockpit-project.org/guide/latest/cockpit-dbus.html">官方文档</a></p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0261">https://nvd.nist.gov/vuln/detail/CVE-2022-0261</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/" data-id="ckf8bs9pd002bt414etxub0ul" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0y00176x1488t2fpn9" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
 
     </footer>
   </div>
@@ -422,10 +651,10 @@
 
 
   
-    <article id="post-cockpit学习-2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0213安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/" class="article-date">
-  <time datetime="2020-07-21T01:26:25.000Z" itemprop="datePublished">2020-07-21</time>
+    <a href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:06:35.000Z" itemprop="datePublished">2022-03-23</time>
 </a>
     
   </div>
@@ -436,7 +665,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/">cockpit学习_2</a>
+      <a class="article-title" href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0213安全公告</a>
     </h1>
   
 
@@ -444,309 +673,42 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>cockpit管理多台主机</strong></p>
-<p>首先在A机器安装cockpit-dashboard这个插件包。然后web重新登陆，就可以看到dashboard的选项。</p>
-<p>在B机器安装cockpit包，然后设置开机启动cockpit服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable --now cockpit.socket</span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于未检查NameBuff函数的长度而导致的。该漏洞允许攻击者输入特殊构建的文件导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0213"><a href="#漏洞编号：-CVE-2022-0213" class="headerlink" title="漏洞编号： CVE-2022-0213"></a>漏洞编号： CVE-2022-0213</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：6-6"><a href="#CVSS3-1评分：6-6" class="headerlink" title="CVSS3.1评分：6.6"></a>CVSS3.1评分：6.6</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>如果要做免密登陆，要在A机器执行下面命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id -i ~&#x2F;.ssh&#x2F;id_rsa.pub B机IP</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
 
-<p>然后在web界面的dashboard页面里选择添加机器，输入B机IP，就能在A的web页面管理B机器。若没有配置密钥，则需要输入B机器的账号和密码。</p>
-<p><strong>cockpit管理容器</strong></p>
-<p>cockpit管理容器使用的是podman，所以需要先安装<code>cockpit-podman</code>这个插件包，然后刷新web页面，就可以看到Podman Containers的选项。</p>
-<p>在这个标签页里，可以直接搜索镜像，拉取下来之后可以直接启动。</p>
-<p><strong>cockpit管理虚拟机</strong></p>
-<p>需要先安装<code>cockpit-machines</code>这个插件包，然后刷新web页面，就可以看到虚拟机的标签页。</p>
-<p><strong>cockpit插件</strong></p>
-<p>cockpit使用XDG规范来存放插件包，默认情况下，cockpit按以下顺序在这几个目录里查找插件包，遇到同名的则使用找到的第一个。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;.local&#x2F;share&#x2F;cockpit&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;share&#x2F;cockpit&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;share&#x2F;cockpit&#x2F;</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>可以使用下面这条命令查看系统中安装的cockpit插件包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cockpit-bridge --packages</span><br></pre></td></tr></table></figure>
-
-<p>一个插件包包含以下几个文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;share&#x2F;cockpit&#x2F;my-package&#x2F;</span><br><span class="line">        manifest.json</span><br><span class="line">        file.html</span><br><span class="line">        some.js</span><br></pre></td></tr></table></figure>
-
-<p>manfiest.json中一般包含以下几个字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">content-security-policy</span><br><span class="line">name</span><br><span class="line">priority</span><br><span class="line">requires</span><br><span class="line">version</span><br><span class="line">preload</span><br><span class="line">dashboard</span><br><span class="line">menu</span><br><span class="line">tools</span><br></pre></td></tr></table></figure>
-
-<p> 其中menu是由以下json对象注册的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">label</span><br><span class="line">order</span><br><span class="line">path</span><br><span class="line">docs</span><br><span class="line">keywords</span><br></pre></td></tr></table></figure>
-
-<p>keywords又是由以下json注册的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">matches</span><br><span class="line">goto</span><br><span class="line">weight</span><br><span class="line">translate</span><br></pre></td></tr></table></figure>
-
-<p>一个manifest.json文件例子</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;cockpit&quot;</span>: <span class="string">&quot;120&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;tools&quot;</span>: &#123;</span><br><span class="line">     <span class="attr">&quot;mytool&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;My Tool&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;tool.html&quot;</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为了压缩空间，插件包支持压缩格式，加入一个文件名为<code>test.de.js</code>,如果cockpit没有在找到该文件，将会以以下的扩展名寻找这个文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mypackage&#x2F;test.de.js</span><br><span class="line">mypackage&#x2F;test.de.min.js</span><br><span class="line">mypackage&#x2F;test.de.js.gz</span><br><span class="line">mypackage&#x2F;test.de.min.js.gz</span><br><span class="line">mypackage&#x2F;test.js</span><br><span class="line">mypackage&#x2F;test.min.js</span><br><span class="line">mypackage&#x2F;test.js.gz</span><br><span class="line">mypackage&#x2F;test.min.js.gz</span><br></pre></td></tr></table></figure>
-
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0213">https://nvd.nist.gov/vuln/detail/CVE-2022-0213</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/" data-id="ckf8bs9oz000ut414fpmhcp48" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0y00196x149cl8g56k" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cockpit学习-1" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/" class="article-date">
-  <time datetime="2020-07-20T10:26:39.000Z" itemprop="datePublished">2020-07-20</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/">cockpit学习_1</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>cockpit的配置文件在<code>/etc/cockpit/cockpit.conf</code> ，默认不存在，需要用户自己创建。</p>
-<p><strong>cockpit的主要模块</strong></p>
-<p><code>cockpit-ws</code> 用来和浏览器以及各个系统组件通信的服务。</p>
-<p><code>cockpit-tls</code>为<code> cockpit-ws</code>的代理，证书存放于<code>/etc/cockpit/ws-certs.d</code>，可以使用 <code>remotectl certificate</code> 检查将会使用的证书。</p>
-<p><code>cockpit-bridge</code>用来处理从web前端到服务端的消息和命令，并代表web用户生成进程。</p>
-<p>cockpit可以配置<code> /etc/systemd/system/cockpit.socket.d/listen.conf</code> 中配置监听的端口和ip（官方手册）。实际系统中配置监听端口和ip的配置文件为<code>/usr/lib/systemd/system/cockpit.socket</code>。可以配置同时监听多个端口，但是需要在firewall中将修改的对应端口开放。<code>firewall-cmd --add-port=9091/tcp</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Socket]</span><br><span class="line">ListenStream&#x3D;9090</span><br><span class="line">ListenStream&#x3D;9091</span><br><span class="line">ListenStream&#x3D;</span><br></pre></td></tr></table></figure>
-
-<p>cockpit可以同时管理和监视多个服务，但是浏览器只会连接一台机器的<code>cockpit-ws</code>服务,然后通过这个服务使用ssh协议连接其他机器。cockpit的工作原理如下图。</p>
-<p><img src="https://raw.githubusercontent.com/cockpit-project/cockpit/master/doc/cockpit-transport.png" alt="avatar"></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/" data-id="ckf8bs9oy000st4142pdg6upd" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5-tip" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/5-tip/" class="article-date">
-  <time datetime="2019-04-28T15:42:05.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/5-tip/">对deb包打patch</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>首先使用apt-get source xxx 下载我们想要打patch的包</p>
-<p>再使用dpkg-source -x xxx.dsc将我们下载的源码包解压。</p>
-<p>进入源码目录，quilt new testpatch 创建patch，假如我们需要对test.c文件进行修改，执行 quilt add test.c，然后对文件进行修改结束后，执行quilt refresh，生成patch文件，修改源码目录下的/debian/patches/series文件将我们的testpatch添加到最后一行。</p>
-<p>回到源码的根目录，执行dpkg-buildpackage，则可以根据我们修改后的源码重新生成deb包。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/5-tip/" data-id="ckf8bs9ow000nt414e8063mm2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5-review" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/28/5-review/" class="article-date">
-  <time datetime="2019-04-28T15:39:15.000Z" itemprop="datePublished">2019-04-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/5-review/">window的权限</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>medium.com/palantir/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e</p>
-<p>主要介绍windows权限的审计，检测和防御相关特性</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/5-review/" data-id="ckf8bs9ov000kt4140f6mfqck" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-5-盛最多水的容器" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" class="article-date">
-  <time datetime="2019-04-21T14:30:57.000Z" itemprop="datePublished">2019-04-21</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">盛最多水的容器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定 <em>n</em> 个非负整数 <em>a</em>1，<em>a</em>2，…，<em>a</em>n，每个数代表坐标中的一个点 (<em>i</em>, <em>ai</em>) 。在坐标内画 <em>n</em> 条垂直线，垂直线 <em>i</em> 的两个端点分别为 (<em>i</em>, <em>ai</em>) 和 (<em>i</em>, 0)。找出其中的两条线，使得它们与 <em>x</em> 轴共同构成的容器可以容纳最多的水。</p>
-<p><strong>说明：</strong>你不能倾斜容器，且 <em>n</em> 的值至少为 2。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></table></figure>
-
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>两个指针同时向内收缩，短的一边向内收缩，相遇时停止，记录最大面积即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; <span class="built_in">height</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="built_in">height</span>.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> totalWater = <span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left);</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">height</span>[left] &lt; <span class="built_in">height</span>[right])</span><br><span class="line">                ++left;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                --right;</span><br><span class="line">            totalWater = <span class="built_in">max</span>(totalWater,<span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalWater;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" data-id="ckf8bs9ox000ot414h705bh1o" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-4-share" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/4-share/" class="article-date">
-  <time datetime="2019-04-14T15:55:48.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-share/">内核定时器</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>内核定时器可以用来在未来某一时间执行被调用程序，类似于软件中断。<br>结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">struct timer_list &#123;</span><br><span class="line"></span><br><span class="line">   struct list_head entry;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   unsigned long expires;</span><br><span class="line"></span><br><span class="line">   void (*function)(unsigned long);</span><br><span class="line"></span><br><span class="line">   unsigned long data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   struct tvec_base *base;</span><br><span class="line"></span><br><span class="line">   &#x2F;* ... *&#x2F;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-share/" data-id="ckf8bs9oq000ct4145snzaacr" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-4-tip" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/4-tip/" class="article-date">
-  <time datetime="2019-04-14T15:55:38.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-tip/">tar的追加与取出文件</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>追加用“-r”选项，取出用“-x”选项：<br>如：有一个包 file.tar.bz2 ,需要把file2添加进去，就用命令：<br><strong>tar -rvf file.tar.bz2 file2</strong><br>取出file2则用：<br><strong>tar -xvf file.tar.bz2 file2</strong></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-tip/" data-id="ckf8bs9ou000it41424dsg4u2" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
 
     </footer>
   </div>
@@ -758,7 +720,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/8/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/6/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="page-number current">7</span><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/8/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -790,7 +752,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -803,23 +765,23 @@
       <ul>
         
           <li>
-            <a href="/2022/03/24/CVE-2021-4034%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/">CVE-2021-4034分析报告</a>
+            <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/03/23/CVE-2022-0318%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0318安全公告</a>
+            <a href="/2022/04/22/firefox-CVE-2017-5433%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/03/23/CVE-2022-0261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0261安全公告</a>
+            <a href="/2022/04/22/firefox-CVE-2017-5434%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0213安全公告</a>
+            <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
           <li>
-            <a href="/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-4193安全公告</a>
+            <a href="/2022/04/22/firefox-CVE-2017-5436%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
       </ul>
