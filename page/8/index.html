@@ -64,6 +64,72 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-CVE-2022-0213安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-23T09:06:35.000Z" itemprop="datePublished">2022-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0213安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于未检查NameBuff函数的长度而导致的。该漏洞允许攻击者输入特殊构建的文件导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0213"><a href="#漏洞编号：-CVE-2022-0213" class="headerlink" title="漏洞编号： CVE-2022-0213"></a>漏洞编号： CVE-2022-0213</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：6-6"><a href="#CVSS3-1评分：6-6" class="headerlink" title="CVSS3.1评分：6.6"></a>CVSS3.1评分：6.6</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0213">https://nvd.nist.gov/vuln/detail/CVE-2022-0213</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0213%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0y00196x149cl8g56k" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-CVE-2021-4193安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/03/23/CVE-2021-4193%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
@@ -658,76 +724,10 @@
 
 
   
-    <article id="post-CVE-2022-0554安全公告" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/03/23/CVE-2022-0554%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-23T06:59:47.000Z" itemprop="datePublished">2022-03-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/23/CVE-2022-0554%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0554安全公告</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在一个指针偏移量超出范围漏洞，该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0554"><a href="#漏洞编号：-CVE-2022-0554" class="headerlink" title="漏洞编号： CVE-2022-0554"></a>漏洞编号： CVE-2022-0554</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
-<p>方法一：在线更新</p>
-<ol>
-<li>添加以下行到安装源配置文件中</li>
-</ol>
-<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
-<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
-<ol start="2">
-<li>执行源同步命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>执行安装更新命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
-
-<p>方法二：下载安装包进行升级安装</p>
-<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0554">https://nvd.nist.gov/vuln/detail/CVE-2022-0554</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/23/CVE-2022-0554%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp12001h6x1412ap02wm" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/9/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/7/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="page-number current">8</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/9/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -772,6 +772,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
@@ -785,10 +789,6 @@
         
           <li>
             <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5436%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
       </ul>

@@ -64,6 +64,48 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-cve-2019-18634安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-10T06:30:51.000Z" itemprop="datePublished">2022-03-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-18634分析报告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. (pwfeedback is a default setting in Linux Mint and elementary OS; however, it is NOT the default for upstream and many other packages, and would exist only if enabled by an administrator.) The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-18634"><a href="#漏洞编号：-CVE-2019-18634" class="headerlink" title="漏洞编号： CVE-2019-18634"></a>漏洞编号： CVE-2019-18634</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2019-18634">https://nvd.nist.gov/vuln/detail/cve-2019-18634</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt0000cb214g48m5pqb" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-cve-2019-14287安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
@@ -494,72 +536,10 @@
 
 
   
-    <article id="post-dbus配置说明" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
-  <time datetime="2022-02-23T07:54:39.000Z" itemprop="datePublished">2022-02-23</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">dbus配置说明</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>以c的dbus demo代码为例子，做一个自启动的dbus服务配置</p>
-<p>首先c demo的源码目录下有一个 test1.conf文</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Bus that listens on a debug pipe and doesn&#x27;t create any restrictions --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE busconfig PUBLIC &quot;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&quot;</span><br><span class="line"> &quot;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&quot;&gt;</span><br><span class="line">&lt;busconfig&gt;</span><br><span class="line">  &lt;type&gt;system&lt;/type&gt; </span><br><span class="line"></span><br><span class="line">  &lt;listen&gt;unix:tmpdir=/tmp&lt;/listen&gt;</span><br><span class="line"></span><br><span class="line">  &lt;standard_system_servicedirs /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;policy context=&quot;default&quot;&gt;</span><br><span class="line">    &lt;!-- Allow everything to be sent --&gt;</span><br><span class="line">    &lt;allow send_destination=&quot;*&quot; eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow everything to be received --&gt;</span><br><span class="line">    &lt;allow eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow anyone to own anything --&gt;</span><br><span class="line">    &lt;allow own=&quot;*&quot;/&gt;</span><br><span class="line">    &lt;allow user=&quot;*&quot;/&gt;</span><br><span class="line">  &lt;/policy&gt;</span><br><span class="line"></span><br><span class="line">&lt;/busconfig&gt;</span><br></pre></td></tr></table></figure>
-
-<p>先将这个文件放到 /etc/dbus-1/system.d/ 下，几个关键的配置说明</p>
-<p><type>system</type>    dbus 服务的bus类型，分为system和session，我们要垮用户通信，就需要用system总线</p>
-<p><listen>unix:tmpdir=/tmp</listen>  设置监听地址</p>
-<p><standard_system_servicedirs />  dbus service文件目录，在/usr/share/dbus-1/system-services下</p>
-<p> <policy context="default"> 配置dbus的一些策略</p>
-<p>然后需要在/usr/share/dbus-1/system-services/下创建一个 com.dbus.receiver_app.service</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/share/dbus-1/system-services/com.dbus.receiver_app.service</span><br><span class="line">[D-BUS Service]</span><br><span class="line">Name=com.dbus.receiver_app</span><br><span class="line">Exec=/usr/bin/demo receive</span><br><span class="line">User=root</span><br></pre></td></tr></table></figure>
-
-<p>这个文件是用来给dbus服务程序做按需启动的，当客户端发起请求时，会根据 test1.conf中的 <standard_system_servicedirs /> 在/usr/share/dbus-1/system-services/找到对应的service文件，来启动dbus的服务程序</p>
-<p>Name=com.dbus.receiver_app 这个跟代码里服务程序的bus name对应起来</p>
-<p>Exec=/usr/bin/demo receive 这个为启动服务程序的方式</p>
-<p>User=root    启动服务程序的用户，因为我们是为了替代sudo nopasswd权限滥用问题，服务端就用root就可以</p>
-<p>然后把c的源码编译一下，直接make一下，然后将编译好的demo复制一份到/usr/bin/下</p>
-<p>再用普通用户执行 </p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/C_dbus$ ./demo send METHOD INT32 99</span><br><span class="line">[59355] Got Method Return INT32: 99</span><br></pre></td></tr></table></figure>
-
-<p>可以获取到服务端返回的返回值</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/C_dbus$ ps aux |grep demo</span><br><span class="line">root       9584  0.0  0.0   5008  1100 ?        S    14:21   0:00 /usr/bin/demo receive</span><br><span class="line">wky       59389  0.0  0.0   9152   888 pts/2    S+   17:24   0:00 grep demo</span><br></pre></td></tr></table></figure>
-
-<p>使用ps查看一下，也可以看到服务端已经以root权限启动了</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="cl0j9vktl0008lq148alj7wcj" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/10/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/12/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -604,6 +584,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
@@ -617,10 +601,6 @@
         
           <li>
             <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5436%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
       </ul>

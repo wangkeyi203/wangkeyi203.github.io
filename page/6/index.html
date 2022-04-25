@@ -64,6 +64,70 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-tar-CVE-2018-20482安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T07:14:20.000Z" itemprop="datePublished">2022-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">tar-CVE-2018-20482安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统当前版本的tar在使用–sparse参数时会错误的处理压缩文件，容易被利用导致拒绝服务攻击。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-20482"><a href="#漏洞编号：-CVE-2018-20482" class="headerlink" title="漏洞编号： CVE-2018-20482"></a>漏洞编号： CVE-2018-20482</h3><h3 id="软件包名：-tar"><a href="#软件包名：-tar" class="headerlink" title="软件包名： tar"></a>软件包名： tar</h3><h3 id="CVSS3-1评分：4-7"><a href="#CVSS3-1评分：4-7" class="headerlink" title="CVSS3.1评分：4.7"></a>CVSS3.1评分：4.7</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 包名</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tar</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-20482">https://nvd.nist.gov/vuln/detail/CVE-2018-20482</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3x000syy3e94ku53zx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-thunder-CVE-2017-5429安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2022/04/14/thunder-CVE-2017-5429%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
@@ -640,74 +704,10 @@
 
 
   
-    <article id="post-thunderbird-CVE-2017-7818安全公告" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/04/01/thunderbird-CVE-2017-7818%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-01T09:45:37.000Z" itemprop="datePublished">2022-04-01</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7818%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7818安全公告</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird存在use-after-free漏洞，攻击者可利用此漏洞导致拒绝服务。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7818"><a href="#漏洞编号：-CVE-2017-7818" class="headerlink" title="漏洞编号： CVE-2017-7818"></a>漏洞编号： CVE-2017-7818</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
-<p>方法一：在线更新</p>
-<ol>
-<li>添加以下行到安装源配置文件中</li>
-</ol>
-<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
-<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
-<ol start="2">
-<li>执行源同步命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>执行安装更新命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
-
-<p>方法二：下载安装包进行升级安装</p>
-<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7818">https://nvd.nist.gov/vuln/detail/CVE-2017-7818</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7818%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3j0007yy3eehg18n1x" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/15/">15</a><a class="extend next" rel="next" href="/page/7/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -752,6 +752,10 @@
       <ul>
         
           <li>
+            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+          </li>
+        
+          <li>
             <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
@@ -765,10 +769,6 @@
         
           <li>
             <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
-          </li>
-        
-          <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5436%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
           </li>
         
       </ul>
