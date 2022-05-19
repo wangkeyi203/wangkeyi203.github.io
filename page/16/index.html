@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-one-两数相加" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-CVE-2022-0368安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/03/20/one-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" class="article-date">
-  <time datetime="2019-03-20T13:11:52.000Z" itemprop="datePublished">2019-03-20</time>
+    <a href="/2022/03/22/CVE-2022-0368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T09:32:42.000Z" itemprop="datePublished">2022-03-22</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/03/20/one-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/">两数相加</a>
+      <a class="article-title" href="/2022/03/22/CVE-2022-0368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0368安全公告</a>
     </h1>
   
 
@@ -86,23 +86,636 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>两个给出  <strong>非空</strong>的链表用来表示两个非负的整数。其中，各自它们的位数的英文按照  <strong>逆序</strong>  的方式存储的，它们并且每个的节点只能存储  <strong>一位</strong>  数字。</p>
-<p>如果，我们将这两个数相加起来，则会返回一个新的链表来表示它们的和。</p>
-<p>您可以假设除了数字0之外，这两个数都不会以0开头。</p>
-<p><strong>示例：</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入：（2  - &gt; 4  - &gt; 3）+（5  - &gt; 6  - &gt; 4）</span><br><span class="line"> 输出： 7  - &gt; 0  - &gt; 8</span><br><span class="line"> 原因： 342 + 465 &#x3D; 807</span><br></pre></td></tr></table></figure>
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于非法访问内存造成的。该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0368"><a href="#漏洞编号：-CVE-2022-0368" class="headerlink" title="漏洞编号： CVE-2022-0368"></a>漏洞编号： CVE-2022-0368</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>循环判断，创建一个标志位和一个新表头，当两个链表都不为NULL时，新建一个node，初始化，新表头的next指向新node，连个链表的数值和标志位相加，存到当前node，并判断结果数值是否大于10，大于10则标志位置1，结果减10，为了结尾不出现0，判断两个链表的next是否为NULL，标志位是否为0，都满足则当前node的next置为NULL。</p>
-<p>若有一个链表已经结束，则另一条链表数值和标志位依次相加，并重复上面判断数值部分，并在加上防止结尾出现0的操作。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">struct ListNode* <span class="title">addTwoNumbers</span><span class="params">(struct ListNode* l1, struct ListNode* l2)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">int</span> a = <span class="number">0</span>;</span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">n</span> = (<span class="title">struct</span> <span class="title">ListNode</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">p</span> = <span class="title">l1</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">q</span> = <span class="title">l2</span>;</span></span><br><span class="line">    <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span> *<span class="title">e</span> = <span class="title">n</span>;</span> <span class="comment">//for return</span></span><br><span class="line">    e-&gt;next = <span class="literal">NULL</span>; <span class="comment">//init</span></span><br><span class="line">    e-&gt;val = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>( p !=<span class="literal">NULL</span> &amp;&amp; q != <span class="literal">NULL</span>)  </span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">newnode</span> = (<span class="title">struct</span> <span class="title">ListNode</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span></span><br><span class="line">        newnode-&gt;val =<span class="number">0</span>;</span><br><span class="line">        newnode-&gt;next=<span class="literal">NULL</span>;<span class="comment">//init newnode</span></span><br><span class="line">        e-&gt;next=newnode;</span><br><span class="line">        e-&gt;val = q-&gt;val + p-&gt;val + a ;</span><br><span class="line">        <span class="keyword">if</span>(e-&gt;val &gt;= <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            e-&gt;val -= <span class="number">10</span>;</span><br><span class="line">            a=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> a = <span class="number">0</span>;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">        q=q-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span>==q &amp;&amp; <span class="literal">NULL</span>==p &amp;&amp; a==<span class="number">0</span>) </span><br><span class="line">            e-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">        e=e-&gt;next;    </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(q !=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">newnode</span> = (<span class="title">struct</span> <span class="title">ListNode</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span></span><br><span class="line">        newnode-&gt;val =<span class="number">0</span>;</span><br><span class="line">        newnode-&gt;next=<span class="literal">NULL</span>;<span class="comment">//init newnode</span></span><br><span class="line">        e-&gt;next=newnode;</span><br><span class="line">        e-&gt;val = q-&gt;val + a;</span><br><span class="line">       </span><br><span class="line">        <span class="keyword">if</span>(e-&gt;val &gt;= <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            e-&gt;val -= <span class="number">10</span>;</span><br><span class="line">            a=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> a=<span class="number">0</span>;</span><br><span class="line">        q=q-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span>==q &amp;&amp; a==<span class="number">0</span>) </span><br><span class="line">            e-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">        e=e-&gt;next;</span><br><span class="line">        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(p !=<span class="literal">NULL</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="class"><span class="keyword">struct</span> <span class="title">ListNode</span>* <span class="title">newnode</span> = (<span class="title">struct</span> <span class="title">ListNode</span>*)<span class="title">malloc</span>(<span class="title">sizeof</span>(<span class="title">struct</span> <span class="title">ListNode</span>));</span></span><br><span class="line">        newnode-&gt;val =<span class="number">0</span>;</span><br><span class="line">        newnode-&gt;next=<span class="literal">NULL</span>;<span class="comment">//init newnode</span></span><br><span class="line">        e-&gt;next=newnode;</span><br><span class="line">        e-&gt;val = p-&gt;val + a;</span><br><span class="line">        <span class="keyword">if</span>(e-&gt;val &gt;= <span class="number">10</span>)</span><br><span class="line">        &#123;</span><br><span class="line">            e-&gt;val -= <span class="number">10</span>;</span><br><span class="line">            a =<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">else</span> a=<span class="number">0</span>;</span><br><span class="line">        p=p-&gt;next;</span><br><span class="line">        <span class="keyword">if</span>(<span class="literal">NULL</span>==p &amp;&amp; a==<span class="number">0</span>) </span><br><span class="line">            e-&gt;next=<span class="literal">NULL</span>;</span><br><span class="line">        e=e-&gt;next;</span><br><span class="line">    &#125; </span><br><span class="line">    <span class="keyword">if</span> (a!=<span class="number">0</span>)</span><br><span class="line">        e-&gt;val+=a;</span><br><span class="line">    <span class="keyword">return</span> n;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0368">https://nvd.nist.gov/vuln/detail/CVE-2022-0368</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/03/20/one-%E4%B8%A4%E6%95%B0%E7%9B%B8%E5%8A%A0/" data-id="ckf8bs9pi002jt414bthihpld" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2022-0368%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0n000h6x14ceyr0sd1" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li></ul>
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2022-0361安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2022-0361%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T09:30:52.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2022-0361%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0361安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于在可视模式下复制行时非法访问内存造成的。该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0361"><a href="#漏洞编号：-CVE-2022-0361" class="headerlink" title="漏洞编号： CVE-2022-0361"></a>漏洞编号： CVE-2022-0361</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0361">https://nvd.nist.gov/vuln/detail/CVE-2022-0361</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2022-0361%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0n000f6x147y0c984s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2022-0359安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2022-0359%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T09:26:03.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2022-0359%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0359安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在堆缓冲区溢出漏洞，该漏洞是由于在Ex模式下使用大型“tabstop”非法访问内存而导致的。该漏洞允许攻击者输入特别构建的文件，从而导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0359"><a href="#漏洞编号：-CVE-2022-0359" class="headerlink" title="漏洞编号： CVE-2022-0359"></a>漏洞编号： CVE-2022-0359</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0359">https://nvd.nist.gov/vuln/detail/CVE-2022-0359</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2022-0359%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0m000d6x14f42d8i41" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2022-0351安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2022-0351%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T09:22:47.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2022-0351%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2022-0351安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在一个漏洞，该漏洞是由于太多的递归导致的，这可能会导致分段错误。该漏洞允许攻击者输入特殊构建的文件，从而导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2022-0351"><a href="#漏洞编号：-CVE-2022-0351" class="headerlink" title="漏洞编号： CVE-2022-0351"></a>漏洞编号： CVE-2022-0351</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2022-0351">https://nvd.nist.gov/vuln/detail/CVE-2022-0351</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2022-0351%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0k000a6x14cl1hej45" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2021-3872安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2021-3872%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T08:57:46.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2021-3872%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-3872安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim的win_redr_status（）函数中发现了一个越界写入缺陷。该漏洞允许攻击者诱骗用户在vim中打开带有特定参数的特制文件，从而触发越界写入。该漏洞的最大威胁是机密性、完整性和系统可用性。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-3872"><a href="#漏洞编号：-CVE-2021-3872" class="headerlink" title="漏洞编号： CVE-2021-3872"></a>漏洞编号： CVE-2021-3872</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-3872">https://nvd.nist.gov/vuln/detail/CVE-2021-3872</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2021-3872%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0j00086x143z3p7t1r" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2021-3796安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2021-3796%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T08:50:05.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2021-3796%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-3796安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在use-after-free漏洞，攻击者可以通过该漏洞输入精心编制的文件，从而导致内存损坏和可能被利用的崩溃执行代码。此漏洞的最大威胁是数据机密性、完整性以及系统可用性。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-3796"><a href="#漏洞编号：-CVE-2019-3796" class="headerlink" title="漏洞编号： CVE-2019-3796"></a>漏洞编号： CVE-2019-3796</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-3796">https://nvd.nist.gov/vuln/detail/CVE-2021-3796</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2021-3796%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0h00056x148c1od3se" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2021-3778安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2021-3778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T08:42:39.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2021-3778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2021-3778安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim存在基于堆的缓冲区溢出漏洞。（这个漏洞没有详细的描述信息）</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-20807"><a href="#漏洞编号：-CVE-2019-20807" class="headerlink" title="漏洞编号： CVE-2019-20807"></a>漏洞编号： CVE-2019-20807</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-3778">https://nvd.nist.gov/vuln/detail/CVE-2021-3778</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2021-3778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0f00036x14gckleiml" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2019-20807安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2019-20807%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T08:35:10.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2019-20807%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2019-20807安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim用户可以绕过rvim限制模式，通过脚本接口（例如Python、Ruby或Lua）执行任意OS命令。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-20807"><a href="#漏洞编号：-CVE-2019-20807" class="headerlink" title="漏洞编号： CVE-2019-20807"></a>漏洞编号： CVE-2019-20807</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：5-3"><a href="#CVSS3-1评分：5-3" class="headerlink" title="CVSS3.1评分：5.3"></a>CVSS3.1评分：5.3</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2019-20807">https://nvd.nist.gov/vuln/detail/CVE-2019-20807</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2019-20807%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0g00046x14fjaseiyq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2017-17087安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2017-17087%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T07:18:30.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2017-17087%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2017-17087安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim在处理文件时会将.swp文件组的所有权限设置成编辑器的主要组，这可以让用户利用特定组的身份去获取敏感信息。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-17087"><a href="#漏洞编号：-CVE-2017-17087" class="headerlink" title="漏洞编号： CVE-2017-17087"></a>漏洞编号： CVE-2017-17087</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-17087">https://nvd.nist.gov/vuln/detail/CVE-2017-17087</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2017-17087%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0500016x1453e549sj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-CVE-2017-11109安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/03/22/CVE-2017-11109%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-03-22T06:22:22.000Z" itemprop="datePublished">2022-03-22</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/03/22/CVE-2017-11109%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">CVE-2017-11109安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-03-vim安全更新"><a href="#NFS-SA-2022-03-vim安全更新" class="headerlink" title="NFS-SA-2022-03: vim安全更新"></a>NFS-SA-2022-03: vim安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统现版本的vim可以被攻击者使用特殊的源文件(-S)攻击，造成拒绝服务。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-11109"><a href="#漏洞编号：-CVE-2017-11109" class="headerlink" title="漏洞编号： CVE-2017-11109"></a>漏洞编号： CVE-2017-11109</h3><h3 id="软件包名：-vim"><a href="#软件包名：-vim" class="headerlink" title="软件包名： vim"></a>软件包名： vim</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 vim_8.0.0197-4+deb9u5 （待定，这是上游的版本）</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install vim</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-11109">https://nvd.nist.gov/vuln/detail/CVE-2017-11109</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/03/22/CVE-2017-11109%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl14vrp0100006x149jux2lje" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li></ul>
 
     </footer>
   </div>
@@ -114,7 +727,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/15/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span>
+    <a class="extend prev" rel="prev" href="/page/15/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/14/">14</a><a class="page-number" href="/page/15/">15</a><span class="page-number current">16</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/17/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -146,7 +759,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -159,23 +772,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5433%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5434%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
           </li>
         
       </ul>

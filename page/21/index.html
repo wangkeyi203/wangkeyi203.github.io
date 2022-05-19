@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>云老王</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta property="og:type" content="website">
+<meta property="og:title" content="云老王">
+<meta property="og:url" content="http://yoursite.com/page/21/index.html">
+<meta property="og:site_name" content="云老王">
+<meta property="og:locale">
+<meta property="article:author" content="王">
+<meta name="twitter:card" content="summary">
+  
+    <link rel="alternate" href="/atom.xml" title="云老王" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  
+    <link href="//fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  
+  
+<link rel="stylesheet" href="/css/style.css">
+
+  
+
+<meta name="generator" content="Hexo 5.4.0"></head>
+
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">云老王</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main">
+  
+    <article id="post-3-share" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/08/3-share/" class="article-date">
+  <time datetime="2019-04-08T02:56:55.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/08/3-share/">sync</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>分享一个Linux命令<strong>sync</strong>。</p>
+<p><strong>sync</strong>作用是，将有关文件系统的存储器常驻信息送入物理介质内。</p>
+<p>Linux文件系统更新是一个复杂的过程，当用户程序对文件系统进行修改以后，例如进行了写操作，文件数据把修改记录在内核缓冲中，在数据没有写到磁盘的时候，依然能够执行用户进程，所有数据的改变都在inode的内容中得到反映。磁盘的数据更新实际上是异步进行的，很有可能在写操作已经完成很长时间以后才真正对磁盘的数据进行更新。</p>
+<p>我一般在准备强制关机前，执行sync命令防止数据丢失。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/3-share/" data-id="ckf8bs9oo0007t4140lo46ks2" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-tip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/08/3-tip/" class="article-date">
+  <time datetime="2019-04-08T02:39:54.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/08/3-tip/">单用户修改Linux用户密码</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候旧电脑中的Linux系统长时间不使用，忘记了密码，但是又想拿到里面的数据，这时候我们可以使用单用户登陆的方式登陆系统，并更改root用户密码。</p>
+<p>以CentOS为例，系统启动后进入grub，按e编辑内核引导参数选项，在内核引导参数后面加上</p>
+<p><strong>-single</strong></p>
+<p>然后进入系统，就是单用户模式了，这时候可以直接使用<strong>passwd</strong>命令修改root用户密码，修改成功后重启机器，我们就可以使用修改后的密码登陆到系统当中了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/3-tip/" data-id="ckf8bs9op0008t414b6713eht" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-review" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/08/3-review/" class="article-date">
+  <time datetime="2019-04-08T01:37:10.000Z" itemprop="datePublished">2019-04-08</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/08/3-review/">Linux审计框架</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>wiki.archlinux.org/index.php/Audit_framework</p>
+<p>这是一篇介绍Linux系统审计框架的文档，Linux的审计功能并不提供额外的安全特性，但是可以用来辅助追踪安全问题。用户也可以根据自己的需求定制审计规则以及配置文件。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/08/3-review/" data-id="ckf8bs9on0005t414b6zkhwwy" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-3-两数之和" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/04/07/3-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" class="article-date">
+  <time datetime="2019-04-07T15:44:26.000Z" itemprop="datePublished">2019-04-07</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/04/07/3-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/">两数之和</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定一个整数数组 <code>nums</code> 和一个目标值 <code>target</code>，请你在该数组中找出和为目标值的那 <strong>两个</strong> 整数，并返回他们的数组下标。</p>
+<p>你可以假设每种输入只会对应一个答案。但是，你不能重复利用这个数组中同样的元素。</p>
+<p><strong>示例:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">给定 nums &#x3D; [2, 7, 11, 15], target &#x3D; 9</span><br><span class="line"></span><br><span class="line">因为 nums[0] + nums[1] &#x3D; 2 + 7 &#x3D; 9</span><br><span class="line">所以返回 [0, 1]</span><br></pre></td></tr></table></figure>
+
+
+
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>想到两种方法，一个是嵌套两层循环查找，一个是用hash map，但是c手撸hash map有点麻烦，偷懒用了循环查找，题目比较简单，就不详细说了。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Note: The returned array must be malloced, assume caller calls free().</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">int</span>* <span class="title">twoSum</span><span class="params">(<span class="keyword">int</span>* nums, <span class="keyword">int</span> numsSize, <span class="keyword">int</span> target)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">static</span> <span class="keyword">int</span> a[<span class="number">2</span>]=&#123;<span class="number">0</span>&#125;;</span><br><span class="line">    </span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; numsSize - <span class="number">1</span>; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> j = i+<span class="number">1</span>; j &lt; numsSize; j++)</span><br><span class="line">        &#123;</span><br><span class="line">            <span class="keyword">if</span> (nums[i] + nums[j] == target)</span><br><span class="line">            &#123;</span><br><span class="line">                a[<span class="number">0</span>] = i;</span><br><span class="line">                a[<span class="number">1</span>] = j;</span><br><span class="line">                <span class="keyword">return</span> a;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br><span class="line">​```</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/04/07/3-%E4%B8%A4%E6%95%B0%E4%B9%8B%E5%92%8C/" data-id="ckf8bs9os000ft414gm8ydfa5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2-share" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/31/2-share/" class="article-date">
+  <time datetime="2019-03-31T14:16:34.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/2-share/">ptrace</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>分享一个Linux的系统调用<strong>ptrace</strong>。</p>
+<p>ptrace函数的参数：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">long</span> <span class="title">ptrace</span><span class="params">(<span class="keyword">enum</span> __ptrace_request request,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">pid_t</span> pid,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">void</span> *addr,</span></span></span><br><span class="line"><span class="function"><span class="params">            <span class="keyword">void</span> *data)</span></span>;</span><br></pre></td></tr></table></figure>
+
+<p>具体使用方法可以man一下，很强大，linux下调试工具gdb主要使用的就是ptrace。ptrace可以实现对另一进程的断点调试和跟踪系统调用，同样我们也可以使用这个调用来做反调试，防止我们的进程被跟踪调试，感兴趣的可以自己看一下ptrace的man手册。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/31/2-share/" data-id="ckf8bs9oj0001t41411uvgzl5" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2-tip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/31/2-tip/" class="article-date">
+  <time datetime="2019-03-31T13:55:03.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/2-tip/">加密grub</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>现在用Linux的人很多，但是默认的grub是不加密的，在grub引导内核的参数后面添加 –single就可以进入单用户模式并轻易修改用户的登录密码，这很不安全，为此可以给grub加个秘密简单防御一下。</p>
+<p>使用工具 </p>
+<p><strong>grub-md5-crypt</strong></p>
+<p>这个不用也可以，可以将grub的密码明文存储在文件中，就不说了。</p>
+<p>运行<strong>grub-md5-crypt</strong>，提示输入两次密码，输入完成之后，会得到一个经过加密后的密文，接着编辑文件**/etc/grub.conf**,在末尾添加一行</p>
+<p><strong>passwd –md5 刚才得到的密文</strong></p>
+<p>完成，重启系统，进入grub就需要密码了。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/31/2-tip/" data-id="ckf8bs9ol0003t41400a3f5xq" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2-review" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/31/2-review/" class="article-date">
+  <time datetime="2019-03-31T13:35:55.000Z" itemprop="datePublished">2019-03-31</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/31/2-review/">Linux running on the L4 microkernel</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>news.ycombinator.com/item?id=18944165</p>
+<p>并不算一篇文章，是L4内核一个社区的讨论，主要是讨论L4微内核的安全问题，在L4微内核上跑Linux驱动以及跑Linux应用的前景，但是L4有个弊端就是L4内核太小了，想要方便的使用，现在是需要借助其他操作系统的一些功能，最常见的就是现在的L4linux。</p>
+<p>另外L4微内核是一种内核的代称，L4内核都具有同名内核接口，现在比较常见的有minix3和fiasco。这些讨论里也有人说苹果的t1和t2芯片上跑的也是微内核，大家也期望微内核未来能成为docker的替代品。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/31/2-review/" data-id="ckf8bs9of0000t414hdzp8vst" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-2-字符串转换整数" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/30/2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/" class="article-date">
+  <time datetime="2019-03-30T06:11:39.000Z" itemprop="datePublished">2019-03-30</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/30/2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/">字符串转换整数</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>请你来实现一个 <code>atoi</code> 函数，使其能将字符串转换成整数。</p>
+<p>首先，该函数会根据需要丢弃无用的开头空格字符，直到寻找到第一个非空格的字符为止。</p>
+<p>当我们寻找到的第一个非空字符为正或者负号时，则将该符号与之后面尽可能多的连续数字组合起来，作为该整数的正负号；假如第一个非空字符是数字，则直接将其与之后连续的数字字符组合起来，形成整数。</p>
+<p>该字符串除了有效的整数部分之后也可能会存在多余的字符，这些字符可以被忽略，它们对于函数不应该造成影响。</p>
+<p>注意：假如该字符串中的第一个非空格字符不是一个有效整数字符、字符串为空或字符串仅包含空白字符时，则你的函数不需要进行转换。</p>
+<p>在任何情况下，若函数不能进行有效的转换时，请返回 0。</p>
+<p><strong>说明：</strong></p>
+<p>假设我们的环境只能存储 32 位大小的有符号整数，那么其数值范围为 [−231,  231 − 1]。如果数值超过这个范围，qing返回  INT_MAX (2^31 − 1) 或 INT_MIN (−2^31) 。</p>
+<p><strong>示例 1:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;42&quot;</span><br><span class="line">输出: 42</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 2:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;   -42&quot;</span><br><span class="line">输出: -42</span><br><span class="line">解释: 第一个非空白字符为 &#39;-&#39;, 它是一个负号。</span><br><span class="line">     我们尽可能将负号与后面所有连续出现的数字组合起来，最后得到 -42 。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 3:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;4193 with words&quot;</span><br><span class="line">输出: 4193</span><br><span class="line">解释: 转换截止于数字 &#39;3&#39; ，因为它的下一个字符不为数字。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 4:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;words and 987&quot;</span><br><span class="line">输出: 0</span><br><span class="line">解释: 第一个非空字符是 &#39;w&#39;, 但它不是数字或正、负号。</span><br><span class="line">     因此无法执行有效的转换。</span><br></pre></td></tr></table></figure>
+
+<p><strong>示例 5:</strong></p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">输入: &quot;-91283472332&quot;</span><br><span class="line">输出: -2147483648</span><br><span class="line">解释: 数字 &quot;-91283472332&quot; 超过 32 位有符号整数范围。 </span><br><span class="line">     因此返回 INT_MIN (−231) 。</span><br></pre></td></tr></table></figure>
+<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先逐个判断，若不为‘+’‘-’并且小于0大于9，若都不符合返回0，若满足条件，再判断是否是‘+’‘-’，并根据‘-’号设置一个标志位用来最后返回值处理正负。<br>声明一个int的num用来存当前元素的整数值，一个unsigned int 的res用来存返回值，然后逐位判断元素是否在0-9内，把当前元素的值减去‘0’（ascii码相减） 就是他的数值存到num中，并根据flag值分别判断是否超过正负的范围，最小最大值分别是-2147483648和2147483647，主要是最后一位分开判断，分别是7和8，然后res×10+num，最后根据flag判断下正负，分别返回一下就可以了。</p>
+<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">myAtoi</span><span class="params">(<span class="keyword">char</span>* str)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">char</span> *p =str;</span><br><span class="line">    <span class="keyword">while</span> (*p == <span class="string">&#x27; &#x27;</span>) p++;</span><br><span class="line">    <span class="keyword">if</span>(*p !=  <span class="string">&#x27;-&#x27;</span> &amp;&amp; *p != <span class="string">&#x27;+&#x27;</span> &amp;&amp; *p &lt; <span class="string">&#x27;0&#x27;</span> &amp;&amp; *p &gt; <span class="string">&#x27;9&#x27;</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">char</span> flag = (*p == <span class="string">&#x27;-&#x27;</span>)?<span class="number">1</span>:<span class="number">2</span>;</span><br><span class="line">    (*p == <span class="string">&#x27;-&#x27;</span> || *p == <span class="string">&#x27;+&#x27;</span>) ? ++p:p;</span><br><span class="line">    <span class="keyword">int</span> num = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">unsigned</span> <span class="keyword">int</span> res =<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (*p &lt;= <span class="string">&#x27;9&#x27;</span> &amp;&amp; *p &gt;= <span class="string">&#x27;0&#x27;</span>)</span><br><span class="line">    &#123;</span><br><span class="line">        num = *p -<span class="string">&#x27;0&#x27;</span>;</span><br><span class="line">        <span class="keyword">if</span> ((flag == <span class="number">1</span>) &amp;&amp; ((res == INT_MAX/<span class="number">10</span> &amp;&amp; num &gt;<span class="number">8</span>) || res &gt;(INT_MAX/<span class="number">10</span>))) <span class="keyword">return</span> INT_MIN;</span><br><span class="line">        <span class="keyword">if</span> ((flag == <span class="number">2</span>) &amp;&amp; ((res == INT_MAX/<span class="number">10</span> &amp;&amp; num &gt;<span class="number">7</span>) || res &gt;(INT_MAX/<span class="number">10</span>))) <span class="keyword">return</span> INT_MAX;</span><br><span class="line">        res=res*<span class="number">10</span>+num;</span><br><span class="line">        ++p;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">if</span> (flag == <span class="number">2</span>) </span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    <span class="keyword">else</span> <span class="keyword">return</span> res * <span class="number">-1</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/30/2-%E5%AD%97%E7%AC%A6%E4%B8%B2%E8%BD%AC%E6%8D%A2%E6%95%B4%E6%95%B0/" data-id="ckf8bs9om0004t414bmzyenuj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-one-tip" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/23/one-tip/" class="article-date">
+  <time datetime="2019-03-23T13:01:06.000Z" itemprop="datePublished">2019-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/23/one-tip/">tip</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>因为工作的原因，常年与vim打交道。也经常需要ssh到别的机器上使用无插件的vim看代码，所以分享几个vim的个人常用的功能。</p>
+<p><strong>分屏</strong>在打开一个文件c的时候，如果想打开另一个文件b，可以输入</p>
+<p>:vsp b </p>
+<p>这时候vim界面则会分成左右两边，分别显示a和b两个文件的内容。使用</p>
+<p>:sp b</p>
+<p>这样则会将界面分为上面连块。也可以先左右分屏，再在一侧上下分屏同时打开三个文件。如果如要什么操作，可以加上a参数同时操作所有文件，比如</p>
+<p>:wa </p>
+<p>就是对打开的所有文件进行保存。分屏之间相互跳转，使用 <strong>Ctrl+w</strong>。</p>
+<p>另外因为vim的<strong>Ctrl</strong>键使用频率实在太高，可以修改一下按键映射把<strong>Ctrl</strong>和<strong>Capslock</strong>互相换一下，对vim重度用户来说可以很大程度缓解左手小手指的疲劳。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/23/one-tip/" data-id="ckf8bs9pf002dt4145ik26isj" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-one-使用core文件分析错误" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2019/03/23/one-%E4%BD%BF%E7%94%A8core%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E9%94%99%E8%AF%AF/" class="article-date">
+  <time datetime="2019-03-23T12:30:07.000Z" itemprop="datePublished">2019-03-23</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/03/23/one-%E4%BD%BF%E7%94%A8core%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E9%94%99%E8%AF%AF/">使用core文件分析错误</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>有时候我们的程序出现问题而崩溃，但是又不方便现场调试的时候，我们可以通过core文件来快速定位出问题的位置。</p>
+<p>core文件是程序意外退出时，内核生成的一种文件，通常发行版默认会关闭生成core文件的选项，我们可以执行 </p>
+<p>ulimit -c unlimited</p>
+<p>命令来打开core文件生成选项。然后我们可以复现出现的问题，当程序崩溃之后，会生成core.xxx的文件（我们可以通过配置文件详细的控制core文件的名字包括路径、生成的时间、pid、gid和uid，有兴趣的可以了解下），我们拿到core文件之后，需要重新为我们的应用程序添加一个调试选项，一般是在Makefile中添加 -g 选项。然后我们使用使用gdb调试应用程序 </p>
+<p>gdb ./xxxx </p>
+<p>然后执行</p>
+<p>core-file core.xxx</p>
+<p>再执行</p>
+<p>bt</p>
+<p>就能看到程序崩溃时的堆栈信息，就能定位到出问题的具体地方。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2019/03/23/one-%E4%BD%BF%E7%94%A8core%E6%96%87%E4%BB%B6%E5%88%86%E6%9E%90%E9%94%99%E8%AF%AF/" data-id="ckf8bs9pf002gt414cdh57uca" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+
+
+  <nav id="page-nav">
+    <a class="extend prev" rel="prev" href="/page/20/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/19/">19</a><a class="page-number" href="/page/20/">20</a><span class="page-number current">21</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/22/">__(&#39;next&#39;) &amp;raquo;</a>
+  </nav>
+</section>
+        
+          <aside id="sidebar">
+  
+    
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cve/" rel="tag">cve</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/policykit/" rel="tag">policykit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/polkit/" rel="tag">polkit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/sudo/" rel="tag">sudo</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vim/" rel="tag">vim</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/wget/" rel="tag">wget</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" rel="tag">分析报告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" rel="tag">安全公告</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" rel="tag">漏洞分析</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/Algorithm/" style="font-size: 15px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 16.25px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/cve/" style="font-size: 20px;">cve</a> <a href="/tags/dbus/" style="font-size: 11.25px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 12.5px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/policykit/" style="font-size: 10px;">policykit</a> <a href="/tags/polkit/" style="font-size: 10px;">polkit</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 15px;">review</a> <a href="/tags/share/" style="font-size: 13.75px;">share</a> <a href="/tags/sudo/" style="font-size: 13.75px;">sudo</a> <a href="/tags/tip/" style="font-size: 15px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vim/" style="font-size: 17.5px;">vim</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/wget/" style="font-size: 12.5px;">wget</a> <a href="/tags/%E5%88%86%E6%9E%90%E6%8A%A5%E5%91%8A/" style="font-size: 10px;">分析报告</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" style="font-size: 18.75px;">安全公告</a> <a href="/tags/%E6%BC%8F%E6%B4%9E%E5%88%86%E6%9E%90/" style="font-size: 10px;">漏洞分析</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 13.75px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 13.75px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 13.75px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 12.5px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 13.75px;">第四周</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+    </div>
+  </div>
+
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recent Posts</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
+          </li>
+        
+          <li>
+            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2022 王<br>
+      Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+  
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css">
+
+  
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+
+
+<script src="/js/script.js"></script>
+
+
+  </div>
+</body>
+</html>

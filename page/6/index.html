@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-tar-CVE-2018-20482安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-7778安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-14T07:14:20.000Z" itemprop="datePublished">2022-04-14</time>
+    <a href="/2022/05/07/firefox-CVE-2017-7778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-05-07T05:37:36.000Z" itemprop="datePublished">2022-05-07</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">tar-CVE-2018-20482安全公告</a>
+      <a class="article-title" href="/2022/05/07/firefox-CVE-2017-7778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-7778安全公告</a>
     </h1>
   
 
@@ -86,72 +86,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>系统当前版本的tar在使用–sparse参数时会错误的处理压缩文件，容易被利用导致拒绝服务攻击。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-20482"><a href="#漏洞编号：-CVE-2018-20482" class="headerlink" title="漏洞编号： CVE-2018-20482"></a>漏洞编号： CVE-2018-20482</h3><h3 id="软件包名：-tar"><a href="#软件包名：-tar" class="headerlink" title="软件包名： tar"></a>软件包名： tar</h3><h3 id="CVSS3-1评分：4-7"><a href="#CVSS3-1评分：4-7" class="headerlink" title="CVSS3.1评分：4.7"></a>CVSS3.1评分：4.7</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 包名</p>
-<p>方法一：在线更新</p>
-<ol>
-<li>添加以下行到安装源配置文件中</li>
-</ol>
-<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
-<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
-<ol start="2">
-<li>执行源同步命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>执行安装更新命令，命令如下：</li>
-</ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install tar</span><br></pre></td></tr></table></figure>
-
-<p>方法二：下载安装包进行升级安装</p>
-<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
-
-<ol start="3">
-<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
-</ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-20482">https://nvd.nist.gov/vuln/detail/CVE-2018-20482</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/14/tar-CVE-2018-20482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3x000syy3e94ku53zx" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-thunder-CVE-2017-5429安全公告" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2022/04/14/thunder-CVE-2017-5429%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-14T04:15:09.000Z" itemprop="datePublished">2022-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/14/thunder-CVE-2017-5429%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunder-CVE-2017-5429安全公告</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox存在内存错误，此漏洞会被攻击者利用执行任意代码。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-5429"><a href="#漏洞编号：-CVE-2017-5429" class="headerlink" title="漏洞编号： CVE-2017-5429"></a>漏洞编号： CVE-2017-5429</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox使用的Graphite 2 库中存在许多安全漏洞，包括越界读取、缓冲区溢出读取和写入以及未初始化内存的使用。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7778"><a href="#漏洞编号：-CVE-2017-7778" class="headerlink" title="漏洞编号： CVE-2017-7778"></a>漏洞编号： CVE-2017-7778</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
 <h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
 <p>方法一：在线更新</p>
 <ol>
@@ -159,7 +95,6 @@
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -177,12 +112,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-5429">https://nvd.nist.gov/vuln/detail/CVE-2017-5429</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7778">https://nvd.nist.gov/vuln/detail/CVE-2017-7778</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/14/thunder-CVE-2017-5429%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3x000tyy3edlq0aih8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/05/07/firefox-CVE-2017-7778%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8w5000isc3e3tqn3tbm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -192,10 +127,10 @@
 
 
   
-    <article id="post-patch-CVE-2019-13638" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-7758安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/08/patch-CVE-2019-13638/" class="article-date">
-  <time datetime="2022-04-08T07:00:13.000Z" itemprop="datePublished">2022-04-08</time>
+    <a href="/2022/04/28/firefox-CVE-2017-7758%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-28T09:28:24.000Z" itemprop="datePublished">2022-04-28</time>
 </a>
     
   </div>
@@ -206,7 +141,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/08/patch-CVE-2019-13638/">patch-CVE-2019-13638</a>
+      <a class="article-title" href="/2022/04/28/firefox-CVE-2017-7758%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-7758安全公告</a>
     </h1>
   
 
@@ -214,16 +149,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-patch安全更新"><a href="#NFS-SA-2022-04-patch安全更新" class="headerlink" title="NFS-SA-2022-04: patch安全更新"></a>NFS-SA-2022-04: patch安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Patch 是一款开源的补丁管理应用程序，系统当前版本的patch在shell命令注入漏洞。此漏洞的最大威胁是数据机密性和完整性以及系统可用性。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-13638"><a href="#漏洞编号：-CVE-2019-13638" class="headerlink" title="漏洞编号： CVE-2019-13638"></a>漏洞编号： CVE-2019-13638</h3><h3 id="软件包名：-patch"><a href="#软件包名：-patch" class="headerlink" title="软件包名： patch"></a>软件包名： patch</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到  （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox当使用编码器音频流中的通道数发生变化时，Opus 编码器存在越界读取漏洞。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7758"><a href="#漏洞编号：-CVE-2017-7758" class="headerlink" title="漏洞编号： CVE-2017-7758"></a>漏洞编号： CVE-2017-7758</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：9-1"><a href="#CVSS3-1评分：9-1" class="headerlink" title="CVSS3.1评分：9.1"></a>CVSS3.1评分：9.1</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -232,7 +166,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install patch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -241,12 +175,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2019-13638">https://nvd.nist.gov/vuln/detail/CVE-2019-13638</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7758">https://nvd.nist.gov/vuln/detail/CVE-2017-7758</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/08/patch-CVE-2019-13638/" data-id="cl2agzt3p000eyy3ee3ej1w84" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/28/firefox-CVE-2017-7758%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vq0000sc3ehy1c70dt" class="article-share-link">Share</a>
       
       
     </footer>
@@ -256,10 +190,10 @@
 
 
   
-    <article id="post-patch-CVE-2019-13636" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2017-7764安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/08/patch-CVE-2019-13636/" class="article-date">
-  <time datetime="2022-04-08T05:58:41.000Z" itemprop="datePublished">2022-04-08</time>
+    <a href="/2022/04/28/firefox-CVE-2017-7764%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-28T09:25:01.000Z" itemprop="datePublished">2022-04-28</time>
 </a>
     
   </div>
@@ -270,7 +204,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/08/patch-CVE-2019-13636/">patch-CVE-2019-13636</a>
+      <a class="article-title" href="/2022/04/28/firefox-CVE-2017-7764%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-7764安全公告</a>
     </h1>
   
 
@@ -278,16 +212,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-patch安全更新"><a href="#NFS-SA-2022-04-patch安全更新" class="headerlink" title="NFS-SA-2022-04: patch安全更新"></a>NFS-SA-2022-04: patch安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Patch 是一款开源的补丁管理应用程序，系统当前版本的patch在在处理补丁文件时，会错误的处理符号链接，攻击者可以利用此漏洞访问预期之外的文件。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2019-13636"><a href="#漏洞编号：-CVE-2019-13636" class="headerlink" title="漏洞编号： CVE-2019-13636"></a>漏洞编号： CVE-2019-13636</h3><h3 id="软件包名：-patch"><a href="#软件包名：-patch" class="headerlink" title="软件包名： patch"></a>软件包名： patch</h3><h3 id="CVSS3-1评分：5-9"><a href="#CVSS3-1评分：5-9" class="headerlink" title="CVSS3.1评分：5.9"></a>CVSS3.1评分：5.9</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到  （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox是一款免费的开源浏览器，系统当前版本的firefox的“Canadian Syllabics”unicode 块中的字符可以与地址栏中的其他 unicode 块中的字符混合，从而允许通过字符混淆进行域名欺骗攻击。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7764"><a href="#漏洞编号：-CVE-2017-7764" class="headerlink" title="漏洞编号： CVE-2017-7764"></a>漏洞编号： CVE-2017-7764</h3><h3 id="软件包名：-firefox-esr"><a href="#软件包名：-firefox-esr" class="headerlink" title="软件包名： firefox-esr"></a>软件包名： firefox-esr</h3><h3 id="CVSS3-1评分：5-3"><a href="#CVSS3-1评分：5-3" class="headerlink" title="CVSS3.1评分：5.3"></a>CVSS3.1评分：5.3</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 firefox-esr_52.9.0esr-1<del>deb9u1_amd64.deb  firefox-esr_l10n-zh-cn_52.9.0esr-1</del>deb9u1_all.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -296,7 +229,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install patch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox-esr</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -305,12 +238,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2019-13636">https://nvd.nist.gov/vuln/detail/CVE-2019-13636</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7764">https://nvd.nist.gov/vuln/detail/CVE-2017-7764</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/08/patch-CVE-2019-13636/" data-id="cl2agzt3p000dyy3e3ot6awfu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/28/firefox-CVE-2017-7764%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vt0001sc3ea5uje6xm" class="article-share-link">Share</a>
       
       
     </footer>
@@ -320,10 +253,10 @@
 
 
   
-    <article id="post-patch-CVE-2018-20969" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2021-28831安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/08/patch-CVE-2018-20969/" class="article-date">
-  <time datetime="2022-04-08T05:39:25.000Z" itemprop="datePublished">2022-04-08</time>
+    <a href="/2022/04/27/busybox-CVE-2021-28831%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:50:56.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -334,7 +267,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/08/patch-CVE-2018-20969/">patch-CVE-2018-20969</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2021-28831%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2021-28831安全公告</a>
     </h1>
   
 
@@ -342,16 +275,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-patch安全更新"><a href="#NFS-SA-2022-04-patch安全更新" class="headerlink" title="NFS-SA-2022-04: patch安全更新"></a>NFS-SA-2022-04: patch安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Patch 是一款开源的补丁管理应用程序，系统当前版本的patch在默认情况下不阻止以”!”开头的字符串。当 ed 接收到带有感叹号前缀的命令行参数时，该参数将作为 shell 命令执行。此漏洞的最大威胁是数据机密性和完整性以及系统可用性。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-20969"><a href="#漏洞编号：-CVE-2018-20969" class="headerlink" title="漏洞编号： CVE-2018-20969"></a>漏洞编号： CVE-2018-20969</h3><h3 id="软件包名：-patch"><a href="#软件包名：-patch" class="headerlink" title="软件包名： patch"></a>软件包名： patch</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到  （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox的  decompress_gunzip.c 中存在内存漏洞，会导致崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：CVE-2021-28831"><a href="#漏洞编号：CVE-2021-28831" class="headerlink" title="漏洞编号：CVE-2021-28831"></a>漏洞编号：CVE-2021-28831</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -360,7 +292,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install patch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -369,12 +301,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-20969">https://nvd.nist.gov/vuln/detail/CVE-2018-20969</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-28831">https://nvd.nist.gov/vuln/detail/CVE-2021-28831</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/08/patch-CVE-2018-20969/" data-id="cl2agzt3o000cyy3e0f0u7h3x" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2021-28831%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vz0009sc3e2lkcd3ut" class="article-share-link">Share</a>
       
       
     </footer>
@@ -384,10 +316,10 @@
 
 
   
-    <article id="post-patch-CVE-2018-1000156" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2018-1000517安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/08/patch-CVE-2018-1000156/" class="article-date">
-  <time datetime="2022-04-08T05:08:52.000Z" itemprop="datePublished">2022-04-08</time>
+    <a href="/2022/04/27/busybox-CVE-2018-1000517%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:48:00.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -398,7 +330,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/08/patch-CVE-2018-1000156/">patch-CVE-2018-1000156</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2018-1000517%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2018-1000517安全公告</a>
     </h1>
   
 
@@ -406,16 +338,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-patch安全更新"><a href="#NFS-SA-2022-04-patch安全更新" class="headerlink" title="NFS-SA-2022-04: patch安全更新"></a>NFS-SA-2022-04: patch安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Patch 是一款开源的补丁管理应用程序，系统当前版本的patch在处理补丁文件时包含输入验证漏洞，特别是 EDITOR_PROGRAM 调用（使用 ed）可能导致代码执行。攻击者里可能利用patch在处理补丁时执行恶意软件。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2018-1000156"><a href="#漏洞编号：-CVE-2018-1000156" class="headerlink" title="漏洞编号： CVE-2018-1000156"></a>漏洞编号： CVE-2018-1000156</h3><h3 id="软件包名：-patch"><a href="#软件包名：-patch" class="headerlink" title="软件包名： patch"></a>软件包名： patch</h3><h3 id="CVSS3-1评分：7-8"><a href="#CVSS3-1评分：7-8" class="headerlink" title="CVSS3.1评分：7.8"></a>CVSS3.1评分：7.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到  （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox的 wget 中包含一个缓冲区溢出漏洞，该漏洞可能导致堆缓冲区溢出。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：CVE-2018-1000517"><a href="#漏洞编号：CVE-2018-1000517" class="headerlink" title="漏洞编号：CVE-2018-1000517"></a>漏洞编号：CVE-2018-1000517</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -424,7 +355,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install patch</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -433,12 +364,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-1000156">https://nvd.nist.gov/vuln/detail/CVE-2018-1000156</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2018-1000517">https://nvd.nist.gov/vuln/detail/CVE-2018-1000517</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/08/patch-CVE-2018-1000156/" data-id="cl2agzt3n000byy3eeu8jfi9v" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2018-1000517%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vz0008sc3e4ri7grn9" class="article-share-link">Share</a>
       
       
     </footer>
@@ -448,10 +379,10 @@
 
 
   
-    <article id="post-thunderbird-CVE-2017-7826安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2017-16544安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/02/thunderbird-CVE-2017-7826%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-02T03:14:13.000Z" itemprop="datePublished">2022-04-02</time>
+    <a href="/2022/04/27/busybox-CVE-2017-16544%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:28:52.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -462,7 +393,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/02/thunderbird-CVE-2017-7826%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7826安全公告</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2017-16544%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2017-16544安全公告</a>
     </h1>
   
 
@@ -470,16 +401,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird在ANGLE 图形库绘制和验证元素时会发生缓冲区溢出。此漏洞会被攻击者利用导致崩溃。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7826"><a href="#漏洞编号：-CVE-2017-7826" class="headerlink" title="漏洞编号： CVE-2017-7826"></a>漏洞编号： CVE-2017-7826</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox的 libbb/lineedit.c 中的 add_match 函数中，shell 的选项卡自动完成功能不会清理文件名并导致在终端中执行任何转义序列。这可能会导致代码执行、任意文件写入或其他攻击。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：CVE-2017-16544"><a href="#漏洞编号：CVE-2017-16544" class="headerlink" title="漏洞编号：CVE-2017-16544"></a>漏洞编号：CVE-2017-16544</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：8-8"><a href="#CVSS3-1评分：8-8" class="headerlink" title="CVSS3.1评分：8.8"></a>CVSS3.1评分：8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -488,7 +418,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -497,12 +427,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7826">https://nvd.nist.gov/vuln/detail/CVE-2017-7826</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-16544">https://nvd.nist.gov/vuln/detail/CVE-2017-16544</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/02/thunderbird-CVE-2017-7826%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3e0002yy3ebwj53p2t" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2017-16544%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vy0007sc3e41i3bn9r" class="article-share-link">Share</a>
       
       
     </footer>
@@ -512,10 +442,10 @@
 
 
   
-    <article id="post-thunderbird-CVE-2017-7824安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2017-15873安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/01/thunderbird-CVE-2017-7824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-01T09:54:04.000Z" itemprop="datePublished">2022-04-01</time>
+    <a href="/2022/04/27/busybox-CVE-2017-15873%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:13:19.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -526,7 +456,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7824安全公告</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2017-15873%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2017-15873安全公告</a>
     </h1>
   
 
@@ -534,16 +464,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird在ANGLE 图形库绘制和验证元素时会发生缓冲区溢出。此漏洞会被攻击者利用导致崩溃。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7824"><a href="#漏洞编号：-CVE-2017-7824" class="headerlink" title="漏洞编号： CVE-2017-7824"></a>漏洞编号： CVE-2017-7824</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox的archival/libarchive/decompress_bunzip2.c 中的get_next_block 函数有可能导致写访问冲突的整数溢出。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：CVE-2017-15873"><a href="#漏洞编号：CVE-2017-15873" class="headerlink" title="漏洞编号：CVE-2017-15873"></a>漏洞编号：CVE-2017-15873</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -552,7 +481,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -561,12 +490,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7824">https://nvd.nist.gov/vuln/detail/CVE-2017-7824</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-15873">https://nvd.nist.gov/vuln/detail/CVE-2017-15873</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7824%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3m000ayy3e42dv3evs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2017-15873%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vx0006sc3e3a07bdhb" class="article-share-link">Share</a>
       
       
     </footer>
@@ -576,10 +505,10 @@
 
 
   
-    <article id="post-thunderbird-CVE-2017-7823安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2016-2148安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/01/thunderbird-CVE-2017-7823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-01T09:51:44.000Z" itemprop="datePublished">2022-04-01</time>
+    <a href="/2022/04/27/busybox-CVE-2016-2148%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:07:54.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -590,7 +519,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7823安全公告</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2016-2148%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2016-2148安全公告</a>
     </h1>
   
 
@@ -598,16 +527,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird在安全漏洞，可能允许从不安全的内容发起跨站点脚本 (XSS) 攻击。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7823"><a href="#漏洞编号：-CVE-2017-7823" class="headerlink" title="漏洞编号： CVE-2017-7823"></a>漏洞编号： CVE-2017-7823</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：5-4"><a href="#CVSS3-1评分：5-4" class="headerlink" title="CVSS3.1评分：5.4"></a>CVSS3.1评分：5.4</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox的DHCP 客户端 (udhcpc) 中存在堆的缓冲区溢出漏洞。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2016-2148"><a href="#漏洞编号：-CVE-2016-2148" class="headerlink" title="漏洞编号： CVE-2016-2148"></a>漏洞编号： CVE-2016-2148</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -616,7 +544,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -625,12 +553,12 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7823">https://nvd.nist.gov/vuln/detail/CVE-2017-7823</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2016-2148">https://nvd.nist.gov/vuln/detail/CVE-2016-2148</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3l0009yy3e8y0vaxey" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2016-2148%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vx0005sc3eh7v8c38j" class="article-share-link">Share</a>
       
       
     </footer>
@@ -640,10 +568,10 @@
 
 
   
-    <article id="post-thunderbird-CVE-2017-7819安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-busybox-CVE-2016-2147安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2022/04/01/thunderbird-CVE-2017-7819%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
-  <time datetime="2022-04-01T09:48:26.000Z" itemprop="datePublished">2022-04-01</time>
+    <a href="/2022/04/27/busybox-CVE-2016-2147%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T06:00:27.000Z" itemprop="datePublished">2022-04-27</time>
 </a>
     
   </div>
@@ -654,7 +582,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2022/04/01/thunderbird-CVE-2017-7819%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">thunderbird-CVE-2017-7819安全公告</a>
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2016-2147%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2016-2147安全公告</a>
     </h1>
   
 
@@ -662,16 +590,15 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="NFS-SA-2022-04-thunderbird安全更新"><a href="#NFS-SA-2022-04-thunderbird安全更新" class="headerlink" title="NFS-SA-2022-04: thunderbird安全更新"></a>NFS-SA-2022-04: thunderbird安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Thunderbird 是一款免费的电子邮件应用程序，系统当前版本的thunderbird在调整大小期间引用的对象已从内存中释放，则在调整图像对象大小时，可能会发生use-after-free漏洞。攻击者可以利用此漏洞导致崩溃。</p>
-<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2017-7819"><a href="#漏洞编号：-CVE-2017-7819" class="headerlink" title="漏洞编号： CVE-2017-7819"></a>漏洞编号： CVE-2017-7819</h3><h3 id="软件包名：-thunderbird"><a href="#软件包名：-thunderbird" class="headerlink" title="软件包名： thunderbird"></a>软件包名： thunderbird</h3><h3 id="CVSS3-1评分：9-8"><a href="#CVSS3-1评分：9-8" class="headerlink" title="CVSS3.1评分：9.8"></a>CVSS3.1评分：9.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
-<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 thunderbird_91.7.0-2<del>deb9u1_amd64.deb  thunderbird-l10n-zh-cn_91.7.0-2</del>deb9u1_all.deb （待定，这是上游的版本）</p>
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox  的DHCP 客户端 (udhcpc) 中的整数溢出允许远程攻击者通过格式错误的 RFC1035 编码域名导致拒绝服务，从而触发越界堆写入。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2016-2147"><a href="#漏洞编号：-CVE-2016-2147" class="headerlink" title="漏洞编号： CVE-2016-2147"></a>漏洞编号： CVE-2016-2147</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：7-5"><a href="#CVSS3-1评分：7-5" class="headerlink" title="CVSS3.1评分：7.5"></a>CVSS3.1评分：7.5</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
 <p>方法一：在线更新</p>
 <ol>
 <li>添加以下行到安装源配置文件中</li>
 </ol>
 <p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
 <p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
-<p>方德桌面操作系统V4.0曙光版本添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-sg-security/">http://update.os.nfschina.com/static/nfs-4.0-sg-security/</a> base main</p>
 <ol start="2">
 <li>执行源同步命令，命令如下：</li>
 </ol>
@@ -680,7 +607,7 @@
 <ol start="3">
 <li>执行安装更新命令，命令如下：</li>
 </ol>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install thunderbird</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
 
 <p>方法二：下载安装包进行升级安装</p>
 <p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
@@ -689,12 +616,75 @@
 <ol start="3">
 <li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
 </ol>
-<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2017-7819">https://nvd.nist.gov/vuln/detail/CVE-2017-7819</a></p>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2016-2147">https://nvd.nist.gov/vuln/detail/CVE-2016-2147</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2022/04/01/thunderbird-CVE-2017-7819%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl2agzt3k0008yy3ea10h3zhz" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2016-2147%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vw0004sc3eaisd4bgk" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-busybox-CVE-2015-9261安全公告" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2022/04/27/busybox-CVE-2015-9261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-04-27T05:52:37.000Z" itemprop="datePublished">2022-04-27</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2022/04/27/busybox-CVE-2015-9261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">busybox-CVE-2015-9261安全公告</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="NFS-SA-2022-04-firefox-esr安全更新"><a href="#NFS-SA-2022-04-firefox-esr安全更新" class="headerlink" title="NFS-SA-2022-04: firefox-esr安全更新"></a>NFS-SA-2022-04: firefox-esr安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>BusyBox是一个集成了三百多个最常用Linux命令和工具的软件,现BusyBox 的/libarchive/decompress_gunzip.c 中的 huft_build 滥用指针，在对特制 ZIP 文件进行解压缩操作期间会导致段错误和应用程序崩溃。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2015-9261"><a href="#漏洞编号：-CVE-2015-9261" class="headerlink" title="漏洞编号： CVE-2015-9261"></a>漏洞编号： CVE-2015-9261</h3><h3 id="软件包名：-busybox"><a href="#软件包名：-busybox" class="headerlink" title="软件包名： busybox"></a>软件包名： busybox</h3><h3 id="CVSS3-1评分：5-5"><a href="#CVSS3-1评分：5-5" class="headerlink" title="CVSS3.1评分：5.5"></a>CVSS3.1评分：5.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V3-1-方德桌面操作系统V4-0"><a href="#方德桌面操作系统V3-1-方德桌面操作系统V4-0" class="headerlink" title="方德桌面操作系统V3.1   方德桌面操作系统V4.0"></a>方德桌面操作系统V3.1   方德桌面操作系统V4.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p><a target="_blank" rel="noopener" href="https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb">https://update.os.nfschina.com/deb/nfs/nfs-4.0-security/pool/main/b/busybox/busybox_1.22.0-m21+1nfs4.1_amd64.deb</a></p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 busybox_1.22.0-m21+1nfs4.1_amd64.deb</p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V3.1添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-3.1-security/">http://update.os.nfschina.com/static/nfs-3.1-security/</a> base main</p>
+<p>方德桌面操作系统V4.0添加如下行到/etc/apt/sources.list.d/official-package-repositories.list文件中：<br>deb <a target="_blank" rel="noopener" href="http://update.os.nfschina.com/static/nfs-4.0-security/">http://update.os.nfschina.com/static/nfs-4.0-security/</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install busybox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2015-9261">https://nvd.nist.gov/vuln/detail/CVE-2015-9261</a></p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2022/04/27/busybox-CVE-2015-9261%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cl3cwu8vw0003sc3ehzb9du46" class="article-share-link">Share</a>
       
       
     </footer>
@@ -707,7 +697,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/16/">16</a><a class="extend next" rel="next" href="/page/7/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/5/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><span class="space">&hellip;</span><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/7/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -739,7 +729,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -752,23 +742,23 @@
       <ul>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5470%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2017-5470安全公告</a>
+            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5432%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5433%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5434%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/04/22/firefox-CVE-2017-5435%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">(no title)</a>
+            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
           </li>
         
       </ul>
