@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-openstack模块介绍" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29977安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/28/openstack%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" class="article-date">
-  <time datetime="2020-09-28T07:18:18.000Z" itemprop="datePublished">2020-09-28</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29977%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:15:08.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/openstack%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/">openstack模块介绍</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29977%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29977安全公告</a>
     </h1>
   
 
@@ -86,25 +86,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>数据库<br>大多数OpenStack服务都使用SQL数据库来存储信息。数据库通常在控制器节点上运行。通常使用MariaDB或MySQL。</p>
-<p>消息队列<br>OpenStack使用消息队列来协调服务之间的操作和状态信息。消息队列服务通常在控制器节点上运行。OpenStack支持多种消息队列服务，包括RabbitMQ，Qpid和ZeroMQ。centos8的ussuri包里和官方文档推荐使用的是RabbitMQ。因为RabbitMQ支持的发行版比较全面，我也是使用RabbitMQ来配置的。</p>
-<p>Memcached<br>openstack的服务器身份认证（ Identity service）是使用 Memcached来缓存身份令牌。Memcached是部署在控制节点上，官方文档建议在生产环境，使用防火墙放行，身份验证和加密三合一来使用，我这边在适配的时候为了方便验证，是将防火墙关闭，单独使用Memcached。</p>
-<p>Etcd<br>OpenStack服务可以使用Etcd（分布式可靠键值存储仓库）进行分布式键锁定，存储配置，跟踪服务活动性和其他情况。</p>
-<p>Keystone身份验证服务<br>OpenStack身份服务为管理身份验证，授权和服务目录提供了单点集成。<br>身份服务通常是用户与之交互的第一项服务。身份验证后，最终用户可以使用其身份访问其他OpenStack服务。同样，其他OpenStack服务也利用身份服务来确保用户的身份正确，并发现其他服务在部署中的位置。身份服务还可以与某些外部用户管理系统（例如LDAP）集成。</p>
-<p>Image service<br>Image service（主要是glance-api服务）使用户能够发现，注册和检索虚拟机映像。它提供了 REST API，使用户可以查询虚拟机映像元数据并检索实际映像。用户可以通过Image service将虚拟机映像存储在各种位置。<br>Image service是openstack的重要组件，它接受来自磁盘或服务器映像的API请求，以及来自最终用户或OpenStack Compute组件的元数据定义。</p>
-<p>Placement service<br>Placement服务（openstack-placement-api）作用是用来跟踪资源库存和使用情况。</p>
-<p>Compute service<br>Compute service（openstack-nova-api openstack-nova-conductor  openstack-nova-novncproxy openstack-nova-scheduler）是openstack的重要组成部分，使用python开发。OpenStack Compute与OpenStack Identity交互以进行身份验证，与OpenStack Placement进行资源清单跟踪和选择，为磁盘和服务器映像提供OpenStack Image服务，并为用户和管理界面提供OpenStack Dashboard。<br>Compute service由以下几个模块组成：<br>nova-api service<br>nova-api-metadata service<br>nova-compute service （这个主要是在计算节点创建虚拟机用的，其他的服务大部分布置在控制节点）<br>nova-scheduler service<br>nova-conductor module<br>nova-novncproxy daemon<br>nova-spicehtml5proxy daemon</p>
-<p>Networking service<br>Networking service（neutron）是openstack用来管理虚拟网络和物理网络的服务。</p>
-<p>Dashboard<br>Dashboard需要Memcached服务的配合，用来管理openstack各种资源，跟其他服务的dashboard是相同的功能。</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员报告了Firefox 89中存在的内存安全错误。这些错误中有些显示了记忆损坏的证据，我们认为，通过足够的努力，其中一些可能被利用来运行任意代码。这种漏洞会影响Firefox Lt 90。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29977"><a href="#漏洞编号：-CVE-2021-29977" class="headerlink" title="漏洞编号： CVE-2021-29977"></a>漏洞编号： CVE-2021-29977</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29977">https://nvd.nist.gov/vuln/detail/CVE-2021-29977</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/28/openstack%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" data-id="ckj27024e0000wf3ehw2ja8bu" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29977%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007oioxm95nk80ck" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li></ul>
-
     </footer>
   </div>
   
@@ -112,10 +126,10 @@
 
 
   
-    <article id="post-openstack适配-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29976安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/25/openstack%E9%80%82%E9%85%8D-1/" class="article-date">
-  <time datetime="2020-09-25T07:20:18.000Z" itemprop="datePublished">2020-09-25</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29976%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:15:03.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -126,7 +140,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/25/openstack%E9%80%82%E9%85%8D-1/">openstack适配（一）</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29976%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29976安全公告</a>
     </h1>
   
 
@@ -134,62 +148,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nfs911版本适配OpenStack Ussuri。</p>
-<p>为了配置方便，先关闭防火墙和selinux。</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">systemctl stop firewalld &amp;&amp; systemctl disable firewalld</span><br><span class="line">setenforce 0</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员报告了在Firefox和Thunderbird之间共享的代码中存在的内存安全错误。这些错误显示了记忆损坏的证据，我们认为有足够的努力可以利用其中一些来运行任意代码。这种脆弱性影响Thunderbird LT 78.12 Firefox Firefox Firefox </p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29976"><a href="#漏洞编号：-CVE-2021-29976" class="headerlink" title="漏洞编号： CVE-2021-29976"></a>漏洞编号： CVE-2021-29976</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>修改/etc/selinux/config中 </p>
-<p>SELINUX=disabled</p>
-<p>关闭swap分区</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">swapoff -a</span><br><span class="line">sed -i &#x27;/ swap / s/^\(.*\)$/#\1/g&#x27; /etc/fstab</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
-<p>设置内核</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">modprobe bridge</span><br><span class="line">modprobe br_netfilter</span><br><span class="line">cat &gt; /etc/sysconfig/modules/neutron.modules &lt;&lt;EOF</span><br><span class="line">#!/bin/bash</span><br><span class="line">modprobe -- bridge</span><br><span class="line">modprobe -- br_netfilter</span><br><span class="line">EOF</span><br><span class="line">chmod 755 /etc/sysconfig/modules/neutron.modules &amp;&amp; bash /etc/sysconfig/modules/neutron.modules</span><br><span class="line">echo &quot;vm.max_map_count=262144&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.ipv4.ip_forward=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.bridge.bridge-nf-call-iptables=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">echo &quot;net.bridge.bridge-nf-call-ip6tables=1&quot; &gt;&gt; /etc/sysctl.conf</span><br><span class="line">sysctl -p</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>设置时间同步</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">yum install -y chrony &amp;&amp; yum -y autoremove</span><br><span class="line">systemctl start chronyd.service &amp;&amp; systemctl enable chronyd.service</span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>控制节点设置hostname</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname controller</span><br></pre></td></tr></table></figure>
-
-<p>计算节点设置hostname</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">hostnamectl set-hostname compute1</span><br></pre></td></tr></table></figure>
-
-<p>将机器ip分别添加到/etc/hosts中（ip根据自己机器修改）</p>
-<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">echo &quot;192.168.50.1 controller&quot; &gt;&gt; /etc/hosts</span><br><span class="line">echo &quot;192.168.50.2 compute1&quot; &gt;&gt; /etc/hosts</span><br></pre></td></tr></table></figure>
-
-<p>因为911版本的包缺少openstack的仓库，我们需要在centos8.2上获取这些包。</p>
-<p>centos-release-ceph-nautilus-1.2-2.el8.noarch.rpm<br>centos-release-openstack-ussuri-1-3.el8.noarch.rpm<br>centos-release-storage-common-2-2.el8.noarch.rpm<br>centos-release-messaging-1-2.el8.noarch.rpm<br>centos-release-rabbitmq-38-1-2.el8.noarch.rpm</p>
-<p>将这些包安装到系统中，遇到依赖问题，就先安装依赖的包就可以。<br>然后创建个shell脚本test.sh</p>
-<p>#!/bin/bash<br>dir=/etc/yum.repos.d</p>
-<p>for file in $dir/*<br>do<br>    sed -i ‘s/$releasever/8/g’ $file<br>    echo $file<br>done<br>执行  sh test.sh<br> yum makecache<br>yum install -y python3-openstackclient</p>
-<p>先配置控制节点<br>安装配置Mariadb<br>yum install -y mariadb mariadb-server python2-PyMySQL （python2-PyMySQL要从centos8.2上拿）<br>tee /etc/my.cnf.d/openstack.cnf &lt;&lt;-‘EOF’<br>[mysqld]<br>bind-address = 192.168.50.1<br>default-storage-engine = innodb<br>innodb_file_per_table = on<br>max_connections = 4096<br>collation-server = utf8_general_ci<br>character-set-server = utf8<br>EOF<br>systemctl enable mariadb.service &amp;&amp; systemctl start mariadb.service<br>echo -e “\nY\n123456\n123456\nY\nn\nY\nY\n” | mysql_secure_installation</p>
-<p>安装配置RabbitMQ<br>systemctl enable rabbitmq-server.service &amp;&amp; systemctl start rabbitmq-server.service<br>rabbitmqctl add_user openstack 123456<br>rabbitmqctl set_permissions openstack “.<em>“ “.</em>“ “.*”</p>
-<p>安装配置Memcached<br>yum install -y memcached python3-memcached<br>sed -i “s/-l 127.0.0.1,::1/-l 127.0.0.1,::1,controller/g” /etc/sysconfig/memcached<br>systemctl enable memcached.service &amp;&amp; systemctl start memcached.service</p>
-<p>安装配置Etcd<br>yum install -y etcd<br>rm -f /etc/etcd/etcd.conf</p>
-<p>tee /etc/etcd/etcd.conf &lt;&lt;-‘EOF’<br>#[Member]<br>ETCD_DATA_DIR=”/var/lib/etcd/default.etcd”<br>ETCD_LISTEN_PEER_URLS=”192.168.50.1:2380”<br>ETCD_LISTEN_CLIENT_URLS=”192.168.50.1:2379”<br>ETCD_NAME=”controller”<br>#[Clustering]<br>ETCD_INITIAL_ADVERTISE_PEER_URLS=”192.168.50.1:2380”<br>ETCD_ADVERTISE_CLIENT_URLS=”192.168.50.1:2379”<br>ETCD_INITIAL_CLUSTER=”controller=192.168.50.1:2380”<br>ETCD_INITIAL_CLUSTER_TOKEN=”etcd-cluster-01”<br>ETCD_INITIAL_CLUSTER_STATE=”new”<br>EOF<br>systemctl enable etcd &amp;&amp; systemctl start etcd</p>
-<p>安装配置Identity service<br>mysql -uroot -p123456 -e “CREATE DATABASE keystone”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON keystone.* TO ‘keystone‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON keystone.* TO ‘keystone‘@’%’ IDENTIFIED BY ‘123456’”</p>
-<p>先从centos8 下载python3-dns这个包并安装<br>yum install -y openstack-keystone httpd python3-mod_wsgi</p>
-<p>sed -i “556c connection = mysql+pymysql://keystone:123456@controller/keystone” /etc/keystone/keystone.conf<br>sed -i “2418c provider = fernet” /etc/keystone/keystone.conf<br>su -s /bin/sh -c “keystone-manage db_sync” keystone<br>keystone-manage fernet_setup –keystone-user keystone –keystone-group keystone<br>keystone-manage credential_setup –keystone-user keystone –keystone-group keystone<br>keystone-manage bootstrap –bootstrap-password 123456 –bootstrap-admin-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-internal-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-public-url <a target="_blank" rel="noopener" href="http://controller:5000/v3/">http://controller:5000/v3/</a>  –bootstrap-region-id RegionOne<br>echo “ServerName controller” &gt;&gt; /etc/httpd/conf/httpd.conf<br>ln -s /usr/share/keystone/wsgi-keystone.conf /etc/httpd/conf.d/<br>启动服务<br>systemctl enable httpd.service &amp;&amp; systemctl start httpd.service</p>
-<p>echo “export OS_USERNAME=admin” &gt;&gt; /etc/profile<br>echo “export OS_PASSWORD=123456” &gt;&gt; /etc/profile<br>echo “export OS_PROJECT_NAME=admin” &gt;&gt; /etc/profile<br>echo “export OS_USER_DOMAIN_NAME=Default” &gt;&gt; /etc/profile<br>echo “export OS_PROJECT_DOMAIN_NAME=Default” &gt;&gt; /etc/profile<br>echo “export OS_AUTH_URL=<a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> &gt;&gt; /etc/profile<br>echo “export OS_IDENTITY_API_VERSION=3” &gt;&gt; /etc/profile<br>source /etc/profile<br>openstack project create –domain default –description “Service Project” service</p>
-<p>安装配置Image service<br>mysql -uroot -p123456 -e “CREATE DATABASE glance”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON glance.* TO ‘glance‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON glance.* TO ‘glance‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 glance<br>openstack role add –project service –user glance admin<br>openstack service create –name glance –description “OpenStack Image” image<br>openstack endpoint create –region RegionOne image public <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a><br>openstack endpoint create –region RegionOne image internal <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a><br>openstack endpoint create –region RegionOne image admin <a target="_blank" rel="noopener" href="http://controller:9292/">http://controller:9292</a></p>
-<p>yum install -y openstack-glance<br>sed -i “2062c connection = mysql+pymysql://glance:123456@controller/glance” /etc/glance/glance-api.conf<br>sed -i “5034c www_authenticate_uri  = <a href="http://controller:5000&quot;">http://controller:5000&quot;</a> /etc/glance/glance-api.conf<br>sed -i “5035c auth_url = <a href="http://controller:5000&quot;">http://controller:5000&quot;</a> /etc/glance/glance-api.conf<br>sed -i “5036c memcached_servers = controller:11211” /etc/glance/glance-api.conf<br>sed -i “5037c auth_type = password” /etc/glance/glance-api.conf<br>sed -i “5038c project_domain_name = Default” /etc/glance/glance-api.conf<br>sed -i “5039c user_domain_name = Default” /etc/glance/glance-api.conf<br>sed -i “5040c project_name = service” /etc/glance/glance-api.conf<br>sed -i “5041c username = glance” /etc/glance/glance-api.conf<br>sed -i “5042c password = 123456” /etc/glance/glance-api.conf<br>sed -i “5678c flavor = keystone” /etc/glance/glance-api.conf<br>sed -i “3413c stores = file,http” /etc/glance/glance-api.conf<br>sed -i “3414c default_store = file” /etc/glance/glance-api.conf<br>sed -i “3415c filesystem_store_datadir = /var/lib/glance/images/“ /etc/glance/glance-api.conf</p>
-<p>su -s /bin/sh -c “glance-manage db_sync” glance<br>systemctl enable openstack-glance-api.service &amp;&amp; systemctl start openstack-glance-api.service</p>
-<p>安装配置Placement service<br>mysql -uroot -p123456 -e “CREATE DATABASE placement”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON placement.* TO ‘placement‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON placement.* TO ‘placement‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 placement<br>openstack role add –project service –user placement admin<br>openstack service create –name placement –description “Placement API” placement<br>openstack endpoint create –region RegionOne placement public <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a><br>openstack endpoint create –region RegionOne placement internal <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a><br>openstack endpoint create –region RegionOne placement admin <a target="_blank" rel="noopener" href="http://controller:8778/">http://controller:8778</a></p>
-<p>yum install -y openstack-placement-api</p>
-<p>sed -i “507c connection = mysql+pymysql://placement:123456@controller/placement” /etc/placement/placement.conf<br>sed -i “192c auth_strategy = keystone” /etc/placement/placement.conf<br>sed -i “241c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> /etc/placement/placement.conf<br>sed -i “242c memcached_servers = controller:11211” /etc/placement/placement.conf<br>sed -i “243c auth_type = password” /etc/placement/placement.conf<br>sed -i “244c project_domain_name = Default” /etc/placement/placement.conf<br>sed -i “245c user_domain_name = Default” /etc/placement/placement.conf<br>sed -i “246c project_name = service” /etc/placement/placement.conf<br>sed -i “247c username = placement” /etc/placement/placement.conf<br>sed -i “248c password = 123456” /etc/placement/placement.conf<br>su -s /bin/sh -c “placement-manage db sync” placement<br>systemctl restart httpd</p>
-<p>安装配置Compute service<br>mysql -uroot -p123456 -e “CREATE DATABASE nova_api”<br>mysql -uroot -p123456 -e “CREATE DATABASE nova”<br>mysql -uroot -p123456 -e “CREATE DATABASE nova_cell0”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_api.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_api.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_cell0.* TO ‘nova‘@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON nova_cell0.* TO ‘nova‘@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 nova<br>openstack role add –project service –user nova admin<br>openstack service create –name nova –description “OpenStack Compute” compute<br>openstack endpoint create –region RegionOne compute public <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>openstack endpoint create –region RegionOne compute internal <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>openstack endpoint create –region RegionOne compute admin <a target="_blank" rel="noopener" href="http://controller:8774/v2.1">http://controller:8774/v2.1</a><br>yum install -y openstack-nova-api openstack-nova-conductor openstack-nova-novncproxy openstack-nova-scheduler</p>
-<p>sed -i “2c enabled_apis = osapi_compute,metadata” /etc/nova/nova.conf<br>sed -i “3c transport_url = rabbit://openstack:123456@controller:5672/“ /etc/nova/nova.conf<br>sed -i “4c my_ip = 10.0.0.11” /etc/nova/nova.conf<br>sed -i “1079c connection = mysql+pymysql://nova:123456@controller/nova_api” /etc/nova/nova.conf<br>sed -i “1622c connection = mysql+pymysql://nova:123456@controller/nova” /etc/nova/nova.conf<br>sed -i “872c auth_strategy = keystone” /etc/nova/nova.conf<br>sed -i “2561c www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/&quot;">http://controller:5000/&quot;</a> /etc/nova/nova.conf<br>sed -i “2562c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/&quot;">http://controller:5000/&quot;</a> /etc/nova/nova.conf<br>sed -i “2563c memcached_servers = controller:11211” /etc/nova/nova.conf<br>sed -i “2564c auth_type = password” /etc/nova/nova.conf<br>sed -i “2565c project_domain_name = Default” /etc/nova/nova.conf<br>sed -i “2566c user_domain_name = Default” /etc/nova/nova.conf<br>sed -i “2567c project_name = service” /etc/nova/nova.conf<br>sed -i “2568c username = nova” /etc/nova/nova.conf<br>sed -i “2569c password = 123456” /etc/nova/nova.conf<br>sed -i “5171c enabled = true” /etc/nova/nova.conf<br>sed -i ‘5172c server_listen = $my_ip’ /etc/nova/nova.conf<br>sed -i ‘5173c server_proxyclient_address = $my_ip’ /etc/nova/nova.conf<br>sed -i “1937c api_servers = <a href="http://controller:9292&quot;">http://controller:9292&quot;</a> /etc/nova/nova.conf<br>sed -i “3571c lock_path = /var/lib/nova/tmp” /etc/nova/nova.conf<br>sed -i “4093c region_name = RegionOne” /etc/nova/nova.conf<br>sed -i “4094c project_domain_name = Default” /etc/nova/nova.conf<br>sed -i “4095c project_name = service” /etc/nova/nova.conf<br>sed -i “4096c auth_type = password” /etc/nova/nova.conf<br>sed -i “4097c user_domain_name = Default” /etc/nova/nova.conf<br>sed -i “4098c auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/v3&quot;">http://controller:5000/v3&quot;</a> /etc/nova/nova.conf<br>sed -i “4099c username = placement” /etc/nova/nova.conf<br>sed -i “4100c password = 123456” /etc/nova/nova.conf<br>sed -i “4509c discover_hosts_in_cells_interval = 300” /etc/nova/nova.conf</p>
-<p>su -s /bin/sh -c “nova-manage api_db sync” nova<br>su -s /bin/sh -c “nova-manage cell_v2 map_cell0” nova<br>su -s /bin/sh -c “nova-manage cell_v2 create_cell –name=cell1 –verbose” nova<br>su -s /bin/sh -c “nova-manage db sync” nova<br>systemctl enable openstack-nova-api.service openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service &amp;&amp; systemctl start openstack-nova-api.service openstack-nova-scheduler.service openstack-nova-conductor.service openstack-nova-novncproxy.service</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29976">https://nvd.nist.gov/vuln/detail/CVE-2021-29976</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/25/openstack%E9%80%82%E9%85%8D-1/" data-id="ckj277c6o0007y53eeiqu3nnl" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29976%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007lioxm0ab65ob2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li></ul>
-
     </footer>
   </div>
   
@@ -197,10 +188,10 @@
 
 
   
-    <article id="post-openstack包" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29975安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/17/openstack%E5%8C%85/" class="article-date">
-  <time datetime="2020-09-17T07:17:16.000Z" itemprop="datePublished">2020-09-17</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29975%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:58.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -211,7 +202,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/17/openstack%E5%8C%85/">openstack包</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29975%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29975安全公告</a>
     </h1>
   
 
@@ -219,32 +210,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>centos-release-openstack-ussuri<br>依赖<br>centos-release-ceph-nautilus<br>centos-release-messaging<br>centos-release-rabbitmq-38<br>centos-release-storage-common</p>
-<p>python3-openstackclient<br>依赖<br>python-openstackclient-lang                                            noarch                                            5.2.0-1.el8                                                centos-openstack-ussuri                                             57 k<br> python-oslo-i18n-lang                                                  noarch                                            4.0.1-1.el8                                                centos-openstack-ussuri                                             13 k<br> python-oslo-log-lang                                                   noarch                                            4.1.3-1.el8                                                centos-openstack-ussuri                                             13 k<br> python-oslo-utils-lang                                                 noarch                                            4.1.2-1.el8                                                centos-openstack-ussuri                                             12 k<br> python3-appdirs                                                        noarch                                            1.4.3-12.el8                                               centos-openstack-ussuri                                             23 k<br> python3-attrs                                                          noarch                                            17.4.0-6.el8                                               AppStream                                                           53 k<br> python3-babel                                                          noarch                                            2.5.1-5.el8                                                AppStream                                                          4.8 M<br> python3-cinderclient                                                   noarch                                            7.0.0-1.el8                                                centos-openstack-ussuri                                            238 k<br> python3-cliff                                                          noarch                                            3.1.0-1.el8                                                centos-openstack-ussuri                                             95 k<br> python3-cmd2                                                           noarch                                            0.9.16-2.el8                                               centos-openstack-ussuri                                            187 k<br> python3-colorama                                                       noarch                                            0.4.3-1.el8                                                epel                                                                35 k<br> python3-debtcollector                                                  noarch                                            2.0.1-1.el8                                                centos-openstack-ussuri                                             32 k<br> python3-dogpile-cache                                                  noarch                                            0.9.0-1.el8                                                centos-openstack-ussuri                                             79 k<br> python3-funcsigs                                                       noarch                                            1.0.2-17.el8                                               centos-ceph-nautilus                                                30 k<br> python3-importlib-metadata                                             noarch                                            0.23-1.el8                                                 centos-openstack-ussuri                                             41 k<br> python3-inotify                                                        noarch                                            0.9.6-13.el8                                               BaseOS                                                              57 k<br> python3-iso8601                                                        noarch                                            0.1.11-16.el8                                              centos-openstack-ussuri                                             25 k<br> python3-jeepney                                                        noarch                                            0.4.3-3.el8                                                epel                                                               1.6 M<br> python3-jmespath                                                       noarch                                            0.9.0-11.el8                                               AppStream                                                           45 k<br> python3-jsonpatch                                                      noarch                                            1.21-2.el8                                                 AppStream                                                           27 k<br> python3-jsonpointer                                                    noarch                                            1.10-11.el8                                                AppStream                                                           20 k<br> python3-keyring                                                        noarch                                            21.0.0-1.el8                                               centos-openstack-ussuri                                             80 k<br> python3-keystoneauth1                                                  noarch                                            4.0.0-1.el8                                                centos-openstack-ussuri                                            427 k<br> python3-keystoneclient                                                 noarch                                            1:4.0.0-1.el8                                              centos-openstack-ussuri                                            252 k<br> python3-mako                                                           noarch                                            1.0.6-13.el8                                               AppStream                                                          157 k<br> python3-markupsafe                                                     x86_64                                            0.23-19.el8                                                AppStream                                                           39 k<br> python3-msgpack                                                        x86_64                                            0.6.2-1.el8                                                centos-openstack-ussuri                                             92 k<br> python3-munch                                                          noarch                                            2.3.2-6.el8                                                centos-openstack-ussuri                                             22 k<br> python3-netaddr                                                        noarch                                            0.7.19-8.el8                                               AppStream                                                          1.5 M<br> python3-neutronclient                                                  noarch                                            7.1.1-1.el8                                                centos-openstack-ussuri                                            311 k<br> python3-novaclient                                                     noarch                                            1:17.0.0-1.el8                                             centos-openstack-ussuri                                            224 k<br> python3-openstacksdk                                                   noarch                                            0.46.0-1.el8                                               centos-openstack-ussuri                                            814 k<br> python3-os-client-config                                               noarch                                            2.1.0-1.el8                                                centos-openstack-ussuri                                             54 k<br> python3-os-service-types                                               noarch                                            1.7.0-1.el8                                                centos-openstack-ussuri                                             36 k<br> python3-osc-lib                                                        noarch                                            2.0.0-1.el8                                                centos-openstack-ussuri                                             77 k<br> python3-oslo-config                                                    noarch                                            2:8.0.2-1.el8                                              centos-openstack-ussuri                                            222 k<br> python3-oslo-context                                                   noarch                                            3.0.2-1.el8                                                centos-openstack-ussuri                                             25 k<br> python3-oslo-i18n                                                      noarch                                            4.0.1-1.el8                                                centos-openstack-ussuri                                             59 k<br> python3-oslo-log                                                       noarch                                            4.1.3-1.el8                                                centos-openstack-ussuri                                             63 k<br> python3-oslo-serialization                                             noarch                                            3.1.1-2.el8                                                centos-openstack-ussuri                                             33 k<br> python3-oslo-utils                                                     noarch                                            4.1.2-1.el8                                                centos-openstack-ussuri                                             78 k<br> python3-pbr                                                            noarch                                            5.4.3-2.el8                                                centos-ceph-nautilus                                                90 k<br> python3-prettytable                                                    noarch                                            0.7.2-14.el8                                               AppStream                                                           44 k<br> python3-pyperclip                                                      noarch                                            1.6.4-6.el8                                                centos-openstack-ussuri                                             22 k<br> python3-requestsexceptions                                             noarch                                            1.4.0-2.el8                                                centos-openstack-ussuri                                             15 k<br> python3-rfc3986                                                        noarch                                            1.2.0-6.el8                                                centos-openstack-ussuri                                             46 k<br> python3-secretstorage                                                  noarch                                            3.1.1-4.el8                                                centos-openstack-ussuri                                             36 k<br> python3-simplejson                                                     x86_64                                            3.17.0-2.el8                                               epel                                                               286 k<br> python3-stevedore                                                      noarch                                            1.32.0-1.el8                                               centos-openstack-ussuri                                             62 k<br> python3-wcwidth                                                        noarch                                            0.2.4-1.el8                                                epel                                                                46 k<br> python3-wrapt                                                          x86_64                                            1.11.2-4.el8                                               centos-openstack-ussuri                                             54 k<br> python3-zipp                                                           noarch                                            0.5.1-3.el8                                                epel                                                                14 k</p>
-<p> python2-PyMySQL<br> 依赖</p>
-<p>  python2                                                           x86_64                                          2.7.17-1.module_el8.2.0+381+9a5b3c3b                                              AppStream                                          108 k<br> python2-libs                                                      x86_64                                          2.7.17-1.module_el8.2.0+381+9a5b3c3b                                              AppStream                                          6.0 M<br> python2-pip-wheel                                                 noarch                                          9.0.3-16.module_el8.2.0+381+9a5b3c3b                                              AppStream                                          1.2 M<br> python2-setuptools-wheel                                          noarch                                          39.0.1-11.module_el8.2.0+381+9a5b3c3b                                             AppStream                                          289 k<br>安装弱的依赖:<br> python2-pip                                                       noarch                                          9.0.3-16.module_el8.2.0+381+9a5b3c3b                                              AppStream                                          1.9 M<br> python2-setuptools                                                noarch                                          39.0.1-11.module_el8.2.0+381+9a5b3c3b                                             AppStream                                          643 k</p>
-<p> rabbitmq-server<br> 依赖<br>  SDL2                                                               x86_64                                               2.0.10-2.el8                                                  PowerTools                                                       465 k<br> erlang-asn1                                                        x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               773 k<br> erlang-common_test                                                 x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.0 M<br> erlang-compiler                                                    x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.4 M<br> erlang-crypto                                                      x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               169 k<br> erlang-cuttlefish                                                  noarch                                               2.0.11-10.el8                                                 centos-rabbitmq-38                                               154 k<br> erlang-debugger                                                    x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               407 k<br> erlang-eldap                                                       x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               126 k<br> erlang-erts                                                        x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               2.2 M<br> erlang-et                                                          x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               171 k<br> erlang-eunit                                                       x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               165 k<br> erlang-getopt                                                      noarch                                               1.0.1-8.el8                                                   centos-rabbitmq-38                                                42 k<br> erlang-goldrush                                                    noarch                                               0.2.0-6.el8                                                   centos-rabbitmq-38                                                69 k<br> erlang-hipe                                                        x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               2.8 M<br> erlang-inets                                                       x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               611 k<br> erlang-kernel                                                      x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.2 M<br> erlang-lager                                                       noarch                                               3.8.0-2.el8                                                   centos-rabbitmq-38                                               232 k<br> erlang-mnesia                                                      x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               749 k<br> erlang-mustache                                                    noarch                                               0.1.1-14.el8                                                  centos-rabbitmq-38                                                27 k<br> erlang-observer                                                    x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               883 k<br> erlang-os_mon                                                      x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               108 k<br> erlang-public_key                                                  x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               620 k<br> erlang-runtime_tools                                               x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               211 k<br> erlang-sasl                                                        x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               269 k<br> erlang-sd_notify                                                   x86_64                                               1.0-14.1.el8                                                  centos-rabbitmq-38                                                17 k<br> erlang-snmp                                                        x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.6 M<br> erlang-ssh                                                         x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               680 k<br> erlang-ssl                                                         x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.1 M<br> erlang-stdlib                                                      x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               2.7 M<br> erlang-syntax_tools                                                x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               372 k<br> erlang-tools                                                       x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               598 k<br> erlang-wx                                                          x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               2.9 M<br> erlang-xmerl                                                       x86_64                                               22.3.4.1-1.el8                                                centos-rabbitmq-38                                               1.1 M<br> lksctp-tools                                                       x86_64                                               1.0.18-3.el8                                                  BaseOS                                                           100 k<br> mesa-libGLU                                                        x86_64                                               9.0.0-15.el8                                                  AppStream                                                        185 k<br> wxBase3                                                            x86_64                                               3.0.5.1-1.el8                                                 centos-rabbitmq-38                                               1.1 M<br> wxGTK3                                                             x86_64                                               3.0.5.1-1.el8                                                 centos-rabbitmq-38                                               4.8 M<br> wxGTK3-gl                                                          x86_64                                               3.0.5.1-1.el8                                                 centos-rabbitmq-38                                                45 k<br> wxGTK3-i18n                                                        noarch                                               3.0.5.1-1.el8                                                 centos-rabbitmq-38                                               510 k</p>
-<p> python3-memcached<br> etcd-3.2.21-2</p>
-<p> openstack-keystone<br> 依赖<br> python-oslo-cache-lang                                            noarch                                      2.3.0-1.el8                                                                 centos-openstack-ussuri                                       16 k<br> python-oslo-concurrency-lang                                      noarch                                      4.0.2-1.el8                                                                 centos-openstack-ussuri                                       13 k<br> python-oslo-db-lang                                               noarch                                      8.1.0-1.el8                                                                 centos-openstack-ussuri                                       13 k<br> python-oslo-middleware-lang                                       noarch                                      4.0.2-1.el8                                                                 centos-openstack-ussuri                                       11 k<br> python-oslo-policy-lang                                           noarch                                      3.1.1-1.el8                                                                 centos-openstack-ussuri                                       12 k<br> python-pycadf-common                                              noarch                                      3.0.0-1.el8                                                                 centos-openstack-ussuri                                       14 k<br> python3-PyMySQL                                                   noarch                                      0.9.3-2.el8.rdo.1                                                           centos-openstack-ussuri                                       97 k<br> python3-alembic                                                   noarch                                      1.3.1-1.el8                                                                 centos-openstack-ussuri                                      770 k<br> python3-amqp                                                      noarch                                      2.5.2-3.el8                                                                 epel                                                          95 k<br> python3-aniso8601                                                 noarch                                      8.0.0-1.el8                                                                 centos-openstack-ussuri                                       79 k<br> python3-bcrypt                                                    x86_64                                      3.1.7-3.el8                                                                 centos-ceph-nautilus                                          44 k<br> python3-cachetools                                                noarch                                      4.0.0-1.el8                                                                 centos-ceph-nautilus                                          33 k<br> python3-click                                                     noarch                                      6.7-8.el8                                                                   AppStream                                                    131 k<br> python3-defusedxml                                                noarch                                      0.6.0-4.el8                                                                 centos-openstack-ussuri                                       52 k<br> python3-dns                                                       noarch                                      1.15.0-10.el8                                                               BaseOS                                                       253 k<br> python3-editor                                                    noarch                                      1.0.4-4.el8                                                                 centos-openstack-ussuri                                       19 k<br> python3-eventlet                                                  noarch                                      0.25.1-2.el8                                                                centos-ceph-nautilus                                         384 k<br> python3-fasteners                                                 noarch                                      0.14.1-20.el8                                                               centos-openstack-ussuri                                       44 k<br> python3-flask                                                     noarch                                      1:1.1.1-1.el8                                                               centos-openstack-ussuri                                      164 k<br> python3-flask-restful                                             noarch                                      0.3.7-5.el8                                                                 centos-openstack-ussuri                                      122 k<br> python3-future                                                    noarch                                      0.18.2-3.el8                                                                centos-openstack-ussuri                                      789 k<br> python3-futurist                                                  noarch                                      2.1.1-1.el8                                                                 centos-openstack-ussuri                                       63 k<br> python3-greenlet                                                  x86_64                                      0.4.13-4.el8                                                                AppStream                                                     31 k<br> python3-itsdangerous                                              noarch                                      0.24-14.el8                                                                 AppStream                                                     31 k<br> python3-jinja2                                                    noarch                                      2.10.1-2.el8_0                                                              AppStream                                                    538 k<br> python3-jsonschema                                                noarch                                      2.6.0-4.el8                                                                 AppStream                                                     82 k<br> python3-jwt                                                       noarch                                      1.6.1-2.el8                                                                 BaseOS                                                        43 k<br> python3-keystone                                                  noarch                                      1:17.0.0-1.el8                                                              centos-openstack-ussuri                                      1.1 M<br> python3-keystonemiddleware                                        noarch                                      9.0.0-1.el8                                                                 centos-openstack-ussuri                                       92 k<br> python3-kombu                                                     noarch                                      1:4.6.6-3.el8                                                               epel                                                         370 k<br> python3-ldap                                                      x86_64                                      3.1.0-5.el8                                                                 AppStream                                                    226 k<br> python3-ldappool                                                  noarch                                      2.4.0-5.el8                                                                 centos-openstack-ussuri                                       30 k<br> python3-migrate                                                   noarch                                      0.13.0-1.el8                                                                centos-openstack-ussuri                                      238 k<br> python3-monotonic                                                 noarch                                      1.5-7.el8                                                                   epel                                                          19 k<br> python3-oauthlib                                                  noarch                                      2.1.0-1.el8                                                                 BaseOS                                                       155 k<br> python3-oslo-cache                                                noarch                                      2.3.0-1.el8                                                                 centos-openstack-ussuri                                       50 k<br> python3-oslo-concurrency                                          noarch                                      4.0.2-1.el8                                                                 centos-openstack-ussuri                                       40 k<br> python3-oslo-db                                                   noarch                                      8.1.0-1.el8                                                                 centos-openstack-ussuri                                      147 k<br> python3-oslo-messaging                                            noarch                                      12.1.4-1.el8                                                                centos-openstack-ussuri                                      226 k<br> python3-oslo-middleware                                           noarch                                      4.0.2-1.el8                                                                 centos-openstack-ussuri                                       53 k<br> python3-oslo-policy                                               noarch                                      3.1.1-1.el8                                                                 centos-openstack-ussuri                                       70 k<br> python3-oslo-service                                              noarch                                      2.1.1-1.el8                                                                 centos-openstack-ussuri                                       70 k<br> python3-oslo-upgradecheck                                         noarch                                      1.0.1-1.el8                                                                 centos-openstack-ussuri                                       23 k<br> python3-osprofiler                                                noarch                                      3.1.0-1.el8                                                                 centos-openstack-ussuri                                      132 k<br> python3-passlib                                                   noarch                                      1.7.2-1.el8                                                                 epel                                                         759 k<br> python3-paste                                                     noarch                                      3.2.4-1.el8                                                                 centos-openstack-ussuri                                      811 k<br> python3-paste-deploy                                              noarch                                      2.0.1-4.el8                                                                 centos-openstack-ussuri                                       52 k<br> python3-pyasn1                                                    noarch                                      0.4.6-3.el8                                                                 centos-ceph-nautilus                                         140 k<br> python3-pyasn1-modules                                            noarch                                      0.4.6-3.el8                                                                 centos-ceph-nautilus                                         151 k<br> python3-pycadf                                                    noarch                                      3.0.0-1.el8                                                                 centos-openstack-ussuri                                       51 k<br> python3-pyngus                                                    noarch                                      2.3.0-4.el8                                                                 centos-openstack-ussuri                                       54 k<br> python3-pysaml2                                                   noarch                                      4.5.0-9.el8                                                                 centos-openstack-ussuri                                      524 k<br> python3-qpid-proton                                               x86_64                                      0.31.0-3.el8                                                                epel                                                         397 k<br> python3-repoze-lru                                                noarch                                      0.7-6.el8                                                                   centos-ceph-nautilus                                          33 k<br> python3-routes                                                    noarch                                      2.4.1-12.el8                                                                centos-ceph-nautilus                                         196 k<br> python3-scrypt                                                    x86_64                                      0.8.0-11.el8                                                                centos-openstack-ussuri                                       34 k<br> python3-sqlalchemy                                                x86_64                                      1.3.2-1.module_el8.1.0+245+c39af44f                                         AppStream                                                    1.9 M<br> python3-sqlparse                                                  noarch                                      0.2.4-9.el8                                                                 centos-openstack-ussuri                                       82 k<br> python3-statsd                                                    noarch                                      3.2.1-16.el8                                                                centos-openstack-ussuri                                       35 k<br> python3-tempita                                                   noarch                                      0.5.1-25.el8                                                                centos-openstack-ussuri                                       39 k<br> python3-vine                                                      noarch                                      1.3.0-5.el8                                                                 epel                                                          35 k<br> python3-webob                                                     noarch                                      1.8.5-5.el8                                                                 centos-ceph-nautilus                                         251 k<br> python3-werkzeug                                                  noarch                                      0.16.0-1.el8                                                                centos-openstack-ussuri                                      489 k<br> python3-yappi                                                     x86_64                                      1.0-4.el8                                                                   centos-openstack-ussuri                                       45 k<br> qpid-proton-c                                                     x86_64                                      0.31.0-3.el8                                                                epel                                                         203 k</p>
-<p> openstack-glance<br> 依赖<br> python3-decorator                                                      noarch                                        4.4.0-5.el8                                                        centos-openstack-ussuri                                         32 k<br>安装依赖关系:<br> graphviz                                                               x86_64                                        2.40.1-40.el8                                                      AppStream                                                      1.7 M<br> libXaw                                                                 x86_64                                        1.0.13-10.el8                                                      AppStream                                                      194 k<br> libgfortran                                                            x86_64                                        8.3.1-5.el8.0.2                                                    BaseOS                                                         639 k<br> libquadmath                                                            x86_64                                        8.3.1-5.el8.0.2                                                    BaseOS                                                         169 k<br> openblas                                                               x86_64                                        0.3.3-5.el8                                                        AppStream                                                      4.3 M<br> openblas-threads                                                       x86_64                                        0.3.3-5.el8                                                        AppStream                                                      4.3 M<br> python-oslo-privsep-lang                                               noarch                                        2.1.1-1.el8                                                        centos-openstack-ussuri                                         12 k<br> python-oslo-vmware-lang                                                noarch                                        3.3.1-1.el8                                                        centos-openstack-ussuri                                         13 k<br> python3-automaton                                                      noarch                                        2.0.1-1.el8                                                        centos-openstack-ussuri                                         41 k<br> python3-barbicanclient                                                 noarch                                        4.10.0-1.el8                                                       centos-openstack-ussuri                                        130 k<br> python3-boto                                                           noarch                                        2.49.0-4.el8                                                       centos-openstack-ussuri                                        1.8 M<br> python3-castellan                                                      noarch                                        3.0.2-1.el8                                                        centos-openstack-ussuri                                        125 k<br> python3-cursive                                                        noarch                                        0.2.2-1.el8                                                        centos-openstack-ussuri                                         58 k<br> python3-glance                                                         noarch                                        1:20.0.1-1.el8                                                     centos-openstack-ussuri                                        812 k<br> python3-glance-store                                                   noarch                                        2.0.0-1.el8                                                        centos-openstack-ussuri                                        279 k<br> python3-glanceclient                                                   noarch                                        1:3.1.2-1.el8                                                      centos-openstack-ussuri                                        147 k<br> python3-httplib2                                                       noarch                                        0.10.3-4.el8                                                       PowerTools                                                     108 k<br> python3-lxml                                                           x86_64                                        4.2.3-1.el8                                                        AppStream                                                      1.5 M<br> python3-networkx                                                       noarch                                        2.3-5.el8                                                          centos-openstack-ussuri                                        2.2 M<br> python3-os-brick                                                       noarch                                        3.0.3-1.el8                                                        centos-openstack-ussuri                                        1.1 M<br> python3-os-win                                                         noarch                                        5.0.2-1.el8                                                        centos-openstack-ussuri                                        449 k<br> python3-oslo-privsep                                                   noarch                                        2.1.1-1.el8                                                        centos-openstack-ussuri                                         39 k<br> python3-oslo-reports                                                   noarch                                        2.0.1-1.el8                                                        centos-openstack-ussuri                                         58 k<br> python3-oslo-rootwrap                                                  noarch                                        6.0.2-1.el8                                                        centos-openstack-ussuri                                         44 k<br> python3-oslo-vmware                                                    noarch                                        3.3.1-1.el8                                                        centos-openstack-ussuri                                        215 k<br> python3-psutil                                                         x86_64                                        5.6.3-5.el8                                                        centos-openstack-ussuri                                        396 k<br> python3-pydot                                                          noarch                                        1.4.1-1.el8                                                        centos-openstack-ussuri                                         51 k<br> python3-pysendfile                                                     x86_64                                        2.0.1-15.el8                                                       centos-openstack-ussuri                                         21 k<br> python3-pyxattr                                                        x86_64                                        0.5.3-18.el8                                                       PowerTools                                                      36 k<br> python3-retrying                                                       noarch                                        1.2.3-21.el8                                                       centos-openstack-ussuri                                         23 k<br> python3-rsa                                                            noarch                                        3.4.2-15.el8                                                       epel                                                            73 k<br> python3-simplegeneric                                                  noarch                                        0.8.1-17.el8                                                       centos-ceph-nautilus                                            19 k<br> python3-soupsieve                                                      noarch                                        1.9.2-3.el8                                                        centos-ceph-nautilus                                            68 k<br> python3-suds                                                           noarch                                        0.7-0.8.94664ddd46a6.el8                                           AppStream                                                      242 k<br> python3-taskflow                                                       noarch                                        4.1.0-1.el8                                                        centos-openstack-ussuri                                        688 k<br> python3-tenacity                                                       noarch                                        5.1.1-3.el8                                                        centos-openstack-ussuri                                         48 k<br> python3-warlock                                                        noarch                                        1.3.3-1.el8                                                        centos-openstack-ussuri                                         22 k<br> python3-webencodings                                                   noarch                                        0.5.1-6.el8                                                        AppStream                                                       27 k<br> python3-wsme                                                           noarch                                        0.9.3-1.el8                                                        centos-openstack-ussuri                                        199 k<br> sysfsutils                                                             x86_64                                        2.1.0-24.el8                                                       AppStream                                                       49 k<br> xorg-x11-fonts-ISO8859-1-100dpi                                        noarch                                        7.5-19.el8                                                         AppStream                                                      1.1 M<br>安装弱的依赖:<br> python3-beautifulsoup4                                                 noarch                                        4.8.2-1.el8                                                        centos-ceph-nautilus                                           206 k<br> python3-cssselect                                                      noarch                                        0.9.2-13.el8                                                       centos-openstack-ussuri                                         40 k<br> python3-html5lib                                                       noarch                                        1:0.999999999-6.el8                                                AppStream                                                      214 k<br> python3-numpy                                                          x86_64                                        1:1.14.3-9.el8                                                     AppStream                                                      3.7 M<br> python3-pillow                                                         x86_64                                        5.1.1-12.el8_2                                                     AppStream                                                      629 k<br> python3-pygraphviz                                                     x86_64                                        1.5-9.el8                                                          centos-openstack-ussuri                                         91 k</p>
-<p> openstack-placement-api<br> 依赖<br>  openstack-placement-common                                              noarch                                             3.0.0-1.el8                                             centos-openstack-ussuri                                              25 k<br> python3-microversion-parse                                              noarch                                             1.0.1-1.el8                                             centos-openstack-ussuri                                              32 k<br> python3-os-resource-classes                                             noarch                                             1.0.0-1.el8                                             centos-openstack-ussuri                                              17 k<br> python3-os-traits                                                       noarch                                             2.3.0-1.el8                                             centos-openstack-ussuri                                              43 k<br> python3-placement                                                       noarch                                             3.0.0-1.el8                                             centos-openstack-ussuri                                             250 k</p>
-<p> openstack-nova-api<br> 依赖<br> python3-cryptography                                                       x86_64                                          2.8-2.el8                                                  centos-ceph-nautilus                                             549 k<br>安装依赖关系:<br> libsodium                                                                  x86_64                                          1.0.18-2.el8                                               centos-ceph-nautilus                                             163 k<br> openstack-nova-common                                                      noarch                                          1:21.1.0-1.el8                                             centos-openstack-ussuri                                          266 k<br> openvswitch                                                                x86_64                                          2.12.0-1.1.el8                                             centos-openstack-ussuri                                          2.0 M<br> python-oslo-versionedobjects-lang                                          noarch                                          2.0.2-1.el8                                                centos-openstack-ussuri                                           12 k<br> python3-dataclasses                                                        noarch                                          0.7-1.el8                                                  centos-openstack-ussuri                                           33 k<br> python3-fluidity-sm                                                        noarch                                          0.2.0-16.el8                                               centos-openstack-ussuri                                           20 k<br> python3-kazoo                                                              noarch                                          2.7.0-1.el8                                                centos-openstack-ussuri                                          162 k<br> python3-lexicon                                                            noarch                                          1.0.0-9.el8                                                centos-openstack-ussuri                                           19 k<br> python3-nova                                                               noarch                                          1:21.1.0-1.el8                                             centos-openstack-ussuri                                          3.5 M<br> python3-openvswitch                                                        x86_64                                          2.12.0-1.1.el8                                             centos-openstack-ussuri                                          236 k<br> python3-os-vif                                                             noarch                                          2.0.0-1.el8                                                centos-openstack-ussuri                                           96 k<br> python3-oslo-versionedobjects                                              noarch                                          2.0.2-1.el8                                                centos-openstack-ussuri                                           78 k<br> python3-ovsdbapp                                                           noarch                                          1.2.1-1.el8                                                centos-openstack-ussuri                                          114 k<br> python3-paramiko                                                           noarch                                          2.7.1-1.el8                                                centos-ceph-nautilus                                             312 k<br> python3-pynacl                                                             x86_64                                          1.3.0-6.el8.rdo.1                                          centos-openstack-ussuri                                          106 k<br> python3-pyroute2                                                           noarch                                          0.5.6-2.el8                                                centos-openstack-ussuri                                          557 k<br> python3-redis                                                              noarch                                          3.3.8-1.el8                                                centos-openstack-ussuri                                          131 k<br> python3-tooz                                                               noarch                                          2.3.0-1.el8                                                centos-openstack-ussuri                                          104 k<br> python3-voluptuous                                                         noarch                                          0.11.7-2.el8                                               centos-openstack-ussuri                                           60 k<br> python3-zake                                                               noarch                                          0.2.2-18.el8                                               centos-openstack-ussuri                                           46 k<br>安装弱的依赖:<br> python3-invoke                                                             noarch                                          1.4.0-1.el8                                                centos-openstack-ussuri                                          157 k</p>
-<p> openstack-nova-conductor</p>
-<p>openstack-nova-novncproxy<br>依赖<br>nodejs                                                       x86_64                                    1:10.21.0-3.module_el8.2.0+391+8da3adc6                                              AppStream                                                  8.9 M<br> novnc                                                        noarch                                    1.1.0-6.el8                                                                          centos-openstack-ussuri                                    949 k<br> npm                                                          x86_64                                    1:6.14.4-1.10.21.0.3.module_el8.2.0+391+8da3adc6                                     AppStream                                                  3.8 M<br> python3-websockify                                           noarch                                    0.9.0-1.el8                                                                          centos-openstack-ussuri                                     75 k<br>安装弱的依赖:<br> nodejs-full-i18n                                             x86_64                                    1:10.21.0-3.module_el8.2.0+391+8da3adc6                                              AppStream                                                  7.3 M</p>
-<p> openstack-nova-scheduler</p>
-<p> openstack-nova-compute<br> 依赖<br> iptables                                                                          x86_64                                        1.8.4-10.el8_2.1                                        BaseOS                                                         581 k<br> iptables-ebtables                                                                 x86_64                                        1.8.4-10.el8_2.1                                        BaseOS                                                          70 k<br> iptables-libs                                                                     x86_64                                        1.8.4-10.el8_2.1                                        BaseOS                                                         105 k<br> libvirt-bash-completion                                                           x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         55 k<br> libvirt-client                                                                    x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        362 k<br> libvirt-daemon                                                                    x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        345 k<br> libvirt-daemon-config-network                                                     x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         56 k<br> libvirt-daemon-driver-interface                                                   x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        203 k<br> libvirt-daemon-driver-network                                                     x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        229 k<br> libvirt-daemon-driver-nodedev                                                     x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        202 k<br> libvirt-daemon-driver-nwfilter                                                    x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        226 k<br> libvirt-daemon-driver-qemu                                                        x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        839 k<br> libvirt-daemon-driver-secret                                                      x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        192 k<br> libvirt-daemon-driver-storage                                                     x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         54 k<br> libvirt-daemon-driver-storage-core                                                x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        254 k<br> libvirt-daemon-driver-storage-disk                                                x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         76 k<br> libvirt-daemon-driver-storage-gluster                                             x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         81 k<br> libvirt-daemon-driver-storage-iscsi                                               x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         73 k<br> libvirt-daemon-driver-storage-logical                                             x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         77 k<br> libvirt-daemon-driver-storage-mpath                                               x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         71 k<br> libvirt-daemon-driver-storage-rbd                                                 x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         81 k<br> libvirt-daemon-driver-storage-scsi                                                x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         73 k<br> libvirt-daemon-kvm                                                                x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         54 k<br> libvirt-libs                                                                      x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                        4.3 M<br> python3-libvirt                                                                   x86_64                                        6.0.0-1.el8                                             advanced-virtualization                                        306 k<br>安装依赖关系:<br> hivex                                                                             x86_64                                        1.3.18-20.el8                                           advanced-virtualization                                        114 k<br> ipmitool                                                                          x86_64                                        1.8.18-14.el8                                           AppStream                                                      394 k<br> iptables-services                                                                 x86_64                                        1.8.4-10.el8_2.1                                        BaseOS                                                          60 k<br> libguestfs                                                                        x86_64                                        1:1.40.2-22.el8                                         advanced-virtualization                                        2.7 M<br> libvirt-daemon-driver-storage-iscsi-direct                                        x86_64                                        6.0.0-17.el8                                            advanced-virtualization                                         75 k<br> python3-libguestfs                                                                x86_64                                        1:1.40.2-22.el8                                         advanced-virtualization                                        208 k<br> scrub                                                                             x86_64                                        2.5.2-14.el8                                            AppStream                                                       44 k<br> supermin                                                                          x86_64                                        5.1.19-10.el8                                           advanced-virtualization                                        711 k<br> syslinux                                                                          x86_64                                        6.04-4.el8                                              BaseOS                                                         579 k<br> syslinux-extlinux                                                                 x86_64                                        6.04-4.el8                                              BaseOS                                                         141 k<br> syslinux-extlinux-nonlinux                                                        noarch                                        6.04-4.el8                                              BaseOS                                                         386 k<br> syslinux-nonlinux                                                                 noarch                                        6.04-4.el8                                              BaseOS                                                         552 k</p>
-<p> openstack-neutron<br> 依赖<br> net-snmp-libs                                                   x86_64                                        1:5.8-14.el8_2.1                                                          BaseOS                                                         821 k<br>安装依赖关系:<br> conntrack-tools                                                 x86_64                                        1.4.4-10.el8                                                              BaseOS                                                         204 k<br> dibbler-client                                                  x86_64                                        1.0.1-10.el8                                                              centos-openstack-ussuri                                        438 k<br> dnsmasq-utils                                                   x86_64                                        2.79-11.el8_2.1                                                           AppStream                                                       55 k<br> haproxy                                                         x86_64                                        1.8.23-3.el8                                                              AppStream                                                      1.3 M<br> keepalived                                                      x86_64                                        2.0.10-10.el8                                                             AppStream                                                      466 k<br> libev                                                           x86_64                                        4.24-6.el8                                                                AppStream                                                       52 k<br> libnetfilter_cthelper                                           x86_64                                        1.0.0-15.el8                                                              BaseOS                                                          24 k<br> libnetfilter_cttimeout                                          x86_64                                        1.0.0-11.el8                                                              BaseOS                                                          24 k<br> libnetfilter_queue                                              x86_64                                        1.0.2-11.el8                                                              BaseOS                                                          30 k<br> libunwind                                                       x86_64                                        1.3.1-3.el8                                                               centos-ceph-nautilus                                            76 k<br> lm_sensors-libs                                                 x86_64                                        3.4.0-21.20180522git70f7e08.el8                                           BaseOS                                                          59 k<br> net-snmp-agent-libs                                             x86_64                                        1:5.8-14.el8_2.1                                                          AppStream                                                      747 k<br> openpgm                                                         x86_64                                        5.2.122-21.el8                                                            centos-openstack-ussuri                                        180 k<br> openstack-neutron-common                                        noarch                                        1:16.0.0-1.el8                                                            centos-openstack-ussuri                                        186 k<br> python3-designateclient                                         noarch                                        4.0.0-1.el8                                                               centos-openstack-ussuri                                         91 k<br> python3-gevent                                                  x86_64                                        1.2.2-4.el8                                                               AppStream                                                      497 k<br> python3-logutils                                                noarch                                        0.3.5-11.el8                                                              centos-ceph-nautilus                                            49 k<br> python3-neutron                                                 noarch                                        1:16.0.0-1.el8                                                            centos-openstack-ussuri                                        2.5 M<br> python3-neutron-lib                                             noarch                                        2.3.0-1.el8                                                               centos-openstack-ussuri                                        373 k<br> python3-os-ken                                                  noarch                                        1.0.0-1.el8                                                               centos-openstack-ussuri                                        2.3 M<br> python3-os-xenapi                                               noarch                                        0.3.4-1.el8                                                               centos-openstack-ussuri                                         80 k<br> python3-pecan                                                   noarch                                        1.3.2-9.el8                                                               centos-ceph-nautilus                                           282 k<br> python3-setproctitle                                            x86_64                                        1.1.10-17.el8                                                             epel                                                            24 k<br> python3-singledispatch                                          noarch                                        3.4.0.3-18.el8                                                            centos-ceph-nautilus                                            24 k<br> python3-tinyrpc                                                 noarch                                        1.0.3-1.el8                                                               centos-openstack-ussuri                                         51 k<br> python3-waitress                                                noarch                                        1.4.2-1.el8                                                               centos-ceph-nautilus                                           255 k<br> python3-webtest                                                 noarch                                        2.0.33-4.el8                                                              centos-ceph-nautilus                                            87 k<br> python3-zmq                                                     x86_64                                        19.0.0-1.el8                                                              epel                                                           418 k<br> zeromq                                                          x86_64                                        4.3.2-1.el8                                                               centos-openstack-ussuri                                        316 k</p>
-<p> openstack-neutron-ml2<br> openstack-neutron-linuxbridge</p>
-<p> openstack-dashboard<br> 依赖<br>  XStatic-Angular-common                                                  noarch                                    1:1.5.8.0-10.el8                                                          centos-openstack-ussuri                                    460 k<br> XStatic-Magic-Search-common                                             noarch                                    0.2.5.1-12.el8                                                            centos-openstack-ussuri                                     14 k<br> bootswatch-common                                                       noarch                                    3.3.7.0-11.el8                                                            centos-openstack-ussuri                                    623 k<br> bootswatch-fonts                                                        noarch                                    3.3.7.0-11.el8                                                            centos-openstack-ussuri                                    118 k<br> fontawesome-fonts                                                       noarch                                    4.7.0-4.el8                                                               AppStream                                                  203 k<br> fontawesome-fonts-web                                                   noarch                                    4.7.0-4.el8                                                               PowerTools                                                 429 k<br> mdi-common                                                              noarch                                    1.6.50.2-1.el8                                                            centos-openstack-ussuri                                     48 k<br> mdi-fonts                                                               noarch                                    1.6.50.2-1.el8                                                            centos-openstack-ussuri                                    551 k<br> openstack-dashboard-theme                                               noarch                                    1:18.3.2-1.el8                                                            centos-openstack-ussuri                                    6.3 k<br> python3-XStatic                                                         noarch                                    1.0.1-19.el8                                                              centos-openstack-ussuri                                     14 k<br> python3-XStatic-Angular                                                 noarch                                    1:1.5.8.0-10.el8                                                          centos-openstack-ussuri                                     19 k<br> python3-XStatic-Angular-Bootstrap                                       noarch                                    2.2.0.0-10.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-Angular-FileUpload                                      noarch                                    12.0.4.0-14.el8                                                           centos-openstack-ussuri                                     15 k<br> python3-XStatic-Angular-Gettext                                         noarch                                    2.3.8.0-1.el8                                                             centos-openstack-ussuri                                     12 k<br> python3-XStatic-Angular-Schema-Form                                     noarch                                    0.8.13.0-2.el8                                                            centos-openstack-ussuri                                     13 k<br> python3-XStatic-Angular-lrdragndrop                                     noarch                                    1.0.2.2-16.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-Bootstrap-Datepicker                                    noarch                                    1.3.1.0-16.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-Bootstrap-SCSS                                          noarch                                    3.3.7.1-10.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-D3                                                      noarch                                    3.5.17.0-10.el8                                                           centos-openstack-ussuri                                     13 k<br> python3-XStatic-Font-Awesome                                            noarch                                    4.7.0.0-10.el8                                                            centos-openstack-ussuri                                     16 k<br> python3-XStatic-Hogan                                                   noarch                                    2.0.0.2-17.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-JQuery-Migrate                                          noarch                                    1.2.1.1-17.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-JQuery-TableSorter                                      noarch                                    2.14.5.1-17.el8                                                           centos-openstack-ussuri                                     14 k<br> python3-XStatic-JQuery-quicksearch                                      noarch                                    2.0.3.1-17.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-JSEncrypt                                               noarch                                    2.3.1.1-9.el8                                                             centos-openstack-ussuri                                     14 k<br> python3-XStatic-Jasmine                                                 noarch                                    2.4.1.1-9.el8                                                             centos-openstack-ussuri                                     14 k<br> python3-XStatic-Magic-Search                                            noarch                                    0.2.5.1-12.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-Rickshaw                                                noarch                                    1.5.0.0-19.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-Spin                                                    noarch                                    1.2.5.2-18.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-bootswatch                                              noarch                                    3.3.7.0-11.el8                                                            centos-openstack-ussuri                                     17 k<br> python3-XStatic-jQuery                                                  noarch                                    1.10.2.1-1.el8                                                            centos-openstack-ussuri                                    116 k<br> python3-XStatic-jquery-ui                                               noarch                                    1.12.0.1-9.el8                                                            centos-openstack-ussuri                                     17 k<br> python3-XStatic-mdi                                                     noarch                                    1.6.50.2-1.el8                                                            centos-openstack-ussuri                                     29 k<br> python3-XStatic-objectpath                                              noarch                                    1.2.1.0-2.el8                                                             centos-openstack-ussuri                                     13 k<br> python3-XStatic-roboto-fontface                                         noarch                                    0.5.0.0-13.el8                                                            centos-openstack-ussuri                                     15 k<br> python3-XStatic-smart-table                                             noarch                                    1.4.13.2-9.el8                                                            centos-openstack-ussuri                                     14 k<br> python3-XStatic-termjs                                                  noarch                                    0.0.7.0-9.el8                                                             centos-openstack-ussuri                                     14 k<br> python3-XStatic-tv4                                                     noarch                                    1.2.7.0-2.el8                                                             centos-openstack-ussuri                                     12 k<br> python3-bson                                                            x86_64                                    3.6.1-11.module_el8.1.0+245+c39af44f                                      AppStream                                                  107 k<br> python3-django                                                          noarch                                    2.2.13-1.el8                                                              epel                                                       4.5 M<br> python3-django-appconf                                                  noarch                                    1.0.3-1.el8                                                               centos-openstack-ussuri                                    172 k<br> python3-django-babel                                                    noarch                                    0.6.2-10.el8                                                              centos-openstack-ussuri                                     28 k<br> python3-django-compressor                                               noarch                                    2.2-8.el8                                                                 centos-openstack-ussuri                                    177 k<br> python3-django-debreach                                                 noarch                                    2.0.1-1.el8                                                               centos-openstack-ussuri                                     18 k<br> python3-django-horizon                                                  noarch                                    1:18.3.2-1.el8                                                            centos-openstack-ussuri                                    829 k<br> python3-django-pyscss                                                   noarch                                    2.0.2-14.el8                                                              centos-openstack-ussuri                                     22 k<br> python3-lesscpy                                                         noarch                                    0.13.0-12.el8                                                             centos-openstack-ussuri                                     96 k<br> python3-pint                                                            noarch                                    0.10.1-1.el8                                                              centos-openstack-ussuri                                    330 k<br> python3-pymongo                                                         x86_64                                    3.6.1-11.module_el8.1.0+245+c39af44f                                      AppStream                                                  302 k<br> python3-rcssmin                                                         x86_64                                    1.0.6-18.el8                                                              centos-openstack-ussuri                                     31 k<br> python3-rjsmin                                                          x86_64                                    1.0.12-17.el8                                                             centos-openstack-ussuri                                     29 k<br> python3-scss                                                            x86_64                                    1.3.5-9.el8                                                               centos-openstack-ussuri                                    255 k<br> python3-semantic_version                                                noarch                                    2.6.0-5.el8                                                               AppStream                                                   30 k<br> python3-swiftclient                                                     noarch                                    3.9.0-1.el8                                                               centos-openstack-ussuri                                    166 k<br> python3-versiontools                                                    noarch                                    1.9.1-24.el8                                                              centos-openstack-ussuri                                    192 k<br> roboto-fontface-common                                                  noarch                                    0.5.0.0-13.el8                                                            centos-openstack-ussuri                                     20 k<br> roboto-fontface-fonts                                                   noarch                                    0.5.0.0-13.el8                                                            centos-openstack-ussuri                                    4.1 M<br> web-assets-filesystem                                                   noarch                                    5-10.el8                                                                  centos-openstack-ussuri                                    9.1 k<br> xstatic-angular-bootstrap-common                                        noarch                                    2.2.0.0-10.el8                                                            centos-openstack-ussuri                                     61 k<br> xstatic-angular-fileupload-common                                       noarch                                    12.0.4.0-14.el8                                                           centos-openstack-ussuri                                    153 k<br> xstatic-angular-gettext-common                                          noarch                                    2.3.8.0-1.el8                                                             centos-openstack-ussuri                                     16 k<br> xstatic-angular-lrdragndrop-common                                      noarch                                    1.0.2.2-16.el8                                                            centos-openstack-ussuri                                     11 k<br> xstatic-angular-schema-form-common                                      noarch                                    0.8.13.0-2.el8                                                            centos-openstack-ussuri                                     44 k<br> xstatic-bootstrap-datepicker-common                                     noarch                                    1.3.1.0-16.el8                                                            centos-openstack-ussuri                                     42 k<br> xstatic-bootstrap-scss-common                                           noarch                                    3.3.7.1-10.el8                                                            centos-openstack-ussuri                                    199 k<br> xstatic-d3-common                                                       noarch                                    3.5.17.0-10.el8                                                           centos-openstack-ussuri                                     78 k<br> xstatic-hogan-common                                                    noarch                                    2.0.0.2-17.el8                                                            centos-openstack-ussuri                                     14 k<br> xstatic-jasmine-common                                                  noarch                                    2.4.1.1-9.el8                                                             centos-openstack-ussuri                                     42 k<br> xstatic-jquery-migrate-common                                           noarch                                    1.2.1.1-17.el8                                                            centos-openstack-ussuri                                     17 k<br> xstatic-jquery-quicksearch-common                                       noarch                                    2.0.3.1-17.el8                                                            centos-openstack-ussuri                                     13 k<br> xstatic-jquery-tablesorter-common                                       noarch                                    2.14.5.1-17.el8                                                           centos-openstack-ussuri                                     26 k<br> xstatic-jquery-ui-common                                                noarch                                    1.12.0.1-9.el8                                                            centos-openstack-ussuri                                    622 k<br> xstatic-jsencrypt-common                                                noarch                                    2.3.1.1-9.el8                                                             centos-openstack-ussuri                                     39 k<br> xstatic-objectpath-common                                               noarch                                    1.2.1.0-2.el8                                                             centos-openstack-ussuri                                    9.4 k<br> xstatic-rickshaw-common                                                 noarch                                    1.5.0.0-19.el8                                                            centos-openstack-ussuri                                     33 k<br> xstatic-smart-table-common                                              noarch                                    1.4.13.2-9.el8                                                            centos-openstack-ussuri                                     19 k<br> xstatic-spin-common                                                     noarch                                    1.2.5.2-18.el8                                                            centos-openstack-ussuri                                     12 k<br> xstatic-termjs-common                                                   noarch                                    0.0.7.0-9.el8                                                             centos-openstack-ussuri                                     41 k<br> xstatic-tv4-common                                                      noarch                                    1.2.7.0-2.el8                                                             centos-openstack-ussuri                                     26 k<br>安装弱的依赖:<br> python-django-bash-completion                                           noarch                                    2.2.13-1.el8                                                              epel                                                        14 k</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>通过一系列DOM操作，攻击者对文本的控制，但不能覆盖HTML或格式化的消息可以覆盖在另一个域的顶部（在地址栏中正确显示了新域），从而导致可能的用户混淆。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29975"><a href="#漏洞编号：-CVE-2021-29975" class="headerlink" title="漏洞编号： CVE-2021-29975"></a>漏洞编号： CVE-2021-29975</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-6-5"><a href="#CVSS3-1评分：-6-5" class="headerlink" title="CVSS3.1评分： 6.5"></a>CVSS3.1评分： 6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29975">https://nvd.nist.gov/vuln/detail/CVE-2021-29975</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/17/openstack%E5%8C%85/" data-id="ckf8bs9qb003bt414gh9jchxd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29975%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007kioxmezd21fry" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li></ul>
-
     </footer>
   </div>
   
@@ -252,10 +250,10 @@
 
 
   
-    <article id="post-cockpit需求" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29974安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/09/04/cockpit%E9%9C%80%E6%B1%82/" class="article-date">
-  <time datetime="2020-09-04T04:20:17.000Z" itemprop="datePublished">2020-09-04</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29974%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:54.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -266,7 +264,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/04/cockpit%E9%9C%80%E6%B1%82/">cockpit需求</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29974%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29974安全公告</a>
     </h1>
   
 
@@ -274,16 +272,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>暂定</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>当启用网络分区时，例如增强跟踪保护设置的结果，TLS错误页面将使用户能够覆盖已指定HTTP严格传输安全性的域上的错误（这意味着不应超出错误。）</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29974"><a href="#漏洞编号：-CVE-2021-29974" class="headerlink" title="漏洞编号： CVE-2021-29974"></a>漏洞编号： CVE-2021-29974</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-4-3"><a href="#CVSS3-1评分：-4-3" class="headerlink" title="CVSS3.1评分： 4.3"></a>CVSS3.1评分： 4.3</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29974">https://nvd.nist.gov/vuln/detail/CVE-2021-29974</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/04/cockpit%E9%9C%80%E6%B1%82/" data-id="ckf8bs9pg002ht4145ik04xt8" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29974%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007jioxm7a8k362d" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li></ul>
-
     </footer>
   </div>
   
@@ -291,10 +312,10 @@
 
 
   
-    <article id="post-nginx配置文件" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29972安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/26/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" class="article-date">
-  <time datetime="2020-08-26T07:19:58.000Z" itemprop="datePublished">2020-08-26</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29972%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:50.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -305,7 +326,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/26/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/">nginx配置文件</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29972%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29972安全公告</a>
     </h1>
   
 
@@ -313,16 +334,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>Nginx配置文件的模式如下</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">...              #全局块</span><br><span class="line"></span><br><span class="line">events &#123;         #events块</span><br><span class="line">   ...</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">http      #http块</span><br><span class="line">&#123;</span><br><span class="line">    ...   #http全局块</span><br><span class="line">    server        #server块</span><br><span class="line">    &#123; </span><br><span class="line">        ...       #server全局块</span><br><span class="line">        location [PATTERN]   #location块</span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">        location [PATTERN] </span><br><span class="line">        &#123;</span><br><span class="line">            ...</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    server</span><br><span class="line">    &#123;</span><br><span class="line">      ...</span><br><span class="line">    &#125;</span><br><span class="line">    ...     #http全局块</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>通过测试发现并追溯到过时的开罗图书馆，发现了无用的漏洞。任意库解决了该问题，并且可能还可以修复其他未知的安全漏洞。这种漏洞会影响Firefox Lt 90。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29972"><a href="#漏洞编号：-CVE-2021-29972" class="headerlink" title="漏洞编号： CVE-2021-29972"></a>漏洞编号： CVE-2021-29972</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29972">https://nvd.nist.gov/vuln/detail/CVE-2021-29972</a></p>
+
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/26/nginx%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6/" data-id="ckf8bs9pk002pt41406gn58oa" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29972%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007iioxma0qebvrr" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li></ul>
-
     </footer>
   </div>
   
@@ -330,10 +374,10 @@
 
 
   
-    <article id="post-config去掉空格" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29971安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/20/config%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC/" class="article-date">
-  <time datetime="2020-08-20T08:32:17.000Z" itemprop="datePublished">2020-08-20</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29971%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:45.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -344,7 +388,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/20/config%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC/">config去掉空格</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29971%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29971安全公告</a>
     </h1>
   
 
@@ -352,20 +396,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><code>configobj</code>管理配置文件会在=两边添加空格，会导致有的服务起不来。</p>
-<p>在configobj.py中</p>
-<p>self._a_to_u(‘ = ‘)</p>
-<p>改为</p>
-<p>self._a_to_u(‘=’)就可以解决</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>如果用户已授予网页的许可并保存了该授予在同一主机上运行的任何网页（无论方案或端口如何），将获得许可。该错误仅影响Android的Firefox。其他操作系统不受影响。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29971"><a href="#漏洞编号：-CVE-2021-29971" class="headerlink" title="漏洞编号： CVE-2021-29971"></a>漏洞编号： CVE-2021-29971</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-9-8"><a href="#CVSS3-1评分：-9-8" class="headerlink" title="CVSS3.1评分： 9.8"></a>CVSS3.1评分： 9.8</h3><h3 id="漏洞评级：严重"><a href="#漏洞评级：严重" class="headerlink" title="漏洞评级：严重"></a>漏洞评级：严重</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29971">https://nvd.nist.gov/vuln/detail/CVE-2021-29971</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/20/config%E5%8E%BB%E6%8E%89%E7%A9%BA%E6%A0%BC/" data-id="ckf8bs9pd0029t414e3uagp3e" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29971%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007hioxmfwr47j86" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/python/" rel="tag">python</a></li></ul>
-
     </footer>
   </div>
   
@@ -373,10 +436,10 @@
 
 
   
-    <article id="post-cockpit数据格式" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29970安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/05/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" class="article-date">
-  <time datetime="2020-08-05T10:11:18.000Z" itemprop="datePublished">2020-08-05</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29970%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:41.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -387,7 +450,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/05/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/">cockpit数据格式</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29970%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29970安全公告</a>
     </h1>
   
 
@@ -395,26 +458,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天写处理配置文件的逻辑的时，发现之前的有些问题，就给改了下</p>
-<p>往前端传的数据，是一个list，里面元素是</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;config_name&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;depends&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="string">&quot;required&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;conflict&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="string">&quot;value&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;zh_CN&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>:<span class="string">&quot;&quot;</span>, </span><br><span class="line">  <span class="attr">&quot;enforce&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>恶意网页可能触发了无用的无用内存损坏和潜在可利用的崩溃。只有在启用可访问性时才能触发此错误。该漏洞会影响Thunderbird LT 78.12 Firefox ESR LT 78.12和Firefox Lt 90。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29970"><a href="#漏洞编号：-CVE-2021-29970" class="headerlink" title="漏洞编号： CVE-2021-29970"></a>漏洞编号： CVE-2021-29970</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>然后每个服务还需要选项属性文件，用来记录每项配置的属性</p>
-<p>  anonymous_enable,bool,null,null,null,null,是否允许匿名登录,111111,null<br>  local_enable<br>  write_enable<br>  local_umask<br>  anon_upload_enable</p>
-<p>分别对应字典里的config_name,type,depends,required,conflict,value,zh_CN,description,enforce </p>
-<p>主要是用来判断选项的type，depends，required，conflict，再就是用来填选项显示的中文名和描述。</p>
-<p>脚本先从选项属性文件里读出每条选项的属性，处理成list，在从服务配置文件里处理出来选项的当前状态，然后填到字典里，再转成json传给前端。这样以后增加服务，就给添加一个服务的选项属性文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    &quot;packageName&quot;:&quot;软件包名&quot;,</span><br><span class="line">    &quot;version&quot;:&quot;软件包版本，暂只做页面显示用&quot;,</span><br><span class="line">    &quot;name&quot;:&quot;软件包可读性较好的名字。可省略，如省略使用软件包名&quot;,</span><br><span class="line">    &quot;config&quot;:&#123;</span><br><span class="line">        &quot;path&quot;:&quot;配置文件的路径&quot;,</span><br><span class="line">        &quot;type&quot;:&quot;配置文件的类型,xml,ini,property,json....&quot;,</span><br><span class="line">        &quot;handler&quot;:&quot;处理此配置文件的脚本二binary程序，用于将配置文件转成json格式填充进来，以及将web中用户填写的内容写到配置文件&quot;,</span><br><span class="line">        &quot;version&quot;:&quot;保留字段，配置文件的版本，暂时不使用。&quot;,</span><br><span class="line">        &quot;oldConfigPath&quot;:&quot;保留字段，用于保存上一次配置的路径&quot;,</span><br><span class="line">        &quot;data&quot;:[</span><br><span class="line">            &#123;</span><br><span class="line">                &quot;name&quot;:&quot;配置的key&quot;,</span><br><span class="line">                &quot;displayName&quot;:&quot;用户显示给用户看的名字&quot;,</span><br><span class="line">                &quot;description&quot;:&quot;描述&quot;,</span><br><span class="line">                &quot;type&quot;:&quot;配置value的类型，INT，STRING，BOOL，RADIO，MULTISELECT,SELECT...&quot;,</span><br><span class="line">                &quot;value&quot;:&quot;属性的值&quot;,</span><br><span class="line">                &quot;default&quot;:&quot;默认值&quot;,</span><br><span class="line">                &quot;depends&quot;:&#123;</span><br><span class="line">                    &quot;name&quot;:&quot;依赖配置名&quot;,</span><br><span class="line">                    &quot;value&quot;:&quot;依赖属性的值为这些值时才显示&quot;</span><br><span class="line">                &#125;,</span><br><span class="line">                &quot;child&quot;:&quot;&quot;,</span><br><span class="line">                &quot;conflict&quot;:&quot;与哪些属性互斥&quot;,</span><br><span class="line">                &quot;optional&quot;:0</span><br><span class="line">            &#125;</span><br><span class="line">        ]</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29970">https://nvd.nist.gov/vuln/detail/CVE-2021-29970</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/05/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" data-id="ckf8bs9pa0028t4146wu64j3o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29970%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007gioxm0c043qgv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li></ul>
-
     </footer>
   </div>
   
@@ -422,10 +498,10 @@
 
 
   
-    <article id="post-cockpit-json" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29990安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/08/03/cockpit-json/" class="article-date">
-  <time datetime="2020-08-03T09:07:40.000Z" itemprop="datePublished">2020-08-03</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29990%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:37.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -436,7 +512,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/08/03/cockpit-json/">cockpit_json</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29990%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29990安全公告</a>
     </h1>
   
 
@@ -444,32 +520,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>通常配置文件分三种类型，布尔值，数值，字符串。</p>
-<p>json格式</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;config_name&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;type&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;depends&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="string">&quot;required&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;conflict&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">  <span class="string">&quot;value&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;zh_CN&quot;</span>:<span class="string">&quot;&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;description&quot;</span>:<span class="string">&quot;&quot;</span>, </span><br><span class="line">  <span class="attr">&quot;enforce&quot;</span>:<span class="string">&quot;&quot;</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员和社区成员报告说，Firefox 90中存在的记忆安全错误。这些错误显示了记忆腐败的证据，我们认为，通过足够的努力，其中一些可能被利用来运行任意代码。这种脆弱性影响Firefox Lt 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29990"><a href="#漏洞编号：-CVE-2021-29990" class="headerlink" title="漏洞编号： CVE-2021-29990"></a>漏洞编号： CVE-2021-29990</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>//server_name是服务名称。</p>
-<p>config_name是配置选项的名称。</p>
-<p>type用来确定当前选项的数值类型，分布尔值bool，数值num，字符串str三种。</p>
-<p>depends用来定位需要的前置选项。</p>
-<p>required用来定位被需要的选项。</p>
-<p>conflict 用来确认冲突选项。</p>
-<p>value 存当前配置选项的值。</p>
-<p>zh_CN 存这个选项的中文名称。</p>
-<p>description 当前选项的描述。 </p>
-<p>enforce 标记当前选项是否生效，给js解析的时候设置html控件用。</p>
-<p>工作流程 python先读取配置文件，根据当前配置文件把数据填入dict，转成json后传给前端，前端根据传入的json，画出html。修改之后之后，再根据修改的结果把修改后的结果传给后面的python，再根据这个json把配置文件修改好。</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29990">https://nvd.nist.gov/vuln/detail/CVE-2021-29990</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/08/03/cockpit-json/" data-id="ckj277c680000y53efkjr3dqs" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29990%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007wioxm4pgl2db0" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/json/" rel="tag">json</a></li></ul>
-
     </footer>
   </div>
   
@@ -477,10 +560,10 @@
 
 
   
-    <article id="post-vsftpd配置" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29989安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" class="article-date">
-  <time datetime="2020-07-29T04:48:38.000Z" itemprop="datePublished">2020-07-29</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29989%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:32.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -491,7 +574,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/">vsftpd配置</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29989%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29989安全公告</a>
     </h1>
   
 
@@ -499,234 +582,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <table>
-<thead>
-<tr>
-<th>属性</th>
-<th>属性值</th>
-<th>含义</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>anonymous_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户（anonymous）登录 <code>FTP</code>，如果该设置被注释，则默认允许</td>
-</tr>
-<tr>
-<td>local_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许本地系统用户登录</td>
-</tr>
-<tr>
-<td>write_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启任何形式的 <code>FTP</code> 写入命令，上传文件</td>
-</tr>
-<tr>
-<td>local_umask</td>
-<td>xxx</td>
-<td>本地用户的 <code>umask</code> 设置，如果注释该设置则默认为 <code>077</code>，但一般都设置成 <code>022</code></td>
-</tr>
-<tr>
-<td>anon_upload_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户上传文件，如果要设置为允许，则需要先开启 <code>write_enable</code>，否则无效，此外对应目录还要具有写权限</td>
-</tr>
-<tr>
-<td>anon_mkdir_write_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许匿名用户创建新目录</td>
-</tr>
-<tr>
-<td>dirmessage_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>当进入某个目录时，发送信息提示给远程用户：</td>
-</tr>
-<tr>
-<td>xferlog_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 上传/下载 的日志记录</td>
-</tr>
-<tr>
-<td>connect_from_port_20</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用 <code>20</code> 端口来连接 <code>FTP</code></td>
-</tr>
-<tr>
-<td>chown_uploads</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>匿名上传的文件是否由某一指定用户 <code>chown_username</code> 所有</td>
-</tr>
-<tr>
-<td>chown_username</td>
-<td>有效用户名</td>
-<td>匿名上传的文件由该设定用户所有</td>
-</tr>
-<tr>
-<td>xferlog_file</td>
-<td>有效路径</td>
-<td>设置日志文件的保存位置，默认为 <code>/var/log/xferlog</code></td>
-</tr>
-<tr>
-<td>xferlog_std_format</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用标准的 <code>ftpd xferlog</code>日志格式，该格式日志默认保存在 <code>/var/log/xferlog</code></td>
-</tr>
-<tr>
-<td>idle_session_timeout</td>
-<td>数值</td>
-<td>设置空闲连接的超时时间，单位 秒</td>
-</tr>
-<tr>
-<td>data_connection_timeout</td>
-<td>数值</td>
-<td>设置等待数据传输的最大时间，单位 秒（<code>data_connection_timeout</code> 与 <code>idle_session_timeout</code> 在同一时间只有一个有效）</td>
-</tr>
-<tr>
-<td>nopriv_user</td>
-<td>有效用户名</td>
-<td>指定一个非特权用户，用于运行 <code>vsftpd</code></td>
-</tr>
-<tr>
-<td>async_abor_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否支持异步 <code>ABOR</code> 请求</td>
-</tr>
-<tr>
-<td>ascii_upload_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 <code>ASCII</code> 模式进行文件上传，一般不开启</td>
-</tr>
-<tr>
-<td>ascii_download_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否开启 <code>ASCII</code> 模式进行文件下载，一般不开启</td>
-</tr>
-<tr>
-<td>ftpd_banner</td>
-<td>…</td>
-<td>自定义登录标语</td>
-</tr>
-<tr>
-<td>deny_email_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>如果匿名登录，则会要求输入 email 地址，如果不希望一些 email 地址具有登录权限，则可以开启此项，并在 <code>banned_email_file</code> 指定的文件中写入对应的 email 地址</td>
-</tr>
-<tr>
-<td>banned_email_file</td>
-<td>有效文件</td>
-<td>当开启 <code>deny_email_enable</code> 时，需要通过此项指定一个保存登录无效 email 的文件</td>
-</tr>
-<tr>
-<td>chroot_local_user</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否将所有用户限制在主目录，当为 <code>NO</code> 时， <code>FTP</code> 用户可以切换到其他目录</td>
-</tr>
-<tr>
-<td>chroot_list_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否启用限制用户的名单列表</td>
-</tr>
-<tr>
-<td>chroot_list_file</td>
-<td>有效文件</td>
-<td>用户列表，其作用与 <code>chroot_local_user</code> 和 <code>chroot_local_user</code> 的组合有关，详见下表</td>
-</tr>
-<tr>
-<td>allow_writeable_chroot</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许用户对 ftp 根目录具有写权限，如果设置成不允许而目录实际上却具备写权限，则会报错</td>
-</tr>
-<tr>
-<td>ls_recurse_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许 <code>ls -R</code> 指令来递归查询，递归查询比较耗资源</td>
-</tr>
-<tr>
-<td>listen</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>如果为 <code>YES</code>，<code>vsftpd</code> 将以独立模式运行并监听 <code>IPv4</code> 的套接字，处理相关连接请求（该指令不能与 <code>listen_ipv6</code> 一起使用）</td>
-</tr>
-<tr>
-<td>listen_ipv6</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否允许监听 <code>IPv6</code> 套接字</td>
-</tr>
-<tr>
-<td>pam_service_name</td>
-<td>…</td>
-<td>设置 <code>PAM</code> 外挂模块提供的认证服务所使用的配置文件名 ，即 <code>/etc/pam.d/vsftpd</code> 文件，此文件中 <code>file=/etc/vsftpd/ftpusers</code> 字段，说明了 <code>PAM</code> 模块能抵挡的帐号内容来自文件 <code>/etc/vsftpd/ftpusers</code> 中</td>
-</tr>
-<tr>
-<td>userlist_enable</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否启用 <code>user_list</code> 文件来控制用户登录</td>
-</tr>
-<tr>
-<td>userlist_deny</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否拒绝 <code>user_list</code> 中的用户登录，此属性设置需在 <code>userlist_enable = YES</code> 时才有效</td>
-</tr>
-<tr>
-<td>tcp_wrappers</td>
-<td><code>YES</code>/<code>NO</code></td>
-<td>是否使用 <code>tcp_wrappers</code> 作为主机访问控制方式</td>
-</tr>
-<tr>
-<td>max_clients</td>
-<td>数值</td>
-<td>同一时间允许的最大连接数</td>
-</tr>
-<tr>
-<td>max_per_ip</td>
-<td>数值</td>
-<td>同一个IP客户端连接的最大值</td>
-</tr>
-<tr>
-<td>local_root</td>
-<td>有效目录</td>
-<td>系统用户登录后的根目录</td>
-</tr>
-<tr>
-<td>anon_root</td>
-<td>有效目录</td>
-<td>匿名用户登录后的根目录</td>
-</tr>
-<tr>
-<td>user_config_dir</td>
-<td>有效目录</td>
-<td>用户单独配置文件存放目录，该目录下用户的文件名就是对应用户名</td>
-</tr>
-</tbody></table>
-<p><code>chroot_local_user</code> 和 <code>chroot_local_user</code> 组合功能如下：</p>
-<table>
-<thead>
-<tr>
-<th></th>
-<th>chroot_local_user=YES</th>
-<th>chroot_local_user=NO</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>chroot_list_enable=YES</td>
-<td>1.所有用户都被限制在其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，不受限制</td>
-<td>1.所有用户都不被限制其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，受到限制</td>
-</tr>
-<tr>
-<td>chroot_list_enable=NO</td>
-<td>1.所有用户都被限制在其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
-<td>1.所有用户都不被限制其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
-</tr>
-</tbody></table>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员报告了Firefox 90和Firefox ESR 78.12中存在的内存安全错误</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29989"><a href="#漏洞编号：-CVE-2021-29989" class="headerlink" title="漏洞编号： CVE-2021-29989"></a>漏洞编号： CVE-2021-29989</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29989">https://nvd.nist.gov/vuln/detail/CVE-2021-29989</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" data-id="ckf8bs9pj002lt4142cdp33g6" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29989%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007vioxme6vj2mm2" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li></ul>
-
     </footer>
   </div>
   
@@ -734,10 +622,10 @@
 
 
   
-    <article id="post-cockpit-4" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29982安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/24/cockpit-4/" class="article-date">
-  <time datetime="2020-07-24T09:43:15.000Z" itemprop="datePublished">2020-07-24</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29982%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:28.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -748,7 +636,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/24/cockpit-4/">cockpit-4</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29982%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29982安全公告</a>
     </h1>
   
 
@@ -756,25 +644,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cockpit可以让用户对完整的读写和查看常规文件，但是对大型文件的读写支持的不是特别好。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">file &#x3D; cockpit.file(path,</span><br><span class="line">                    &#123; syntax: syntax_object,</span><br><span class="line">                      binary: boolean,</span><br><span class="line">                      max_read_size: int,</span><br><span class="line">                      superuser: string,</span><br><span class="line">                      host: string</span><br><span class="line">                    &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.read()</span><br><span class="line">promise</span><br><span class="line">    .then((content, tag) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.replace(content, [ expected_tag ])</span><br><span class="line">promise</span><br><span class="line">    .then(new_tag &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">promise &#x3D; file.modify(callback, [ initial_content, initial_tag ]</span><br><span class="line">promise</span><br><span class="line">    .then((new_content, new_tag) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line"></span><br><span class="line">file.watch((content, tag, [error]) &#x3D;&gt; &#123; &#125;)</span><br><span class="line"></span><br><span class="line">file.close()</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>由于JIT优化不正确，我们从错误类型的对象类型中解释了数据，从而导致单个内存的潜在泄漏。此漏洞会影响Firefox LT 91和Thunderbird Lt 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29982"><a href="#漏洞编号：-CVE-2021-29982" class="headerlink" title="漏洞编号： CVE-2021-29982"></a>漏洞编号： CVE-2021-29982</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-6-5"><a href="#CVSS3-1评分：-6-5" class="headerlink" title="CVSS3.1评分： 6.5"></a>CVSS3.1评分： 6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>简单的读取功能,text1为textarea控件id</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">cockpit.file(&quot;&#x2F;root&#x2F;test&quot;).read()</span><br><span class="line">    .then((content, tag) &#x3D;&gt; &#123;</span><br><span class="line">            text1.value &#x3D; content;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123;</span><br><span class="line">            result.innerHTML &#x3D;&quot;0&quot;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
-<p>简单的写入</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">cockpit.file(&quot;&#x2F;root&#x2F;test&quot;).replace(content)</span><br><span class="line">    .then(tag &#x3D;&gt; &#123;</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(error &#x3D;&gt; &#123;</span><br><span class="line">       result.innerHTML &#x3D;&quot;0&quot;;</span><br><span class="line">    &#125;);</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>然后调用close()将文件关闭。</p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29982">https://nvd.nist.gov/vuln/detail/CVE-2021-29982</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/24/cockpit-4/" data-id="ckf8bs9oy000qt4141u090a0q" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29982%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007pioxm63578kur" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li></ul>
-
     </footer>
   </div>
   
@@ -785,7 +687,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/18/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/20/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/18/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/17/">17</a><a class="page-number" href="/page/18/">18</a><span class="page-number current">19</span><a class="page-number" href="/page/20/">20</a><a class="page-number" href="/page/21/">21</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/20/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -817,7 +719,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -830,23 +732,23 @@
       <ul>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
+            <a href="/2023/01/03/audispd-plugins/">audispd-plugins</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
+            <a href="/2022/12/01/%E4%B8%89%E5%91%98%E6%9D%83%E9%99%90/">三员权限</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-42008%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-42008安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-42739%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-42739安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-43389%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-43389安全公告</a>
           </li>
         
       </ul>
@@ -861,7 +763,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 王<br>
+      &copy; 2024 王<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>

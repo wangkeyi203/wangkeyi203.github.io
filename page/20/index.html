@@ -64,10 +64,10 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-cockpit学习-3" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29985安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/" class="article-date">
-  <time datetime="2020-07-21T16:02:47.000Z" itemprop="datePublished">2020-07-22</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29985%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:24.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -78,7 +78,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/">cockpit学习-3</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29985%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29985安全公告</a>
     </h1>
   
 
@@ -86,30 +86,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cockpit有个base1插件包，里面提供供其他插件包使用的api。</p>
-<p>分下面几个大模块</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">cockpit.js — Basic cockpit API to interact with the system</span><br><span class="line">cockpit.js: DBus Client — DBus API communication</span><br><span class="line">cockpit.js: File Access — Reading, writing, and watching files.</span><br><span class="line">cockpit.js: HTTP Client — HTTP and REST API communication</span><br><span class="line">cockpit.js: Spawning Processes — Spawning processes or scripts</span><br><span class="line">cockpit.js: Metrics — Reading and streaming metric data</span><br><span class="line">cockpit.js: Series Data — Representing series data</span><br><span class="line">cockpit.js: Raw Channels — Raw communication channels</span><br><span class="line">cockpit.js: Page Location and Jumping — Page location and navigation between components</span><br><span class="line">cockpit.js: Localization — Localization and translations</span><br><span class="line">cockpit.js: Errors — Problem codes and messages</span><br><span class="line">cockpit.js: User Session — User information and login session state</span><br><span class="line">cockpit.js: Utilities — Various utility functions</span><br><span class="line">cockpit.js: Object Cache — Caching and sharing data</span><br><span class="line">cockpit.js: Manifests — Manifest info</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>媒体渠道中的无用漏洞可能导致内存腐败和潜在可利用的崩溃。这种漏洞会影响Thunderbird LT 78.13 Thunderbird Lt 91 Firefox ESR LT 78.13和Firefox LT 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29985"><a href="#漏洞编号：-CVE-2021-29985" class="headerlink" title="漏洞编号： CVE-2021-29985"></a>漏洞编号： CVE-2021-29985</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p><strong>cockpit.js</strong>  </p>
-<p>通过在html中这样调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;script src&#x3D;&quot;..&#x2F;base1&#x2F;cockpit.js&quot;&gt;</span><br></pre></td></tr></table></figure>
-
-<p><strong>cockpit.js:DBus Client</strong> </p>
-<p>这些api可以直接访问dbus服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line">client &#x3D; cockpit.dbus(name, [options])</span><br><span class="line">promise &#x3D; client.wait([callback])</span><br><span class="line">client.close([problem])</span><br><span class="line">client.addEventListener(&quot;close&quot;, options &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">client.addEventListener(&quot;owner&quot;, (event, owner) &#x3D;&gt; &#123; ... &#125;)</span><br><span class="line">client.options</span><br><span class="line">client.unique_name</span><br><span class="line">client.proxy()</span><br><span class="line">client.proxy()</span><br><span class="line">proxy.client</span><br><span class="line">&#x2F;&#x2F;proxy &#x3D; client.proxy([interface, path], [options])</span><br><span class="line">proxy.path</span><br><span class="line">proxy.iface</span><br><span class="line">proxy.valid</span><br><span class="line">proxy.data</span><br><span class="line">proxy.call()</span><br><span class="line">proxy.wait()</span><br><span class="line">proxy.onchanged</span><br><span class="line">proxy.onsignal</span><br><span class="line">client.proxies()</span><br><span class="line">proxies.wait()</span><br><span class="line">proxies.client</span><br><span class="line">proxies.iface</span><br><span class="line">proxies.path_namespace</span><br><span class="line">proxies.onadded</span><br><span class="line">proxies.onchanged</span><br><span class="line">proxies.onremoved</span><br><span class="line">client.call()</span><br><span class="line">invocation.then()</span><br><span class="line">invocation.catch()</span><br><span class="line">client.subscribe()</span><br><span class="line">subscription.remove()</span><br><span class="line">client.watch()</span><br><span class="line">watch.then()</span><br><span class="line">watch.catch()</span><br><span class="line">watch.remove()</span><br><span class="line">client.onnotify</span><br><span class="line">client.notify()</span><br><span class="line">client.onmeta</span><br><span class="line">client.meta()</span><br><span class="line">client.publish()</span><br><span class="line">published.remove()</span><br><span class="line">cockpit.variant()</span><br><span class="line">cockpit.byte_array()</span><br></pre></td></tr></table></figure>
-
-<p>具体说明可以参考<a target="_blank" rel="noopener" href="https://cockpit-project.org/guide/latest/cockpit-dbus.html">官方文档</a></p>
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29985">https://nvd.nist.gov/vuln/detail/CVE-2021-29985</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/22/cockpit%E5%AD%A6%E4%B9%A0-3/" data-id="ckf8bs9pd002bt414etxub0ul" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29985%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007rioxmfv5ve4ac" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li></ul>
-
     </footer>
   </div>
   
@@ -117,10 +126,10 @@
 
 
   
-    <article id="post-cockpit学习-2" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29987安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/" class="article-date">
-  <time datetime="2020-07-21T01:26:25.000Z" itemprop="datePublished">2020-07-21</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29987%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:12.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -131,7 +140,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/">cockpit学习_2</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29987%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29987安全公告</a>
     </h1>
   
 
@@ -139,54 +148,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p><strong>cockpit管理多台主机</strong></p>
-<p>首先在A机器安装cockpit-dashboard这个插件包。然后web重新登陆，就可以看到dashboard的选项。</p>
-<p>在B机器安装cockpit包，然后设置开机启动cockpit服务</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">systemctl enable --now cockpit.socket</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>在请求多个权限并关闭第一个权限面板后，随后的权限面板将在其他位置显示，但仍会在默认位置记录单击，从而使欺骗用户接受他们不想接受的权限是可能的。此错误仅影响该错误影响。 </p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29987"><a href="#漏洞编号：-CVE-2021-29987" class="headerlink" title="漏洞编号： CVE-2021-29987"></a>漏洞编号： CVE-2021-29987</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-6-5"><a href="#CVSS3-1评分：-6-5" class="headerlink" title="CVSS3.1评分： 6.5"></a>CVSS3.1评分： 6.5</h3><h3 id="漏洞评级：中危"><a href="#漏洞评级：中危" class="headerlink" title="漏洞评级：中危"></a>漏洞评级：中危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>如果要做免密登陆，要在A机器执行下面命令</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">ssh-keygen -t rsa</span><br><span class="line">ssh-copy-id -i ~&#x2F;.ssh&#x2F;id_rsa.pub B机IP</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
-<p>然后在web界面的dashboard页面里选择添加机器，输入B机IP，就能在A的web页面管理B机器。若没有配置密钥，则需要输入B机器的账号和密码。</p>
-<p><strong>cockpit管理容器</strong></p>
-<p>cockpit管理容器使用的是podman，所以需要先安装<code>cockpit-podman</code>这个插件包，然后刷新web页面，就可以看到Podman Containers的选项。</p>
-<p>在这个标签页里，可以直接搜索镜像，拉取下来之后可以直接启动。</p>
-<p><strong>cockpit管理虚拟机</strong></p>
-<p>需要先安装<code>cockpit-machines</code>这个插件包，然后刷新web页面，就可以看到虚拟机的标签页。</p>
-<p><strong>cockpit插件</strong></p>
-<p>cockpit使用XDG规范来存放插件包，默认情况下，cockpit按以下顺序在这几个目录里查找插件包，遇到同名的则使用找到的第一个。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">~&#x2F;.local&#x2F;share&#x2F;cockpit&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;local&#x2F;share&#x2F;cockpit&#x2F;</span><br><span class="line"></span><br><span class="line">&#x2F;usr&#x2F;share&#x2F;cockpit&#x2F;</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
-<p>可以使用下面这条命令查看系统中安装的cockpit插件包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ cockpit-bridge --packages</span><br></pre></td></tr></table></figure>
-
-<p>一个插件包包含以下几个文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#x2F;usr&#x2F;share&#x2F;cockpit&#x2F;my-package&#x2F;</span><br><span class="line">        manifest.json</span><br><span class="line">        file.html</span><br><span class="line">        some.js</span><br></pre></td></tr></table></figure>
-
-<p>manfiest.json中一般包含以下几个字段</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">content-security-policy</span><br><span class="line">name</span><br><span class="line">priority</span><br><span class="line">requires</span><br><span class="line">version</span><br><span class="line">preload</span><br><span class="line">dashboard</span><br><span class="line">menu</span><br><span class="line">tools</span><br></pre></td></tr></table></figure>
-
-<p> 其中menu是由以下json对象注册的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">label</span><br><span class="line">order</span><br><span class="line">path</span><br><span class="line">docs</span><br><span class="line">keywords</span><br></pre></td></tr></table></figure>
-
-<p>keywords又是由以下json注册的</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">matches</span><br><span class="line">goto</span><br><span class="line">weight</span><br><span class="line">translate</span><br></pre></td></tr></table></figure>
-
-<p>一个manifest.json文件例子</p>
-<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="number">0</span>,</span><br><span class="line">  <span class="attr">&quot;require&quot;</span>: &#123;</span><br><span class="line">      <span class="attr">&quot;cockpit&quot;</span>: <span class="string">&quot;120&quot;</span></span><br><span class="line">  &#125;,</span><br><span class="line">  <span class="attr">&quot;tools&quot;</span>: &#123;</span><br><span class="line">     <span class="attr">&quot;mytool&quot;</span>: &#123;</span><br><span class="line">        <span class="attr">&quot;label&quot;</span>: <span class="string">&quot;My Tool&quot;</span>,</span><br><span class="line">        <span class="attr">&quot;path&quot;</span>: <span class="string">&quot;tool.html&quot;</span></span><br><span class="line">     &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<p>为了压缩空间，插件包支持压缩格式，加入一个文件名为<code>test.de.js</code>,如果cockpit没有在找到该文件，将会以以下的扩展名寻找这个文件。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">mypackage&#x2F;test.de.js</span><br><span class="line">mypackage&#x2F;test.de.min.js</span><br><span class="line">mypackage&#x2F;test.de.js.gz</span><br><span class="line">mypackage&#x2F;test.de.min.js.gz</span><br><span class="line">mypackage&#x2F;test.js</span><br><span class="line">mypackage&#x2F;test.min.js</span><br><span class="line">mypackage&#x2F;test.js.gz</span><br><span class="line">mypackage&#x2F;test.min.js.gz</span><br></pre></td></tr></table></figure>
-
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29987">https://nvd.nist.gov/vuln/detail/CVE-2021-29987</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/21/cockpit%E5%AD%A6%E4%B9%A0-2/" data-id="ckf8bs9oz000ut414fpmhcp48" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29987%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007tioxm4z4190iv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li></ul>
-
     </footer>
   </div>
   
@@ -194,10 +188,10 @@
 
 
   
-    <article id="post-cockpit学习-1" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29980安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/" class="article-date">
-  <time datetime="2020-07-20T10:26:39.000Z" itemprop="datePublished">2020-07-20</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29980%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:14:04.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -208,7 +202,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/">cockpit学习_1</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29980%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29980安全公告</a>
     </h1>
   
 
@@ -216,25 +210,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>cockpit的配置文件在<code>/etc/cockpit/cockpit.conf</code> ，默认不存在，需要用户自己创建。</p>
-<p><strong>cockpit的主要模块</strong></p>
-<p><code>cockpit-ws</code> 用来和浏览器以及各个系统组件通信的服务。</p>
-<p><code>cockpit-tls</code>为<code> cockpit-ws</code>的代理，证书存放于<code>/etc/cockpit/ws-certs.d</code>，可以使用 <code>remotectl certificate</code> 检查将会使用的证书。</p>
-<p><code>cockpit-bridge</code>用来处理从web前端到服务端的消息和命令，并代表web用户生成进程。</p>
-<p>cockpit可以配置<code> /etc/systemd/system/cockpit.socket.d/listen.conf</code> 中配置监听的端口和ip（官方手册）。实际系统中配置监听端口和ip的配置文件为<code>/usr/lib/systemd/system/cockpit.socket</code>。可以配置同时监听多个端口，但是需要在firewall中将修改的对应端口开放。<code>firewall-cmd --add-port=9091/tcp</code>。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">[Socket]</span><br><span class="line">ListenStream&#x3D;9090</span><br><span class="line">ListenStream&#x3D;9091</span><br><span class="line">ListenStream&#x3D;</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>帆布对象中的非传统记忆可能导致不正确的自由（）导致内存腐败和潜在可利用的崩溃。这种漏洞会影响Thunderbird LT 78.13 Thunderbird Lt 91 Firefox ESR LT 78.13和Firefox LT 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29980"><a href="#漏洞编号：-CVE-2021-29980" class="headerlink" title="漏洞编号： CVE-2021-29980"></a>漏洞编号： CVE-2021-29980</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p>cockpit可以同时管理和监视多个服务，但是浏览器只会连接一台机器的<code>cockpit-ws</code>服务,然后通过这个服务使用ssh协议连接其他机器。cockpit的工作原理如下图。</p>
-<p><img src="https://raw.githubusercontent.com/cockpit-project/cockpit/master/doc/cockpit-transport.png" alt="avatar"></p>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29980">https://nvd.nist.gov/vuln/detail/CVE-2021-29980</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/07/20/cockpit%E5%AD%A6%E4%B9%A0-1/" data-id="ckf8bs9oy000st4142pdg6upd" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29980%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007mioxm7t2e26or" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li></ul>
-
     </footer>
   </div>
   
@@ -242,10 +250,10 @@
 
 
   
-    <article id="post-5-tip" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29984安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/28/5-tip/" class="article-date">
-  <time datetime="2019-04-28T15:42:05.000Z" itemprop="datePublished">2019-04-28</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29984%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:13:53.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -256,7 +264,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/5-tip/">对deb包打patch</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29984%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29984安全公告</a>
     </h1>
   
 
@@ -264,19 +272,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>首先使用apt-get source xxx 下载我们想要打patch的包</p>
-<p>再使用dpkg-source -x xxx.dsc将我们下载的源码包解压。</p>
-<p>进入源码目录，quilt new testpatch 创建patch，假如我们需要对test.c文件进行修改，执行 quilt add test.c，然后对文件进行修改结束后，执行quilt refresh，生成patch文件，修改源码目录下的/debian/patches/series文件将我们的testpatch添加到最后一行。</p>
-<p>回到源码的根目录，执行dpkg-buildpackage，则可以根据我们修改后的源码重新生成deb包。</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>指令重新排序导致一系列指令，这些指令会导致对象在垃圾收集过程中被错误地考虑。这导致内存损坏和潜在可利用的崩溃。这种漏洞会影响雷鸟LT 78.13 Thunderbird Lt 91 Firefox ESR LT 78.13和Firefox Lt 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29984"><a href="#漏洞编号：-CVE-2021-29984" class="headerlink" title="漏洞编号： CVE-2021-29984"></a>漏洞编号： CVE-2021-29984</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29984">https://nvd.nist.gov/vuln/detail/CVE-2021-29984</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/5-tip/" data-id="ckf8bs9ow000nt414e8063mm2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29984%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007qioxmdwb6czo3" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
     </footer>
   </div>
   
@@ -284,10 +312,10 @@
 
 
   
-    <article id="post-5-review" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29988安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/28/5-review/" class="article-date">
-  <time datetime="2019-04-28T15:39:15.000Z" itemprop="datePublished">2019-04-28</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29988%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:13:17.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -298,7 +326,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/28/5-review/">window的权限</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29988%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29988安全公告</a>
     </h1>
   
 
@@ -306,17 +334,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>medium.com/palantir/windows-privilege-abuse-auditing-detection-and-defense-3078a403d74e</p>
-<p>主要介绍windows权限的审计，检测和防御相关特性</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox错误地将内联列表元素视为块元素，导致范围或内存损坏和潜在可利用的崩溃。这种脆弱性影响Thunderbird LT 78.13 Thunderbird LT 91 Firefox ESR LT 78.13和Firefox Lt 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29988"><a href="#漏洞编号：-CVE-2021-29988" class="headerlink" title="漏洞编号： CVE-2021-29988"></a>漏洞编号： CVE-2021-29988</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29988">https://nvd.nist.gov/vuln/detail/CVE-2021-29988</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/28/5-review/" data-id="ckf8bs9ov000kt4140f6mfqck" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29988%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007uioxmhxdraqq7" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
     </footer>
   </div>
   
@@ -324,10 +374,10 @@
 
 
   
-    <article id="post-5-盛最多水的容器" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29981安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" class="article-date">
-  <time datetime="2019-04-21T14:30:57.000Z" itemprop="datePublished">2019-04-21</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29981%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:13:12.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -338,7 +388,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/">盛最多水的容器</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29981%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29981安全公告</a>
     </h1>
   
 
@@ -346,23 +396,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>给定 <em>n</em> 个非负整数 <em>a</em>1，<em>a</em>2，…，<em>a</em>n，每个数代表坐标中的一个点 (<em>i</em>, <em>ai</em>) 。在坐标内画 <em>n</em> 条垂直线，垂直线 <em>i</em> 的两个端点分别为 (<em>i</em>, <em>ai</em>) 和 (<em>i</em>, 0)。找出其中的两条线，使得它们与 <em>x</em> 轴共同构成的容器可以容纳最多的水。</p>
-<p><strong>说明：</strong>你不能倾斜容器，且 <em>n</em> 的值至少为 2。</p>
-<p><strong>示例:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: [1,8,6,2,5,4,8,3,7]</span><br><span class="line">输出: 49</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>降低/寄存器分配中存在的问题可能导致jittle代码中的晦涩但确定性的登记混乱失败，这将导致潜在的可利用崩溃。此漏洞影响Firefox LT 91和Thunderbird Lt 91。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29981"><a href="#漏洞编号：-CVE-2021-29981" class="headerlink" title="漏洞编号： CVE-2021-29981"></a>漏洞编号： CVE-2021-29981</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>两个指针同时向内收缩，短的一边向内收缩，相遇时停止，记录最大面积即可。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> &#123;</span></span><br><span class="line"><span class="keyword">public</span>:</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">maxArea</span><span class="params">(<span class="built_in">vector</span>&lt;<span class="keyword">int</span>&gt;&amp; <span class="built_in">height</span>)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> left = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> right = <span class="built_in">height</span>.<span class="built_in">size</span>() - <span class="number">1</span>;</span><br><span class="line">        <span class="keyword">int</span> totalWater = <span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left);</span><br><span class="line">        <span class="keyword">while</span>(left &lt; right)&#123;</span><br><span class="line">            <span class="keyword">if</span>(<span class="built_in">height</span>[left] &lt; <span class="built_in">height</span>[right])</span><br><span class="line">                ++left;</span><br><span class="line">            <span class="keyword">else</span></span><br><span class="line">                --right;</span><br><span class="line">            totalWater = <span class="built_in">max</span>(totalWater,<span class="built_in">min</span>(<span class="built_in">height</span>[left],<span class="built_in">height</span>[right]) * (right - left));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> totalWater;</span><br><span class="line"></span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29981">https://nvd.nist.gov/vuln/detail/CVE-2021-29981</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/21/5-%E7%9B%9B%E6%9C%80%E5%A4%9A%E6%B0%B4%E7%9A%84%E5%AE%B9%E5%99%A8/" data-id="ckf8bs9ox000ot414h705bh1o" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29981%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve36007nioxm52n91w1r" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li></ul>
-
     </footer>
   </div>
   
@@ -370,10 +436,10 @@
 
 
   
-    <article id="post-4-share" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29986安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/4-share/" class="article-date">
-  <time datetime="2019-04-14T15:55:48.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29986%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:12:44.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -384,7 +450,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-share/">内核定时器</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29986%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29986安全公告</a>
     </h1>
   
 
@@ -392,18 +458,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>内核定时器可以用来在未来某一时间执行被调用程序，类似于软件中断。<br>结构体</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">struct timer_list &#123;</span><br><span class="line"></span><br><span class="line">   struct list_head entry;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   unsigned long expires;</span><br><span class="line"></span><br><span class="line">   void (*function)(unsigned long);</span><br><span class="line"></span><br><span class="line">   unsigned long data;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line">   struct tvec_base *base;</span><br><span class="line"></span><br><span class="line">   &#x2F;* ... *&#x2F;</span><br><span class="line"></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>呼叫getAddrinfo时的可疑种族条件导致内存腐败和潜在可利用的崩溃。注意：此问题仅影响Linux操作系统。其他操作系统不受影响。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29986"><a href="#漏洞编号：-CVE-2021-29986" class="headerlink" title="漏洞编号： CVE-2021-29986"></a>漏洞编号： CVE-2021-29986</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-1"><a href="#CVSS3-1评分：-8-1" class="headerlink" title="CVSS3.1评分： 8.1"></a>CVSS3.1评分： 8.1</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29986">https://nvd.nist.gov/vuln/detail/CVE-2021-29986</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-share/" data-id="ckf8bs9oq000ct4145snzaacr" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29986%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007sioxmhkcl53sv" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
     </footer>
   </div>
   
@@ -411,10 +498,10 @@
 
 
   
-    <article id="post-4-tip" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-29991安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/4-tip/" class="article-date">
-  <time datetime="2019-04-14T15:55:38.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2022/06/29/firefox-CVE-2021-29991%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:12:37.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -425,7 +512,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-tip/">tar的追加与取出文件</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-29991%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-29991安全公告</a>
     </h1>
   
 
@@ -433,16 +520,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>追加用“-r”选项，取出用“-x”选项：<br>如：有一个包 file.tar.bz2 ,需要把file2添加进去，就用命令：<br><strong>tar -rvf file.tar.bz2 file2</strong><br>取出file2则用：<br><strong>tar -xvf file.tar.bz2 file2</strong></p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Firefox错误地在HTTP/3标头中接受了新线，将其解释为两个单独的标头。使用HTTP/3.允许对服务器进行标头拆分攻击。3。该漏洞影响Firefox LT 91.0.1和Thunderbird Lt 91.0.1。</p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-29991"><a href="#漏洞编号：-CVE-2021-29991" class="headerlink" title="漏洞编号： CVE-2021-29991"></a>漏洞编号： CVE-2021-29991</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-1"><a href="#CVSS3-1评分：-8-1" class="headerlink" title="CVSS3.1评分： 8.1"></a>CVSS3.1评分： 8.1</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-29991">https://nvd.nist.gov/vuln/detail/CVE-2021-29991</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-tip/" data-id="ckf8bs9ou000it41424dsg4u2" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-29991%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007xioxm6c80fx0v" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
     </footer>
   </div>
   
@@ -450,10 +560,10 @@
 
 
   
-    <article id="post-4-review" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-38495安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/4-review/" class="article-date">
-  <time datetime="2019-04-14T15:19:33.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2022/06/29/firefox-CVE-2021-38495%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:12:09.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -464,7 +574,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-review/">osquery审计</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-38495%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-38495安全公告</a>
     </h1>
   
 
@@ -472,18 +582,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>medium.com/palantir/auditing-with-osquery-part-two-configuration-and-implementation-87a8bba0ef48</p>
-<p>介绍使用osquery启用审计。</p>
-<p>如何配置以及对系统性能的影响。</p>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员报告了雷鸟78.13.0中存在的内存安全漏洞。这些错误显示了记忆损坏的证据，我们认为有足够的努力可以利用其中一些来运行任意代码。这种脆弱性影响了Thunderbird LT 91.1和Firefox ESR </p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-38495"><a href="#漏洞编号：-CVE-2021-38495" class="headerlink" title="漏洞编号： CVE-2021-38495"></a>漏洞编号： CVE-2021-38495</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
+
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
+
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-38495">https://nvd.nist.gov/vuln/detail/CVE-2021-38495</a></p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-review/" data-id="ckf8bs9oq000at4146n8dhd34" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-38495%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve37007zioxm66saeehr" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
     </footer>
   </div>
   
@@ -491,10 +622,10 @@
 
 
   
-    <article id="post-4-回文数" class="article article-type-post" itemscope itemprop="blogPost">
+    <article id="post-firefox-CVE-2021-38501安全公告" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
-    <a href="/2019/04/14/4-%E5%9B%9E%E6%96%87%E6%95%B0/" class="article-date">
-  <time datetime="2019-04-14T15:01:37.000Z" itemprop="datePublished">2019-04-14</time>
+    <a href="/2022/06/29/firefox-CVE-2021-38501%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" class="article-date">
+  <time datetime="2022-06-29T05:12:02.000Z" itemprop="datePublished">2022-06-29</time>
 </a>
     
   </div>
@@ -505,7 +636,7 @@
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-%E5%9B%9E%E6%96%87%E6%95%B0/">回文数</a>
+      <a class="article-title" href="/2022/06/29/firefox-CVE-2021-38501%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">firefox-CVE-2021-38501安全公告</a>
     </h1>
   
 
@@ -513,31 +644,39 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="题目"><a href="#题目" class="headerlink" title="题目"></a>题目</h3><p>判断一个整数是否是回文数。回文数是指正序（从左向右）和倒序（从右向左）读都是一样的整数。</p>
-<p><strong>示例 1:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">输入: 121</span><br><span class="line">输出: true</span><br></pre></td></tr></table></figure>
+        <h2 id="FS-SA-2022-06-firefox安全更新"><a href="#FS-SA-2022-06-firefox安全更新" class="headerlink" title="FS-SA-2022-06: firefox安全更新"></a>FS-SA-2022-06: firefox安全更新</h2><h2 id="漏洞描述"><a href="#漏洞描述" class="headerlink" title="漏洞描述"></a>漏洞描述</h2><p>Mozilla开发人员报告了Firefox 92和Firefox ESR 91.1中存在的记忆安全虫。这些错误中有些显示了记忆损坏的证据，我们认为有足够的努力可以利用其中一些来运行任意代码。这种脆弱性会影响Firefox LT 93 Thunderbird 93 Thunderbird themphendebird。 </p>
+<h2 id="漏洞信息"><a href="#漏洞信息" class="headerlink" title="漏洞信息"></a>漏洞信息</h2><h3 id="漏洞编号：-CVE-2021-38501"><a href="#漏洞编号：-CVE-2021-38501" class="headerlink" title="漏洞编号： CVE-2021-38501"></a>漏洞编号： CVE-2021-38501</h3><h3 id="软件包名：-firefox"><a href="#软件包名：-firefox" class="headerlink" title="软件包名： firefox"></a>软件包名： firefox</h3><h3 id="CVSS3-1评分：-8-8"><a href="#CVSS3-1评分：-8-8" class="headerlink" title="CVSS3.1评分： 8.8"></a>CVSS3.1评分： 8.8</h3><h3 id="漏洞评级：高危"><a href="#漏洞评级：高危" class="headerlink" title="漏洞评级：高危"></a>漏洞评级：高危</h3><h2 id="受影响NFS版本"><a href="#受影响NFS版本" class="headerlink" title="受影响NFS版本"></a>受影响NFS版本</h2><h3 id="方德桌面操作系统V5-0"><a href="#方德桌面操作系统V5-0" class="headerlink" title="方德桌面操作系统V5.0"></a>方德桌面操作系统V5.0</h3><h3 id="更新包下载地址"><a href="#更新包下载地址" class="headerlink" title="更新包下载地址"></a>更新包下载地址</h3><p>待定</p>
+<h2 id="修复建议"><a href="#修复建议" class="headerlink" title="修复建议"></a>修复建议</h2><p>升级到 </p>
+<p>方法一：在线更新</p>
+<ol>
+<li>添加以下行到安装源配置文件中</li>
+</ol>
+<p>方德桌面操作系统V5.0添加如下行到/etc/apt/sources.list文件中：<br>deb <a target="_blank" rel="noopener" href="https://repos.os.nfschina.com/deb/nfs/tiger-security">https://repos.os.nfschina.com/deb/nfs/tiger-security</a> base main</p>
+<ol start="2">
+<li>执行源同步命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get update</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 2:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: -121</span><br><span class="line">输出: false</span><br><span class="line">解释: 从左向右读, 为 -121 。 从右向左读, 为 121- 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+<ol start="3">
+<li>执行安装更新命令，命令如下：</li>
+</ol>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install firefox</span><br></pre></td></tr></table></figure>
 
-<p><strong>示例 3:</strong></p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">输入: 10</span><br><span class="line">输出: false</span><br><span class="line">解释: 从右向左读, 为 01 。因此它不是一个回文数。</span><br></pre></td></tr></table></figure>
+<p>方法二：下载安装包进行升级安装</p>
+<p>通过下面的“软件更新”中的地址下载软件包，使用本地安装命令进行升级安装,命令如下：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo dpkg -i Packagename</span><br></pre></td></tr></table></figure>
 
+<ol start="3">
+<li>升级完成后是否需要重启服务或操作系统：<br>无需重启操作系统与服务即可使漏洞修复生效。</li>
+</ol>
+<h2 id="相关链接"><a href="#相关链接" class="headerlink" title="相关链接"></a>相关链接</h2><p><a target="_blank" rel="noopener" href="https://nvd.nist.gov/vuln/detail/CVE-2021-38501">https://nvd.nist.gov/vuln/detail/CVE-2021-38501</a></p>
 
-
-<h3 id="思路"><a href="#思路" class="headerlink" title="思路"></a>思路</h3><p>先判断是否为负，为负数则返回<code>false</code>，然后循环取出每一位存到另一个<code>int</code>变量中，每次变量在自乘10，完事之后对比一下就可以了。</p>
-<h3 id="代码"><a href="#代码" class="headerlink" title="代码"></a>代码</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
-
-<p>bool isPalindrome(int x) {<br>    int a=x;<br>    long int sum=0;<br>    if(x&lt;0)<br>        return false;<br>    else<br>    {<br>        while(a)<br>        {<br>            sum=sum*10+a%10;<br>            a=a/10;<br>        }<br>        if(x==sum)<br>            return true;<br>        else<br>            return false;<br>    }<br>}</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"></span><br></pre></td></tr></table></figure>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-%E5%9B%9E%E6%96%87%E6%95%B0/" data-id="ckf8bs9ot000gt414bu700nhx" class="article-share-link">Share</a>
+      <a data-url="http://yoursite.com/2022/06/29/firefox-CVE-2021-38501%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/" data-id="cm56kve370084ioxm4tvq164c" class="article-share-link">Share</a>
       
       
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
     </footer>
   </div>
   
@@ -548,7 +687,7 @@
 
 
   <nav id="page-nav">
-    <a class="extend prev" rel="prev" href="/page/19/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><a class="extend next" rel="next" href="/page/21/">__(&#39;next&#39;) &amp;raquo;</a>
+    <a class="extend prev" rel="prev" href="/page/19/">&amp;laquo; __(&#39;prev&#39;)</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/18/">18</a><a class="page-number" href="/page/19/">19</a><span class="page-number current">20</span><a class="page-number" href="/page/21/">21</a><a class="page-number" href="/page/22/">22</a><span class="space">&hellip;</span><a class="page-number" href="/page/55/">55</a><a class="extend next" rel="next" href="/page/21/">__(&#39;next&#39;) &amp;raquo;</a>
   </nav>
 </section>
         
@@ -580,7 +719,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/12/">December 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/10/">October 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/09/">September 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/06/">June 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/05/">May 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/04/">April 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/03/">March 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -593,23 +732,23 @@
       <ul>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-5481%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5481安全公告</a>
+            <a href="/2023/01/03/audispd-plugins/">audispd-plugins</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-5482%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-5482安全公告</a>
+            <a href="/2022/12/01/%E4%B8%89%E5%91%98%E6%9D%83%E9%99%90/">三员权限</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2018-16890%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2018-16890安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-42008%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-42008安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-3822%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3822安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-42739%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-42739安全公告</a>
           </li>
         
           <li>
-            <a href="/2022/05/19/curl-CVE-2019-3823%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">curl-CVE-2019-3823安全公告</a>
+            <a href="/2022/10/14/kernel-CVE-2021-43389%E5%AE%89%E5%85%A8%E5%85%AC%E5%91%8A/">kernel-CVE-2021-43389安全公告</a>
           </li>
         
       </ul>
@@ -624,7 +763,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2022 王<br>
+      &copy; 2024 王<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
