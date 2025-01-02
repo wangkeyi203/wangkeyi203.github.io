@@ -64,6 +64,53 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-添加内核模块" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2025/01/02/%E6%B7%BB%E5%8A%A0%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/" class="article-date">
+  <time datetime="2025-01-02T12:34:01.000Z" itemprop="datePublished">2025-01-02</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2025/01/02/%E6%B7%BB%E5%8A%A0%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/">添加内核模块</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>将模块代码放到指定位置<br>drivers/char/vtcm/</p>
+<p>然后添加Makefile</p>
+<p>obj-$(CONFIG_VTCM) += vtcm.o</p>
+<p>添加Kconfig</p>
+<p>config VTCM<br>    tristate “VTCM Driver Support”<br>    depends on TCG_TPM<br>    default m<br>    help<br>      This enables support for VTCM driver.</p>
+<pre><code>If unsure, say N.
+</code></pre>
+<p>修改 drivers/char/Makefile，添加<br>obj-$(CONFIG_VTCM)              += vtcm/</p>
+<p>修改 drivers/char/Kconfig，添加<br>source “drivers/char/vtcm/Kconfig”</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2025/01/02/%E6%B7%BB%E5%8A%A0%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/" data-id="cm5fbgd4b0000ggxmesd98adi" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/kernel/" rel="tag">kernel</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-audispd-plugins" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2023/01/03/audispd-plugins/" class="article-date">
@@ -624,74 +671,6 @@
 
 
   
-    <article id="post-openstack适配-2" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2020/09/28/openstack%E9%80%82%E9%85%8D-2/" class="article-date">
-  <time datetime="2020-09-28T08:59:00.000Z" itemprop="datePublished">2020-09-28</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2020/09/28/openstack%E9%80%82%E9%85%8D-2/">openstack适配_2</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>控制节点安装配置Networking service<br>mysql -uroot -p123456 -e “CREATE DATABASE neutron”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON neutron.* TO ‘neutron’@’localhost’ IDENTIFIED BY ‘123456’”<br>mysql -uroot -p123456 -e “GRANT ALL PRIVILEGES ON neutron.* TO ‘neutron’@’%’ IDENTIFIED BY ‘123456’”<br>openstack user create –domain default –password 123456 neutron<br>openstack role add –project service –user neutron admin<br>openstack service create –name neutron –description “OpenStack Networking” network<br>openstack endpoint create –region RegionOne network public <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>openstack endpoint create –region RegionOne network internal <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>openstack endpoint create –region RegionOne network admin <a target="_blank" rel="noopener" href="http://controller:9696/">http://controller:9696</a><br>yum install openstack-neutron openstack-neutron-ml2 -y</p>
-<p>cp /etc/neutron/neutron.conf /etc/neutron/neutron.conf.bak<br>egrep -v “^$|^#” /etc/neutron/neutron.conf.bak &gt;/etc/neutron/neutron.conf</p>
-<p>修改/etc/neutron/neutron.conf<br>[DEFAULT]<br>bind_host = 192.168.50.88<br>core_plugin = ml2<br>service_plugins = router<br>allow_overlapping_ips = true<br>auth_strategy = keystone<br>transport_url = rabbit://openstack:123456@controller:5672<br>notify_nova_on_port_status_changes = true<br>notify_nova_on_port_data_changes = true<br>[database]<br>connection = mysql+pymysql://neutron:123456@controller/neutron</p>
-<p>[keystone_authtoken]<br>www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>memcached_servers = controller:11211<br>auth_type = password<br>project_domain_name = Default<br>user_domain_name = Default<br>project_name = service<br>username = neutron<br>password = 123456</p>
-<p>[nova]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = nova<br>password = 123456</p>
-<p>[oslo_concurrency]<br>lock_path = /var/lib/neutron/tmp</p>
-<p>修改/etc/nova/nova.conf<br>[neutron]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = neutron<br>password = 123456<br>service_metadata_proxy = true<br>metadata_proxy_shared_secret = devops</p>
-<p>cp /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugins/ml2/ml2_conf.ini.bak<br>egrep -v “^$|^#” /etc/neutron/plugins/ml2/ml2_conf.ini.bak &gt;/etc/neutron/plugins/ml2/ml2_conf.ini<br>然后修改该文件<br>[ml2]<br>type_drivers = flat,vlan,vxlan<br>tenant_network_types = vxlan<br>mechanism_drivers = linuxbridge,l2population<br>extension_drivers = port_security</p>
-<p>[ml2_type_flat]<br>flat_networks = provider</p>
-<p>[ml2_type_vxlan]<br>vni_ranges = 1:1000</p>
-<p>[securitygroup]<br>enable_ipset = true</p>
-<p>执行 su -s /bin/sh -c “neutron-db-manage –config-file /etc/neutron/neutron.conf <br>–config-file /etc/neutron/plugins/ml2/ml2_conf.ini upgrade head” neutron<br>systemctl restart openstack-nova-api.service<br>systemctl status openstack-nova-api.service<br>ln -s /etc/neutron/plugins/ml2/ml2_conf.ini /etc/neutron/plugin.ini<br>systemctl enable neutron-server.service<br>systemctl restart neutron-server.service<br>systemctl status neutron-server.service</p>
-<p>计算节点安装Networking service<br>yum install openstack-neutron openstack-neutron-ml2 openstack-neutron-linuxbridge ebtables -y<br>cp /etc/neutron/neutron.conf /etc/neutron/neutron.conf.bak<br>egrep -v “^$|^#” /etc/neutron/neutron.conf.bak &gt;/etc/neutron/neutron.conf</p>
-<p>修改/etc/neutron/neutron.conf<br>[DEFAULT]<br>auth_strategy = keystone<br>transport_url = rabbit://rabbitmq:123456@controller:5672<br>[database]<br>connection = mysql+pymysql://neutron:123456@controller/neutron<br>[keystone_authtoken]<br>www_authenticate_uri = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>memcached_servers = controller:11211<br>auth_type = password<br>project_domain_name = Default<br>user_domain_name = Default<br>project_name = service<br>username = neutron<br>password = 123456</p>
-<p>[oslo_concurrency]<br>lock_path = /var/lib/neutron/tmp</p>
-<p>修改/etc/nova/nova.conf</p>
-<p>[neutron]<br>auth_url = <a target="_blank" rel="noopener" href="http://controller:5000/">http://controller:5000</a><br>auth_type = password<br>project_domain_name = default<br>user_domain_name = default<br>region_name = RegionOne<br>project_name = service<br>username = neutron<br>password = 123456</p>
-<p>systemctl restart openstack-nova-compute.service<br>修改/etc/neutron/plugins/ml2/ml2_conf.ini<br>[ml2]<br>type_drivers = flat,vlan,vxlan<br>tenant_network_types = vxlan<br>mechanism_drivers = linuxbridge,l2population<br>extension_drivers = port_security</p>
-<p>[ml2_type_flat]<br>flat_networks = provider</p>
-<p>[ml2_type_vxlan]<br>vni_ranges = 1:1000</p>
-<p>[securitygroup]<br>enable_ipset = true</p>
-<p>修改/etc/neutron/plugins/ml2/linuxbridge_agent.ini<br>[linux_bridge]<br>physical_interface_mappings = provider:enp0s8</p>
-<p>[vxlan]<br>enable_vxlan = true<br>local_ip = 192.168.50.148<br>l2_population = true</p>
-<p>[securitygroup]<br>enable_security_group = true<br>firewall_driver = neutron.agent.linux.iptables_firewall.IptablesFirewallDriver</p>
-<p>修改/etc/neutron/l3_agent.ini<br>[DEFAULT]<br>interface_driver = linuxbridge</p>
-<p>修改/etc/neutron/dhcp_agent.ini</p>
-<p>[DEFAULT]<br>interface_driver = linuxbridge<br>dhcp_driver = neutron.agent.linux.dhcp.Dnsmasq<br>enable_isolated_metadata = true</p>
-<p>修改/etc/neutron/metadata_agent.ini<br>[DEFAULT]<br>nova_metadata_host = controller<br>metadata_proxy_shared_secret = devops</p>
-<p>然后执行<br>systemctl enable neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent<br>systemctl restart neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent<br>systemctl status neutron-linuxbridge-agent neutron-dhcp-agent neutron-metadata-agent neutron-l3-agent</p>
-<p>控制节点 安装Dashboard<br>yum install -y openstack-dashboard<br>sed -i ‘118c OPENSTACK_HOST = “controller”‘ /etc/openstack-dashboard/local_settings<br>sed -i “39c ALLOWED_HOSTS = [‘*’]” /etc/openstack-dashboard/local_settings<br>sed -i “104c SESSION_ENGINE = ‘django.contrib.sessions.backends.cache’” /etc/openstack-dashboard/local_settings<br>sed -i “94c CACHES = {“ /etc/openstack-dashboard/local_settings<br>sed -i “95c ‘default’: {“ /etc/openstack-dashboard/local_settings<br>sed -i “96c ‘BACKEND’: ‘django.core.cache.backends.memcached.MemcachedCache’,” /etc/openstack-dashboard/local_settings<br>sed -i “97c ‘LOCATION’: ‘controller:11211’,” /etc/openstack-dashboard/local_settings<br>sed -i “98c }” /etc/openstack-dashboard/local_settings<br>sed -i “99c }” /etc/openstack-dashboard/local_settings<br>sed -i ‘119c OPENSTACK_KEYSTONE_URL = “http://%s:5000/v3” % OPENSTACK_HOST’ /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_MULTIDOMAIN_SUPPORT = True’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_API_VERSIONS = {‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “identity”: 3,’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “image”: 2,’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘    “volume”: 3’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘}’ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_DEFAULT_DOMAIN = “Default”‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘OPENSTACK_KEYSTONE_DEFAULT_ROLE = “user”‘ &gt;&gt; /etc/openstack-dashboard/local_settings<br>sed -i ‘123c TIME_ZONE = “Asia/Shanghai”‘ /etc/openstack-dashboard/local_settings<br>echo “WEBROOT = ‘/dashboard/‘“ &gt;&gt; /etc/openstack-dashboard/local_settings<br>echo ‘WSGIApplicationGroup %{GLOBAL}’ &gt;&gt; /etc/httpd/conf.d/openstack-dashboard.conf<br>systemctl restart httpd.service memcached.service</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2020/09/28/openstack%E9%80%82%E9%85%8D-2/" data-id="ckj277c6b0001y53e4fri2661" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -708,7 +687,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tags</h3>
     <div class="widget">
-      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
+      <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Algorithm/" rel="tag">Algorithm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c/" rel="tag">c</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" rel="tag">c demo使用说明</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit/" rel="tag">cockpit</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-DBus-Client/" rel="tag">cockpit.DBus Client</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit-js/" rel="tag">cockpit.js</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" rel="tag">cockpit数据格式</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" rel="tag">cockpit文件操作</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/configobj/" rel="tag">configobj</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus/" rel="tag">dbus</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" rel="tag">dbus服务自启动</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/dd/" rel="tag">dd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ext4/" rel="tag">ext4</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/gvm/" rel="tag">gvm</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/json/" rel="tag">json</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/kernel/" rel="tag">kernel</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/metadata-csum/" rel="tag">metadata_csum</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nfs/" rel="tag">nfs</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/nginx-conf/" rel="tag">nginx.conf</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack/" rel="tag">openstack</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openstack%E9%80%82%E9%85%8D/" rel="tag">openstack适配</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/openvas/" rel="tag">openvas</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/python/" rel="tag">python</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/qt/" rel="tag">qt</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/share/" rel="tag">share</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/tip/" rel="tag">tip</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/ussuri/" rel="tag">ussuri</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/watch/" rel="tag">watch</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" rel="tag">各个模块介绍</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" rel="tag">第一周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" rel="tag">第三周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" rel="tag">第二周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" rel="tag">第五周</a></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
     </div>
   </div>
 
@@ -718,7 +697,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Tag Cloud</h3>
     <div class="widget tagcloud">
-      <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 20px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/dbus/" style="font-size: 12px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 14px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 18px;">review</a> <a href="/tags/share/" style="font-size: 16px;">share</a> <a href="/tags/tip/" style="font-size: 18px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 16px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 16px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 16px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 14px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 16px;">第四周</a>
+      <a href="/tags/Algorithm/" style="font-size: 18px;">Algorithm</a> <a href="/tags/c/" style="font-size: 10px;">c</a> <a href="/tags/c-demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/" style="font-size: 10px;">c demo使用说明</a> <a href="/tags/cockpit/" style="font-size: 20px;">cockpit</a> <a href="/tags/cockpit-DBus-Client/" style="font-size: 10px;">cockpit.DBus Client</a> <a href="/tags/cockpit-js/" style="font-size: 10px;">cockpit.js</a> <a href="/tags/cockpit%E6%95%B0%E6%8D%AE%E6%A0%BC%E5%BC%8F/" style="font-size: 10px;">cockpit数据格式</a> <a href="/tags/cockpit%E6%96%87%E4%BB%B6%E6%93%8D%E4%BD%9C/" style="font-size: 10px;">cockpit文件操作</a> <a href="/tags/configobj/" style="font-size: 10px;">configobj</a> <a href="/tags/dbus/" style="font-size: 12px;">dbus</a> <a href="/tags/dbus%E6%9C%8D%E5%8A%A1%E8%87%AA%E5%90%AF%E5%8A%A8/" style="font-size: 10px;">dbus服务自启动</a> <a href="/tags/dd/" style="font-size: 10px;">dd</a> <a href="/tags/ext4/" style="font-size: 10px;">ext4</a> <a href="/tags/gvm/" style="font-size: 10px;">gvm</a> <a href="/tags/json/" style="font-size: 10px;">json</a> <a href="/tags/kernel/" style="font-size: 10px;">kernel</a> <a href="/tags/metadata-csum/" style="font-size: 10px;">metadata_csum</a> <a href="/tags/nfs/" style="font-size: 10px;">nfs</a> <a href="/tags/nginx-conf/" style="font-size: 10px;">nginx.conf</a> <a href="/tags/openstack/" style="font-size: 14px;">openstack</a> <a href="/tags/openstack%E9%80%82%E9%85%8D/" style="font-size: 10px;">openstack适配</a> <a href="/tags/openvas/" style="font-size: 10px;">openvas</a> <a href="/tags/python/" style="font-size: 10px;">python</a> <a href="/tags/qt/" style="font-size: 10px;">qt</a> <a href="/tags/review/" style="font-size: 18px;">review</a> <a href="/tags/share/" style="font-size: 16px;">share</a> <a href="/tags/tip/" style="font-size: 18px;">tip</a> <a href="/tags/ussuri/" style="font-size: 10px;">ussuri</a> <a href="/tags/vsftpd/" style="font-size: 10px;">vsftpd</a> <a href="/tags/watch/" style="font-size: 10px;">watch</a> <a href="/tags/%E5%90%84%E4%B8%AA%E6%A8%A1%E5%9D%97%E4%BB%8B%E7%BB%8D/" style="font-size: 10px;">各个模块介绍</a> <a href="/tags/%E7%AC%AC%E4%B8%80%E5%91%A8/" style="font-size: 16px;">第一周</a> <a href="/tags/%E7%AC%AC%E4%B8%89%E5%91%A8/" style="font-size: 16px;">第三周</a> <a href="/tags/%E7%AC%AC%E4%BA%8C%E5%91%A8/" style="font-size: 16px;">第二周</a> <a href="/tags/%E7%AC%AC%E4%BA%94%E5%91%A8/" style="font-size: 14px;">第五周</a> <a href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" style="font-size: 16px;">第四周</a>
     </div>
   </div>
 
@@ -727,7 +706,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -738,6 +717,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/01/02/%E6%B7%BB%E5%8A%A0%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/">添加内核模块</a>
+          </li>
         
           <li>
             <a href="/2023/01/03/audispd-plugins/">audispd-plugins</a>
@@ -755,10 +738,6 @@
             <a href="/2022/02/16/dbus%E6%96%B9%E6%A1%88/">(no title)</a>
           </li>
         
-          <li>
-            <a href="/2022/01/25/demo%E4%BD%BF%E7%94%A8%E8%AF%B4%E6%98%8E/">demo使用说明</a>
-          </li>
-        
       </ul>
     </div>
   </div>
@@ -771,7 +750,7 @@
   
   <div class="outer">
     <div id="footer-info" class="inner">
-      &copy; 2024 王<br>
+      &copy; 2025 王<br>
       Powered by <a href="http://hexo.io/" target="_blank">Hexo</a>
     </div>
   </div>
