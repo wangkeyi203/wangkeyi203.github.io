@@ -64,6 +64,263 @@
       <div class="outer">
         <section id="main">
   
+    <article id="post-vsftpd配置" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" class="article-date">
+  <time datetime="2020-07-29T04:48:38.000Z" itemprop="datePublished">2020-07-29</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/">vsftpd配置</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <table>
+<thead>
+<tr>
+<th>属性</th>
+<th>属性值</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>anonymous_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许匿名用户（anonymous）登录 <code>FTP</code>，如果该设置被注释，则默认允许</td>
+</tr>
+<tr>
+<td>local_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许本地系统用户登录</td>
+</tr>
+<tr>
+<td>write_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否开启任何形式的 <code>FTP</code> 写入命令，上传文件</td>
+</tr>
+<tr>
+<td>local_umask</td>
+<td>xxx</td>
+<td>本地用户的 <code>umask</code> 设置，如果注释该设置则默认为 <code>077</code>，但一般都设置成 <code>022</code></td>
+</tr>
+<tr>
+<td>anon_upload_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许匿名用户上传文件，如果要设置为允许，则需要先开启 <code>write_enable</code>，否则无效，此外对应目录还要具有写权限</td>
+</tr>
+<tr>
+<td>anon_mkdir_write_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许匿名用户创建新目录</td>
+</tr>
+<tr>
+<td>dirmessage_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>当进入某个目录时，发送信息提示给远程用户：</td>
+</tr>
+<tr>
+<td>xferlog_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否开启 上传/下载 的日志记录</td>
+</tr>
+<tr>
+<td>connect_from_port_20</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否使用 <code>20</code> 端口来连接 <code>FTP</code></td>
+</tr>
+<tr>
+<td>chown_uploads</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>匿名上传的文件是否由某一指定用户 <code>chown_username</code> 所有</td>
+</tr>
+<tr>
+<td>chown_username</td>
+<td>有效用户名</td>
+<td>匿名上传的文件由该设定用户所有</td>
+</tr>
+<tr>
+<td>xferlog_file</td>
+<td>有效路径</td>
+<td>设置日志文件的保存位置，默认为 <code>/var/log/xferlog</code></td>
+</tr>
+<tr>
+<td>xferlog_std_format</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否使用标准的 <code>ftpd xferlog</code>日志格式，该格式日志默认保存在 <code>/var/log/xferlog</code></td>
+</tr>
+<tr>
+<td>idle_session_timeout</td>
+<td>数值</td>
+<td>设置空闲连接的超时时间，单位 秒</td>
+</tr>
+<tr>
+<td>data_connection_timeout</td>
+<td>数值</td>
+<td>设置等待数据传输的最大时间，单位 秒（<code>data_connection_timeout</code> 与 <code>idle_session_timeout</code> 在同一时间只有一个有效）</td>
+</tr>
+<tr>
+<td>nopriv_user</td>
+<td>有效用户名</td>
+<td>指定一个非特权用户，用于运行 <code>vsftpd</code></td>
+</tr>
+<tr>
+<td>async_abor_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否支持异步 <code>ABOR</code> 请求</td>
+</tr>
+<tr>
+<td>ascii_upload_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否开启 <code>ASCII</code> 模式进行文件上传，一般不开启</td>
+</tr>
+<tr>
+<td>ascii_download_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否开启 <code>ASCII</code> 模式进行文件下载，一般不开启</td>
+</tr>
+<tr>
+<td>ftpd_banner</td>
+<td>…</td>
+<td>自定义登录标语</td>
+</tr>
+<tr>
+<td>deny_email_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>如果匿名登录，则会要求输入 email 地址，如果不希望一些 email 地址具有登录权限，则可以开启此项，并在 <code>banned_email_file</code> 指定的文件中写入对应的 email 地址</td>
+</tr>
+<tr>
+<td>banned_email_file</td>
+<td>有效文件</td>
+<td>当开启 <code>deny_email_enable</code> 时，需要通过此项指定一个保存登录无效 email 的文件</td>
+</tr>
+<tr>
+<td>chroot_local_user</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否将所有用户限制在主目录，当为 <code>NO</code> 时， <code>FTP</code> 用户可以切换到其他目录</td>
+</tr>
+<tr>
+<td>chroot_list_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否启用限制用户的名单列表</td>
+</tr>
+<tr>
+<td>chroot_list_file</td>
+<td>有效文件</td>
+<td>用户列表，其作用与 <code>chroot_local_user</code> 和 <code>chroot_local_user</code> 的组合有关，详见下表</td>
+</tr>
+<tr>
+<td>allow_writeable_chroot</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许用户对 ftp 根目录具有写权限，如果设置成不允许而目录实际上却具备写权限，则会报错</td>
+</tr>
+<tr>
+<td>ls_recurse_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许 <code>ls -R</code> 指令来递归查询，递归查询比较耗资源</td>
+</tr>
+<tr>
+<td>listen</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>如果为 <code>YES</code>，<code>vsftpd</code> 将以独立模式运行并监听 <code>IPv4</code> 的套接字，处理相关连接请求（该指令不能与 <code>listen_ipv6</code> 一起使用）</td>
+</tr>
+<tr>
+<td>listen_ipv6</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否允许监听 <code>IPv6</code> 套接字</td>
+</tr>
+<tr>
+<td>pam_service_name</td>
+<td>…</td>
+<td>设置 <code>PAM</code> 外挂模块提供的认证服务所使用的配置文件名 ，即 <code>/etc/pam.d/vsftpd</code> 文件，此文件中 <code>file=/etc/vsftpd/ftpusers</code> 字段，说明了 <code>PAM</code> 模块能抵挡的帐号内容来自文件 <code>/etc/vsftpd/ftpusers</code> 中</td>
+</tr>
+<tr>
+<td>userlist_enable</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否启用 <code>user_list</code> 文件来控制用户登录</td>
+</tr>
+<tr>
+<td>userlist_deny</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否拒绝 <code>user_list</code> 中的用户登录，此属性设置需在 <code>userlist_enable = YES</code> 时才有效</td>
+</tr>
+<tr>
+<td>tcp_wrappers</td>
+<td><code>YES</code>/<code>NO</code></td>
+<td>是否使用 <code>tcp_wrappers</code> 作为主机访问控制方式</td>
+</tr>
+<tr>
+<td>max_clients</td>
+<td>数值</td>
+<td>同一时间允许的最大连接数</td>
+</tr>
+<tr>
+<td>max_per_ip</td>
+<td>数值</td>
+<td>同一个IP客户端连接的最大值</td>
+</tr>
+<tr>
+<td>local_root</td>
+<td>有效目录</td>
+<td>系统用户登录后的根目录</td>
+</tr>
+<tr>
+<td>anon_root</td>
+<td>有效目录</td>
+<td>匿名用户登录后的根目录</td>
+</tr>
+<tr>
+<td>user_config_dir</td>
+<td>有效目录</td>
+<td>用户单独配置文件存放目录，该目录下用户的文件名就是对应用户名</td>
+</tr>
+</tbody></table>
+<p><code>chroot_local_user</code> 和 <code>chroot_local_user</code> 组合功能如下：</p>
+<table>
+<thead>
+<tr>
+<th></th>
+<th>chroot_local_user=YES</th>
+<th>chroot_local_user=NO</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>chroot_list_enable=YES</td>
+<td>1.所有用户都被限制在其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，不受限制</td>
+<td>1.所有用户都不被限制其主目录下 2.使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，这些用户作为“例外”，受到限制</td>
+</tr>
+<tr>
+<td>chroot_list_enable=NO</td>
+<td>1.所有用户都被限制在其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
+<td>1.所有用户都不被限制其主目录下 2.不使用 <code>chroot_list_file</code> 指定的用户列表 <code>/etc/vsftpd/chroot_list</code>，没有任何“例外”用户</td>
+</tr>
+</tbody></table>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2020/07/29/vsftpd%E9%85%8D%E7%BD%AE/" data-id="ckf8bs9pj002lt4142cdp33g6" class="article-share-link">Share</a>
+      
+      
+  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/vsftpd/" rel="tag">vsftpd</a></li></ul>
+
+    </footer>
+  </div>
+  
+</article>
+
+
+  
     <article id="post-cockpit-4" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2020/07/24/cockpit-4/" class="article-date">
@@ -498,47 +755,6 @@
 
 
   
-    <article id="post-4-review" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2019/04/14/4-review/" class="article-date">
-  <time datetime="2019-04-14T15:19:33.000Z" itemprop="datePublished">2019-04-14</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/04/14/4-review/">osquery审计</a>
-    </h1>
-  
-
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>medium.com/palantir/auditing-with-osquery-part-two-configuration-and-implementation-87a8bba0ef48</p>
-<p>介绍使用osquery启用审计。</p>
-<p>如何配置以及对系统性能的影响。</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://yoursite.com/2019/04/14/4-review/" data-id="ckf8bs9oq000at4146n8dhd34" class="article-share-link">Share</a>
-      
-      
-  <ul class="article-tag-list" itemprop="keywords"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/review/" rel="tag">review</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/%E7%AC%AC%E5%9B%9B%E5%91%A8/" rel="tag">第四周</a></li></ul>
-
-    </footer>
-  </div>
-  
-</article>
-
-
-  
 
 
   <nav id="page-nav">
@@ -574,7 +790,7 @@
   <div class="widget-wrap">
     <h3 class="widget-title">Archives</h3>
     <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/02/">February 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2025/01/">January 2025</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/01/">January 2023</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/02/">February 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2022/01/">January 2022</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2021/11/">November 2021</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/12/">December 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/09/">September 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/08/">August 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2020/07/">July 2020</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/04/">April 2019</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2019/03/">March 2019</a></li></ul>
     </div>
   </div>
 
@@ -585,6 +801,10 @@
     <h3 class="widget-title">Recent Posts</h3>
     <div class="widget">
       <ul>
+        
+          <li>
+            <a href="/2025/02/06/%E5%BC%BA%E8%AE%BF%E8%AE%BE%E8%AE%A1%E6%96%87%E6%A1%A3/">强访设计文档</a>
+          </li>
         
           <li>
             <a href="/2025/01/02/%E6%B7%BB%E5%8A%A0%E5%86%85%E6%A0%B8%E6%A8%A1%E5%9D%97/">添加内核模块</a>
@@ -600,10 +820,6 @@
         
           <li>
             <a href="/2022/02/23/dbus%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/">dbus配置说明</a>
-          </li>
-        
-          <li>
-            <a href="/2022/02/16/dbus%E6%96%B9%E6%A1%88/">(no title)</a>
           </li>
         
       </ul>
